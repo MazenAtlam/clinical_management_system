@@ -13,4 +13,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CCMS.BLL\CCMS.BLL.csproj" />
+  </ItemGroup>
+
 </Project>

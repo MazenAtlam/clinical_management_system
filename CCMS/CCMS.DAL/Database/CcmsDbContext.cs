@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-
+using CCMS.DAL.Entities;
 namespace CCMS.DAL.Database
 {
     public class CcmsDbContext

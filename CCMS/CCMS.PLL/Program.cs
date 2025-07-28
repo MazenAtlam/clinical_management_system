@@ -1,3 +1,7 @@
+
+using CCMS.DAL.Database;
+using Microsoft.EntityFrameworkCore;
+
 namespace CCMS.PLL
 {
     public class Program
@@ -8,6 +12,9 @@ namespace CCMS.PLL
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            var connectionString = builder.Configuration.GetConnectionString("defaultConnection");
+            builder.Services.AddDbContext<CcmsDbContext>(options =>
+            options.UseSqlServer(connectionString));
 
             var app = builder.Build();
 
@@ -20,15 +27,16 @@ namespace CCMS.PLL
             }
 
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
             app.UseRouting();
 
             app.UseAuthorization();
 
-            app.MapStaticAssets();
+
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}")
-                .WithStaticAssets();
+                pattern: "{controller=Home}/{action=Index}/{id?}");
+                
 
             app.Run();
         }

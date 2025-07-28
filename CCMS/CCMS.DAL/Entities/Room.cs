@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CCMS.DAL.Entities
 {
+    [Table("Room", Schema = "ccms")]
     public class Room : Base
     {
         public int id { get; private set; }

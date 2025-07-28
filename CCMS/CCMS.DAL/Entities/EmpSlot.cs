@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace CCMS.DAL.Entities
 {
+    [Table("EmpSlot", Schema = "ccms")]
     public  class EmpSlot
     {
         //NEED COMPOSITE KEY IN FLUENT API

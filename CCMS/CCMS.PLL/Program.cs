@@ -12,9 +12,9 @@ namespace CCMS.PLL
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
             var connectionString = builder.Configuration.GetConnectionString("defaultConnection");
-            builder.Services.AddDbContext<CcmsDbContext>(options =>
-            options.UseSqlServer(connectionString));
+            builder.Services.AddDbContext<CcmsDbContext>(options =>options.UseSqlServer(connectionString));
 
             var app = builder.Build();
 

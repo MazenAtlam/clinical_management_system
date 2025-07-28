@@ -4,11 +4,11 @@ namespace CCMS.DAL.Entities
 {
     public class FamilyMember : Base
     {
-        public int Id { get; set; }
-        public string  name { get; set; }
-        public Gender Gender { get; set; }
-        public int SSN { get; set; }
-        public string phone { get; set; }
+        public int Id { get;private set; }
+        public string  name { get; private set; }
+        public Gender Gender { get; private set; }
+        public int SSN { get; private set; }
+        public string phone { get; private set; }
 
         //navigation
         public List<PateintfFamilyJoin> pateintfFamily { get; set; }

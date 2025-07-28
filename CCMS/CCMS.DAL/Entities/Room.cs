@@ -22,6 +22,9 @@ namespace CCMS.DAL.Entities
         public Department department { get; private set; }
         public List<MedicalDevice>? medicalDevices { get; private set; }
 
+        //ternary relationship book
+        public List<Book> Books { get; set; }
+
         public Room(int capacity, int floorNum, string buildingNum, Rtype rtype)
         {
             this.capacity = capacity;

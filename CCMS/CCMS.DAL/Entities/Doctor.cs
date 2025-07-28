@@ -10,6 +10,8 @@ namespace CCMS.DAL.Entities
         public double rating { get; private set; }
         //public List<Patient>? patients { get; private set; }
         //public List<Room>? rooms { get; private set; }
+        //ternary relationship book
+        public List<Book> Books { get; set; }
         public Doctor(Specialization major)
         {
             this.major = major;

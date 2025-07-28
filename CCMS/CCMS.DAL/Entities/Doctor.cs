@@ -1,7 +1,9 @@
 ﻿using CCMS.DAL.Enums;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CCMS.DAL.Entities
 {
+    [Table("Doctor", Schema = "ccms")]
     public class Doctor : Employee
     {
         public int id { get; private set; }

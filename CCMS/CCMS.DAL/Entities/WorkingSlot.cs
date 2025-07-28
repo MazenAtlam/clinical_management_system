@@ -1,8 +1,10 @@
 ﻿using CCMS.DAL.Enums;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CCMS.DAL.Entities
 {
+    [Table("WorkingSlot", Schema = "ccms")]
     public class WorkingSlot : Base
     {
         public int id { get; private set; }

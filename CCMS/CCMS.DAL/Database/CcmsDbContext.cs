@@ -2,5 +2,9 @@
 {
     public class CcmsDbContext
     {
+        public CcmsDbContext(DbContextOptions<CcmsDbContext> options) : base(options)
+        {
+
+        }
     }
 }

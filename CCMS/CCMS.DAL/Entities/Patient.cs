@@ -1,7 +1,9 @@
 ﻿namespace CCMS.DAL.Entities
 {
+    [Table("Patient", Schema = "ccms")]
     public class Patient : Person
     {
+        
         public int Id { get;private set; }
 
         //navigation

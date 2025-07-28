@@ -2,5 +2,6 @@
 {
     public class LabDoctor : Employee
     {
+        public int id { get; private set; }
     }
 }

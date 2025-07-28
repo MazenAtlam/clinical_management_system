@@ -1,4 +1,5 @@
 ﻿using CCMS.DAL.Entities.InnerClasses;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CCMS.DAL.Entities
 {

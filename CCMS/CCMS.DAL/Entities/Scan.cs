@@ -1,4 +1,5 @@
-﻿namespace CCMS.DAL.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+namespace CCMS.DAL.Entities
 {
     [Table("Scan", Schema = "ccms")]
     public class Scan : Base

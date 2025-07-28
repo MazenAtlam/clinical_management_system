@@ -1,5 +1,5 @@
 ﻿using CCMS.DAL.Enums;
-
+using System.ComponentModel.DataAnnotations.Schema;
 namespace CCMS.DAL.Entities
 {
     [Table("FamilyMember", Schema = "ccms")]

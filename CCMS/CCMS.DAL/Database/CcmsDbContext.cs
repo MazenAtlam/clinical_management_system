@@ -1,4 +1,6 @@
-﻿namespace CCMS.DAL.Database
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace CCMS.DAL.Database
 {
     public class CcmsDbContext
     {

@@ -1,7 +1,7 @@
 ﻿
 namespace CCMS.DAL.Entities
 {
-    public class PateintfFamilyJoin
+    public class PateintfFamilyJoin : Base
     {
         public int Id { get; private set; }
         public string Relationship { get; private set; }

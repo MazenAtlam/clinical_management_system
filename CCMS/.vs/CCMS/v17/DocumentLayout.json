@@ -1,57 +1,57 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\youss\\source\\repos\\clinical_management_system\\CCMS\\",
+  "WorkspaceRootPath": "C:\\Users\\youss\\source\\repos\\MazenAtlam\\clinical_management_system\\CCMS\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|c:\\users\\youss\\source\\repos\\clinical_management_system\\ccms\\ccms.dal\\entities\\empslot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|c:\\users\\youss\\source\\repos\\mazenatlam\\clinical_management_system\\ccms\\ccms.dal\\entities\\empslot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|solutionrelative:ccms.dal\\entities\\empslot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|c:\\users\\youss\\source\\repos\\clinical_management_system\\ccms\\ccms.dal\\entities\\workingslot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|c:\\users\\youss\\source\\repos\\mazenatlam\\clinical_management_system\\ccms\\ccms.dal\\entities\\workingslot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|solutionrelative:ccms.dal\\entities\\workingslot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|c:\\users\\youss\\source\\repos\\clinical_management_system\\ccms\\ccms.dal\\entities\\room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|c:\\users\\youss\\source\\repos\\mazenatlam\\clinical_management_system\\ccms\\ccms.dal\\entities\\room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|solutionrelative:ccms.dal\\entities\\room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|c:\\users\\youss\\source\\repos\\clinical_management_system\\ccms\\ccms.dal\\entities\\doctor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|c:\\users\\youss\\source\\repos\\mazenatlam\\clinical_management_system\\ccms\\ccms.dal\\entities\\doctor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|solutionrelative:ccms.dal\\entities\\doctor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|c:\\users\\youss\\source\\repos\\clinical_management_system\\ccms\\ccms.dal\\entities\\department.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|c:\\users\\youss\\source\\repos\\mazenatlam\\clinical_management_system\\ccms\\ccms.dal\\entities\\department.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|solutionrelative:ccms.dal\\entities\\department.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|c:\\users\\youss\\source\\repos\\clinical_management_system\\ccms\\ccms.dal\\entities\\biomedicalengineer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|c:\\users\\youss\\source\\repos\\mazenatlam\\clinical_management_system\\ccms\\ccms.dal\\entities\\biomedicalengineer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|solutionrelative:ccms.dal\\entities\\biomedicalengineer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|c:\\users\\youss\\source\\repos\\clinical_management_system\\ccms\\ccms.dal\\entities\\labdoctor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|c:\\users\\youss\\source\\repos\\mazenatlam\\clinical_management_system\\ccms\\ccms.dal\\entities\\labdoctor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|solutionrelative:ccms.dal\\entities\\labdoctor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|c:\\users\\youss\\source\\repos\\clinical_management_system\\ccms\\ccms.dal\\enums\\workingslotstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|c:\\users\\youss\\source\\repos\\mazenatlam\\clinical_management_system\\ccms\\ccms.dal\\enums\\workingslotstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|solutionrelative:ccms.dal\\enums\\workingslotstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|c:\\users\\youss\\source\\repos\\clinical_management_system\\ccms\\ccms.dal\\entities\\base.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|c:\\users\\youss\\source\\repos\\mazenatlam\\clinical_management_system\\ccms\\ccms.dal\\entities\\base.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|solutionrelative:ccms.dal\\entities\\base.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|c:\\users\\youss\\source\\repos\\clinical_management_system\\ccms\\ccms.dal\\enums\\rstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|c:\\users\\youss\\source\\repos\\mazenatlam\\clinical_management_system\\ccms\\ccms.dal\\enums\\rstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|solutionrelative:ccms.dal\\enums\\rstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|c:\\users\\youss\\source\\repos\\clinical_management_system\\ccms\\ccms.dal\\enums\\rtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|c:\\users\\youss\\source\\repos\\mazenatlam\\clinical_management_system\\ccms\\ccms.dal\\enums\\rtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|solutionrelative:ccms.dal\\enums\\rtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|c:\\users\\youss\\source\\repos\\clinical_management_system\\ccms\\ccms.dal\\enums\\specialization.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|c:\\users\\youss\\source\\repos\\mazenatlam\\clinical_management_system\\ccms\\ccms.dal\\enums\\specialization.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|solutionrelative:ccms.dal\\enums\\specialization.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|c:\\users\\youss\\source\\repos\\clinical_management_system\\ccms\\ccms.dal\\database\\ccmsdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|c:\\users\\youss\\source\\repos\\mazenatlam\\clinical_management_system\\ccms\\ccms.dal\\database\\ccmsdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|solutionrelative:ccms.dal\\database\\ccmsdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -72,9 +72,9 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "EmpSlot.cs",
-              "DocumentMoniker": "C:\\Users\\youss\\source\\repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\EmpSlot.cs",
+              "DocumentMoniker": "C:\\Users\\youss\\source\\repos\\MazenAtlam\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\EmpSlot.cs",
               "RelativeDocumentMoniker": "CCMS.DAL\\Entities\\EmpSlot.cs",
-              "ToolTip": "C:\\Users\\youss\\source\\repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\EmpSlot.cs",
+              "ToolTip": "C:\\Users\\youss\\source\\repos\\MazenAtlam\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\EmpSlot.cs",
               "RelativeToolTip": "CCMS.DAL\\Entities\\EmpSlot.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -85,157 +85,145 @@
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "Department.cs",
-              "DocumentMoniker": "C:\\Users\\youss\\source\\repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\Department.cs",
+              "DocumentMoniker": "C:\\Users\\youss\\source\\repos\\MazenAtlam\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\Department.cs",
               "RelativeDocumentMoniker": "CCMS.DAL\\Entities\\Department.cs",
-              "ToolTip": "C:\\Users\\youss\\source\\repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\Department.cs",
+              "ToolTip": "C:\\Users\\youss\\source\\repos\\MazenAtlam\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\Department.cs",
               "RelativeToolTip": "CCMS.DAL\\Entities\\Department.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-28T12:34:00.911Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-28T12:34:00.911Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
               "Title": "WorkingSlotStatus.cs",
-              "DocumentMoniker": "C:\\Users\\youss\\source\\repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Enums\\WorkingSlotStatus.cs",
+              "DocumentMoniker": "C:\\Users\\youss\\source\\repos\\MazenAtlam\\clinical_management_system\\CCMS\\CCMS.DAL\\Enums\\WorkingSlotStatus.cs",
               "RelativeDocumentMoniker": "CCMS.DAL\\Enums\\WorkingSlotStatus.cs",
-              "ToolTip": "C:\\Users\\youss\\source\\repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Enums\\WorkingSlotStatus.cs",
+              "ToolTip": "C:\\Users\\youss\\source\\repos\\MazenAtlam\\clinical_management_system\\CCMS\\CCMS.DAL\\Enums\\WorkingSlotStatus.cs",
               "RelativeToolTip": "CCMS.DAL\\Enums\\WorkingSlotStatus.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-28T12:31:18.916Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-28T12:31:18.916Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "WorkingSlot.cs",
-              "DocumentMoniker": "C:\\Users\\youss\\source\\repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\WorkingSlot.cs",
+              "DocumentMoniker": "C:\\Users\\youss\\source\\repos\\MazenAtlam\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\WorkingSlot.cs",
               "RelativeDocumentMoniker": "CCMS.DAL\\Entities\\WorkingSlot.cs",
-              "ToolTip": "C:\\Users\\youss\\source\\repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\WorkingSlot.cs",
+              "ToolTip": "C:\\Users\\youss\\source\\repos\\MazenAtlam\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\WorkingSlot.cs",
               "RelativeToolTip": "CCMS.DAL\\Entities\\WorkingSlot.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAlwBcAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-28T12:26:03.388Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-28T12:26:03.388Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "Room.cs",
-              "DocumentMoniker": "C:\\Users\\youss\\source\\repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\Room.cs",
+              "DocumentMoniker": "C:\\Users\\youss\\source\\repos\\MazenAtlam\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\Room.cs",
               "RelativeDocumentMoniker": "CCMS.DAL\\Entities\\Room.cs",
-              "ToolTip": "C:\\Users\\youss\\source\\repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\Room.cs",
+              "ToolTip": "C:\\Users\\youss\\source\\repos\\MazenAtlam\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\Room.cs",
               "RelativeToolTip": "CCMS.DAL\\Entities\\Room.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAA3wBMAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-28T11:50:00.48Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-28T11:50:00.48Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
               "Title": "LabDoctor.cs",
-              "DocumentMoniker": "C:\\Users\\youss\\source\\repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\LabDoctor.cs",
+              "DocumentMoniker": "C:\\Users\\youss\\source\\repos\\MazenAtlam\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\LabDoctor.cs",
               "RelativeDocumentMoniker": "CCMS.DAL\\Entities\\LabDoctor.cs",
-              "ToolTip": "C:\\Users\\youss\\source\\repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\LabDoctor.cs",
+              "ToolTip": "C:\\Users\\youss\\source\\repos\\MazenAtlam\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\LabDoctor.cs",
               "RelativeToolTip": "CCMS.DAL\\Entities\\LabDoctor.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-28T11:48:30.99Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-28T11:48:30.99Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "BiomedicalEngineer.cs",
-              "DocumentMoniker": "C:\\Users\\youss\\source\\repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\BiomedicalEngineer.cs",
+              "DocumentMoniker": "C:\\Users\\youss\\source\\repos\\MazenAtlam\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\BiomedicalEngineer.cs",
               "RelativeDocumentMoniker": "CCMS.DAL\\Entities\\BiomedicalEngineer.cs",
-              "ToolTip": "C:\\Users\\youss\\source\\repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\BiomedicalEngineer.cs",
+              "ToolTip": "C:\\Users\\youss\\source\\repos\\MazenAtlam\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\BiomedicalEngineer.cs",
               "RelativeToolTip": "CCMS.DAL\\Entities\\BiomedicalEngineer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAABIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-28T11:48:06.807Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-28T11:48:06.807Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "Doctor.cs",
-              "DocumentMoniker": "C:\\Users\\youss\\source\\repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\Doctor.cs",
+              "DocumentMoniker": "C:\\Users\\youss\\source\\repos\\MazenAtlam\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\Doctor.cs",
               "RelativeDocumentMoniker": "CCMS.DAL\\Entities\\Doctor.cs",
-              "ToolTip": "C:\\Users\\youss\\source\\repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\Doctor.cs",
+              "ToolTip": "C:\\Users\\youss\\source\\repos\\MazenAtlam\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\Doctor.cs",
               "RelativeToolTip": "CCMS.DAL\\Entities\\Doctor.cs",
               "ViewState": "AgIAAAQAAAAAAAAAAAAlwAkAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-28T11:38:49.204Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-28T11:38:49.204Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
               "Title": "Base.cs",
-              "DocumentMoniker": "C:\\Users\\youss\\source\\repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\Base.cs",
+              "DocumentMoniker": "C:\\Users\\youss\\source\\repos\\MazenAtlam\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\Base.cs",
               "RelativeDocumentMoniker": "CCMS.DAL\\Entities\\Base.cs",
-              "ToolTip": "C:\\Users\\youss\\source\\repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\Base.cs",
+              "ToolTip": "C:\\Users\\youss\\source\\repos\\MazenAtlam\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\Base.cs",
               "RelativeToolTip": "CCMS.DAL\\Entities\\Base.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-28T12:26:09.79Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-28T12:26:09.79Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 9,
               "Title": "Rstatus.cs",
-              "DocumentMoniker": "C:\\Users\\youss\\source\\repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Enums\\Rstatus.cs",
+              "DocumentMoniker": "C:\\Users\\youss\\source\\repos\\MazenAtlam\\clinical_management_system\\CCMS\\CCMS.DAL\\Enums\\Rstatus.cs",
               "RelativeDocumentMoniker": "CCMS.DAL\\Enums\\Rstatus.cs",
-              "ToolTip": "C:\\Users\\youss\\source\\repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Enums\\Rstatus.cs",
+              "ToolTip": "C:\\Users\\youss\\source\\repos\\MazenAtlam\\clinical_management_system\\CCMS\\CCMS.DAL\\Enums\\Rstatus.cs",
               "RelativeToolTip": "CCMS.DAL\\Enums\\Rstatus.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-28T12:00:49.993Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-28T12:00:49.993Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
               "Title": "Rtype.cs",
-              "DocumentMoniker": "C:\\Users\\youss\\source\\repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Enums\\Rtype.cs",
+              "DocumentMoniker": "C:\\Users\\youss\\source\\repos\\MazenAtlam\\clinical_management_system\\CCMS\\CCMS.DAL\\Enums\\Rtype.cs",
               "RelativeDocumentMoniker": "CCMS.DAL\\Enums\\Rtype.cs",
-              "ToolTip": "C:\\Users\\youss\\source\\repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Enums\\Rtype.cs",
+              "ToolTip": "C:\\Users\\youss\\source\\repos\\MazenAtlam\\clinical_management_system\\CCMS\\CCMS.DAL\\Enums\\Rtype.cs",
               "RelativeToolTip": "CCMS.DAL\\Enums\\Rtype.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-28T12:00:59.319Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-28T12:00:59.319Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 11,
               "Title": "Specialization.cs",
-              "DocumentMoniker": "C:\\Users\\youss\\source\\repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Enums\\Specialization.cs",
+              "DocumentMoniker": "C:\\Users\\youss\\source\\repos\\MazenAtlam\\clinical_management_system\\CCMS\\CCMS.DAL\\Enums\\Specialization.cs",
               "RelativeDocumentMoniker": "CCMS.DAL\\Enums\\Specialization.cs",
-              "ToolTip": "C:\\Users\\youss\\source\\repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Enums\\Specialization.cs",
+              "ToolTip": "C:\\Users\\youss\\source\\repos\\MazenAtlam\\clinical_management_system\\CCMS\\CCMS.DAL\\Enums\\Specialization.cs",
               "RelativeToolTip": "CCMS.DAL\\Enums\\Specialization.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-28T11:42:57.438Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-28T11:42:57.438Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 12,
               "Title": "CcmsDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\youss\\source\\repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Database\\CcmsDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\youss\\source\\repos\\MazenAtlam\\clinical_management_system\\CCMS\\CCMS.DAL\\Database\\CcmsDbContext.cs",
               "RelativeDocumentMoniker": "CCMS.DAL\\Database\\CcmsDbContext.cs",
-              "ToolTip": "C:\\Users\\youss\\source\\repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Database\\CcmsDbContext.cs",
+              "ToolTip": "C:\\Users\\youss\\source\\repos\\MazenAtlam\\clinical_management_system\\CCMS\\CCMS.DAL\\Database\\CcmsDbContext.cs",
               "RelativeToolTip": "CCMS.DAL\\Database\\CcmsDbContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-28T11:39:39.28Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-28T11:39:39.28Z"
             }
           ]
         }

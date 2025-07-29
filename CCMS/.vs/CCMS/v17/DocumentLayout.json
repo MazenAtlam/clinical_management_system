@@ -1,12 +1,156 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Study\\Internships\\ITI\\.NET Web Developement\\Project\\0x06 Implementation\\CCMS\\",
-  "Documents": [],
+  "WorkspaceRootPath": "D:\\Study\\Internships\\ITI\\.NET Web Developement\\Project\\0x00 Repos\\clinical_management_system\\CCMS\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1645ACFC-C473-49F0-AD37-31DACE2C700F}|CCMS.PLL\\CCMS.PLL.csproj|d:\\study\\internships\\iti\\.net web developement\\project\\0x00 repos\\clinical_management_system\\ccms\\ccms.pll\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{1645ACFC-C473-49F0-AD37-31DACE2C700F}|CCMS.PLL\\CCMS.PLL.csproj|solutionrelative:ccms.pll\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1645ACFC-C473-49F0-AD37-31DACE2C700F}|CCMS.PLL\\CCMS.PLL.csproj|d:\\study\\internships\\iti\\.net web developement\\project\\0x00 repos\\clinical_management_system\\ccms\\ccms.pll\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1645ACFC-C473-49F0-AD37-31DACE2C700F}|CCMS.PLL\\CCMS.PLL.csproj|solutionrelative:ccms.pll\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|d:\\study\\internships\\iti\\.net web developement\\project\\0x00 repos\\clinical_management_system\\ccms\\ccms.dal\\entities\\workingslot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|solutionrelative:ccms.dal\\entities\\workingslot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|d:\\study\\internships\\iti\\.net web developement\\project\\0x00 repos\\clinical_management_system\\ccms\\ccms.dal\\entities\\scan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|solutionrelative:ccms.dal\\entities\\scan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|d:\\study\\internships\\iti\\.net web developement\\project\\0x00 repos\\clinical_management_system\\ccms\\ccms.dal\\entities\\room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|solutionrelative:ccms.dal\\entities\\room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|d:\\study\\internships\\iti\\.net web developement\\project\\0x00 repos\\clinical_management_system\\ccms\\ccms.dal\\entities\\patient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|solutionrelative:ccms.dal\\entities\\patient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|d:\\study\\internships\\iti\\.net web developement\\project\\0x00 repos\\clinical_management_system\\ccms\\ccms.dal\\entities\\medicalhistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|solutionrelative:ccms.dal\\entities\\medicalhistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|d:\\study\\internships\\iti\\.net web developement\\project\\0x00 repos\\clinical_management_system\\ccms\\ccms.dal\\entities\\labdoctor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62673D4E-3B0B-4E4D-B5A2-2111877403B0}|CCMS.DAL\\CCMS.DAL.csproj|solutionrelative:ccms.dal\\entities\\labdoctor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Study\\Internships\\ITI\\.NET Web Developement\\Project\\0x00 Repos\\clinical_management_system\\CCMS\\CCMS.PLL\\appsettings.json",
+              "RelativeDocumentMoniker": "CCMS.PLL\\appsettings.json",
+              "ToolTip": "D:\\Study\\Internships\\ITI\\.NET Web Developement\\Project\\0x00 Repos\\clinical_management_system\\CCMS\\CCMS.PLL\\appsettings.json",
+              "RelativeToolTip": "CCMS.PLL\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-07-29T03:10:33.02Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Study\\Internships\\ITI\\.NET Web Developement\\Project\\0x00 Repos\\clinical_management_system\\CCMS\\CCMS.PLL\\Program.cs",
+              "RelativeDocumentMoniker": "CCMS.PLL\\Program.cs",
+              "ToolTip": "D:\\Study\\Internships\\ITI\\.NET Web Developement\\Project\\0x00 Repos\\clinical_management_system\\CCMS\\CCMS.PLL\\Program.cs",
+              "RelativeToolTip": "CCMS.PLL\\Program.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAuwCoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-29T03:09:14.623Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "WorkingSlot.cs",
+              "DocumentMoniker": "D:\\Study\\Internships\\ITI\\.NET Web Developement\\Project\\0x00 Repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\WorkingSlot.cs",
+              "RelativeDocumentMoniker": "CCMS.DAL\\Entities\\WorkingSlot.cs",
+              "ToolTip": "D:\\Study\\Internships\\ITI\\.NET Web Developement\\Project\\0x00 Repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\WorkingSlot.cs",
+              "RelativeToolTip": "CCMS.DAL\\Entities\\WorkingSlot.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAIwB0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-29T03:08:56.276Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Scan.cs",
+              "DocumentMoniker": "D:\\Study\\Internships\\ITI\\.NET Web Developement\\Project\\0x00 Repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\Scan.cs",
+              "RelativeDocumentMoniker": "CCMS.DAL\\Entities\\Scan.cs",
+              "ToolTip": "D:\\Study\\Internships\\ITI\\.NET Web Developement\\Project\\0x00 Repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\Scan.cs",
+              "RelativeToolTip": "CCMS.DAL\\Entities\\Scan.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-29T03:08:39.849Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Room.cs",
+              "DocumentMoniker": "D:\\Study\\Internships\\ITI\\.NET Web Developement\\Project\\0x00 Repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\Room.cs",
+              "RelativeDocumentMoniker": "CCMS.DAL\\Entities\\Room.cs",
+              "ToolTip": "D:\\Study\\Internships\\ITI\\.NET Web Developement\\Project\\0x00 Repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\Room.cs",
+              "RelativeToolTip": "CCMS.DAL\\Entities\\Room.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-29T03:08:18.324Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Patient.cs",
+              "DocumentMoniker": "D:\\Study\\Internships\\ITI\\.NET Web Developement\\Project\\0x00 Repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\Patient.cs",
+              "RelativeDocumentMoniker": "CCMS.DAL\\Entities\\Patient.cs",
+              "ToolTip": "D:\\Study\\Internships\\ITI\\.NET Web Developement\\Project\\0x00 Repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\Patient.cs",
+              "RelativeToolTip": "CCMS.DAL\\Entities\\Patient.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-29T03:07:53.619Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MedicalHistory.cs",
+              "DocumentMoniker": "D:\\Study\\Internships\\ITI\\.NET Web Developement\\Project\\0x00 Repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\MedicalHistory.cs",
+              "RelativeDocumentMoniker": "CCMS.DAL\\Entities\\MedicalHistory.cs",
+              "ToolTip": "D:\\Study\\Internships\\ITI\\.NET Web Developement\\Project\\0x00 Repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\MedicalHistory.cs",
+              "RelativeToolTip": "CCMS.DAL\\Entities\\MedicalHistory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-29T03:07:35.66Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "LabDoctor.cs",
+              "DocumentMoniker": "D:\\Study\\Internships\\ITI\\.NET Web Developement\\Project\\0x00 Repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\LabDoctor.cs",
+              "RelativeDocumentMoniker": "CCMS.DAL\\Entities\\LabDoctor.cs",
+              "ToolTip": "D:\\Study\\Internships\\ITI\\.NET Web Developement\\Project\\0x00 Repos\\clinical_management_system\\CCMS\\CCMS.DAL\\Entities\\LabDoctor.cs",
+              "RelativeToolTip": "CCMS.DAL\\Entities\\LabDoctor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-29T03:07:10.428Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

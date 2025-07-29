@@ -1,54 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Study\\Internships\\ITI\\.NET Web Developement\\Project\\0x06 Implementation\\CCMS\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{ABA454B0-3186-49EB-B213-694E02C0014C}|CCMS.BLL\\CCMS.BLL.csproj|d:\\study\\internships\\iti\\.net web developement\\project\\0x06 implementation\\ccms\\ccms.bll\\services\\implementation\\biomedicalengineerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ABA454B0-3186-49EB-B213-694E02C0014C}|CCMS.BLL\\CCMS.BLL.csproj|solutionrelative:ccms.bll\\services\\implementation\\biomedicalengineerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ABA454B0-3186-49EB-B213-694E02C0014C}|CCMS.BLL\\CCMS.BLL.csproj|d:\\study\\internships\\iti\\.net web developement\\project\\0x06 implementation\\ccms\\ccms.bll\\services\\implementation\\medicaldeviceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ABA454B0-3186-49EB-B213-694E02C0014C}|CCMS.BLL\\CCMS.BLL.csproj|solutionrelative:ccms.bll\\services\\implementation\\medicaldeviceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "BiomedicalEngineerService.cs",
-              "DocumentMoniker": "D:\\Study\\Internships\\ITI\\.NET Web Developement\\Project\\0x06 Implementation\\CCMS\\CCMS.BLL\\Services\\Implementation\\BiomedicalEngineerService.cs",
-              "RelativeDocumentMoniker": "CCMS.BLL\\Services\\Implementation\\BiomedicalEngineerService.cs",
-              "ToolTip": "D:\\Study\\Internships\\ITI\\.NET Web Developement\\Project\\0x06 Implementation\\CCMS\\CCMS.BLL\\Services\\Implementation\\BiomedicalEngineerService.cs",
-              "RelativeToolTip": "CCMS.BLL\\Services\\Implementation\\BiomedicalEngineerService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-29T00:17:33.795Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MedicalDeviceService.cs",
-              "DocumentMoniker": "D:\\Study\\Internships\\ITI\\.NET Web Developement\\Project\\0x06 Implementation\\CCMS\\CCMS.BLL\\Services\\Implementation\\MedicalDeviceService.cs",
-              "RelativeDocumentMoniker": "CCMS.BLL\\Services\\Implementation\\MedicalDeviceService.cs",
-              "ToolTip": "D:\\Study\\Internships\\ITI\\.NET Web Developement\\Project\\0x06 Implementation\\CCMS\\CCMS.BLL\\Services\\Implementation\\MedicalDeviceService.cs",
-              "RelativeToolTip": "CCMS.BLL\\Services\\Implementation\\MedicalDeviceService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-29T00:14:20.476Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }

@@ -12,7 +12,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        dotnet-version: ['8.0.x', '9.0.x']
         project-path: 
           - 'CCMS/CCMS.sln'                 # Root directory
           - 'CCMS/CCMS.PLL/CCMS.PLL.csproj' # Subdirectory project
@@ -25,7 +24,7 @@ jobs:
     - name: Setup .NET ${{ matrix.dotnet-version }}
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: ${{ matrix.dotnet-version }}
+        dotnet-version: 8.0.x
         
     - name: Cache dependencies
       uses: actions/cache@v4

@@ -13,6 +13,11 @@ jobs:
       fail-fast: false
       matrix:
         dotnet-version: ['8.0.x', '9.0.x']
+        project-path: 
+          - 'CCMS/CCMS.sln'                 # Root directory
+          - 'CCMS/CCMS.PLL/CCMS.PLL.csproj' # Subdirectory project
+          - 'CCMS/CCMS.BLL/CCMS.BLL.csproj' # Subdirectory project
+          - 'CCMS/CCMS.DAL/CCMS.DAL.csproj' # Subdirectory project
 
     steps:
     - uses: actions/checkout@v4
@@ -29,19 +34,19 @@ jobs:
           ~/.nuget/packages
           **/packages.lock.json
           **/obj
-        key: ${{ runner.os }}-nuget-${{ matrix.dotnet-version }}-${{ hashFiles('**/*.csproj') }}
+        key: ${{ runner.os }}-nuget-${{ matrix.dotnet-version }}-${{ hashFiles(matrix.project-path) }}
         restore-keys: |
           ${{ runner.os }}-nuget-${{ matrix.dotnet-version }}-
           ${{ runner.os }}-nuget-
         
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore ${{ matrix.project-path }}
       
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build ${{ matrix.project-path }} --no-restore
       
     - name: Test
-      run: dotnet test --no-build --verbosity normal --logger "trx;LogFileName=test-results-${{ matrix.dotnet-version }}.trx"
+      run: dotnet test ${{ matrix.project-path }} --no-build --verbosity normal --logger "trx;LogFileName=test-results-${{ matrix.dotnet-version }}.trx"
       
     - name: Publish Test Results
       if: always()

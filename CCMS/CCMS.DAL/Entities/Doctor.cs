@@ -15,6 +15,7 @@ namespace CCMS.DAL.Entities
         public List<Book> Books { get; set; }
         public Doctor(Specialization major)
         {
+            //FIX THIS AND INCLUDE EMP CTOR
             this.major = major;
             rating = Rating.Neutral;
         }

@@ -6,7 +6,6 @@ namespace CCMS.DAL.Entities
     [Table("Doctor", Schema = "ccms")]
     public class Doctor : Employee
     {
-        public int id { get; private set; }
         public Specialization major { get; private set; }
         //Rating in the pdf of tasks says that Mazen will impelement it so when he does change this rating field to the corresponding class
         public Rating rating { get; private set; }
@@ -18,6 +17,15 @@ namespace CCMS.DAL.Entities
         {
             this.major = major;
             rating = Rating.Neutral;
+        }
+        // WRITE THE EDIT METHODS,
+        public void EditRating(Rating rating)
+        {
+            this.rating = rating;
+        }
+        public void Edit(Book book)
+        { 
+            
         }
     }
 }

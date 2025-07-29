@@ -1,8 +1,10 @@
-﻿
+﻿using System.ComponentModel.DataAnnotations.Schema;
 namespace CCMS.DAL.Entities
 {
+    [Table("PateintfFamilyJoin", Schema = "ccms")]
     public class PateintfFamilyJoin : Base
     {
+        
         public int Id { get; private set; }
         public string Relationship { get; private set; }
 

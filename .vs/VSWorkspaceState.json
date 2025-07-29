@@ -1,7 +1,14 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\CCMS",
+    "\\CCMS\\CCMS.BLL",
+    "\\CCMS\\CCMS.DAL",
+    "\\CCMS\\CCMS.DAL\\Entities",
+    "\\CCMS\\CCMS.DAL\\Repository",
+    "\\CCMS\\CCMS.PLL",
+    "\\CCMS\\CCMS.PLL\\Controllers"
   ],
-  "SelectedNode": "\\CCMS.sln",
+  "SelectedNode": "\\CCMS\\CCMS.sln",
   "PreviewInSolutionExplorer": false
 }

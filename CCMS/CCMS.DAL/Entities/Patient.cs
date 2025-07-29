@@ -4,8 +4,8 @@ namespace CCMS.DAL.Entities
     [Table("Patient", Schema = "ccms")]
     public class Patient : Person
     {
-        
-        public int Id { get;private set; }
+
+        public int Id { get; private set; }
 
         //navigation
         public List<PateintfFamilyJoin> pateintfFamily { get; set; }

@@ -6,7 +6,7 @@ namespace CCMS.DAL.Entities
     [Table("Book", Schema = "ccms")]
     public class Book : Base
     {
-        
+
         public int Id { get; private set; }
         public double price { get; private set; }
         //public Perscription PerscriptionId { get; private set;}

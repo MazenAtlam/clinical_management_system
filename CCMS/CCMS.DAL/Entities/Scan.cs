@@ -4,9 +4,9 @@ namespace CCMS.DAL.Entities
     [Table("Scan", Schema = "ccms")]
     public class Scan : Base
     {
-        
-        public int Id { get;private set; }
-        public string ScanType { get;private set; }
+
+        public int Id { get; private set; }
+        public string ScanType { get; private set; }
         public string ScanTech { get; private set; }
         public string Results { get; private set; } //file location
         public DateTime SDate { get; private set; }

@@ -1,5 +1,4 @@
-﻿
-using CCMS.DAL.Enums;
+﻿using CCMS.DAL.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -14,8 +13,8 @@ namespace CCMS.DAL.Entities
         public int floorNum { get; private set; }
         [Required]
         [MaxLength(50)]
-        public string  buildingNum { get; private set; }
-        public  Rtype rtype { get; private set; }
+        public string buildingNum { get; private set; }
+        public Rtype rtype { get; private set; }
         public Rstatus rstatus { get; private set; }
         // FOREIGN KEY DEP ID
         [ForeignKey("Department")]

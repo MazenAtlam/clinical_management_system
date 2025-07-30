@@ -13,7 +13,7 @@ namespace CCMS.BLL.Services.Abstraction
         public (MedicalDeviceDTO?, string?) GetMedicalDeviceBySerialNumber(string serialNum);
 
         // From table BiomedicalEngineer_MedicalDevice
-        public (int, /*List<EmployeeDTO>?, */string) GetAllBiomedicalEngineersWorksOn(string serialNum);
+        public (int, /*List<EmployeeDTO>?, */string) GetAllBiomedicalEngineersWorkOn(string serialNum);
 
         public string? UpdateStatus(string serialNum, MedicalDeviceStatus newStatus, string modifyingUser);
 

@@ -9,17 +9,17 @@ namespace CCMS.BLL.Services.Implementation
             throw new NotImplementedException();
         }
 
-        public /*(List<EmployeeDTO>, */string?/*)*/ GetAllManagers()
+        public /*(List<EmployeeDTO>?, */string?/*)*/ GetAllManagers()
         {
             throw new NotImplementedException();
         }
 
-        public /*(EmployeeDTO, */string?/*)*/ GetManagerByID(int id)
+        public /*(EmployeeDTO?, */string?/*)*/ GetManagerByID(int id)
         {
             throw new NotImplementedException();
         }
 
-        public /*(List<EmployeeDTO>, */string?/*)*/ GetAllEmployeesManagedBy(int id)
+        public /*(List<EmployeeDTO>?, */string?/*)*/ GetAllEmployeesManagedBy(int id)
         {
             throw new NotImplementedException();
         }

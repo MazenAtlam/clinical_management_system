@@ -4,11 +4,11 @@
     {
         public string? Create(/*CreateEmployee emp, */string creatingUser);
 
-        public /*(List<EmployeeDTO>, */string?/*)*/ GetAllManagers();
+        public /*(List<EmployeeDTO>?, */string?/*)*/ GetAllManagers();
 
-        public /*(EmployeeDTO, */string?/*)*/ GetManagerByID(int id);
+        public /*(EmployeeDTO?, */string?/*)*/ GetManagerByID(int id);
 
-        public /*(List<EmployeeDTO>, */string?/*)*/ GetAllEmployeesManagedBy(int id);
+        public /*(List<EmployeeDTO>?, */string?/*)*/ GetAllEmployeesManagedBy(int id);
 
         public string? Update(/*EmployeeDTO emp, */string modifyingUser);
 

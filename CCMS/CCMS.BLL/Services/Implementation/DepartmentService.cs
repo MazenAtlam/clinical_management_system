@@ -9,22 +9,22 @@ namespace CCMS.BLL.Services.Implementation
             throw new NotImplementedException();
         }
 
-        public /*(List<DepartmentDTO>, */string?/*)*/ GetAllDepartments()
+        public /*(List<DepartmentDTO>?, */string?/*)*/ GetAllDepartments()
         {
             throw new NotImplementedException();
         }
 
-        public /*(List<EmployeeDTO>, */string?/*)*/ GetAllEmployeesWorksOn(int deptID)
+        public /*(List<EmployeeDTO>?, */string?/*)*/ GetAllEmployeesWorksOn(int deptID)
         {
             throw new NotImplementedException();
         }
 
-        public /*(List<RoomDTO>, */string?/*)*/ GetAllRoomsAt(int deptID)
+        public /*(List<RoomDTO>?, */string?/*)*/ GetAllRoomsAt(int deptID)
         {
             throw new NotImplementedException();
         }
 
-        public /*(DepartmentDTO, */string?/*)*/ GetDepartmentByID(int deptID)
+        public /*(DepartmentDTO?, */string?/*)*/ GetDepartmentByID(int deptID)
         {
             throw new NotImplementedException();
         }

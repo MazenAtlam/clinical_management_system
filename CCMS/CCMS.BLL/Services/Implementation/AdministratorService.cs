@@ -13,7 +13,7 @@ namespace CCMS.BLL.Services.Implementation
             throw new NotImplementedException();
         }
 
-        public /*(List<EmployeeDTO>, */string?/*)*/ GetAllEmployeesByRole(/*EmployeeRole role*/)
+        public /*(List<EmployeeDTO>, */string?/*)*/ GetAllAdmins()
         {
             throw new NotImplementedException();
         }

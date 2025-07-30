@@ -6,7 +6,7 @@ namespace CCMS.BLL.Services.Abstraction
     {
         public string? Create(/*CreateEmployee emp, */string creatingUser);
 
-        public /*(List<EmployeeDTO>, */string?/*)*/ GetAllEmployeesByRole(/*EmployeeRole role*/);
+        public /*(List<EmployeeDTO>, */string?/*)*/ GetAllAdmins();
 
         public /*(EmployeeDTO, */string?/*)*/ GetAdminByID(int id);
 

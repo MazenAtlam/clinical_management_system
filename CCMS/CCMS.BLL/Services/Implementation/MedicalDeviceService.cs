@@ -27,7 +27,7 @@ namespace CCMS.BLL.Services.Implementation
         }
 
         // From table BiomedicalEngineer_MedicalDevice
-        public (int, /*List<EmployeeDTO>?, */string) GetAllBiomedicalEngineersWorkOn(string serialNum)
+        public /*(List<EmployeeDTO>?, */string?/*)*/ GetAllBiomedicalEngineersWorkOn(string serialNum)
         {
             throw new NotImplementedException();
         }

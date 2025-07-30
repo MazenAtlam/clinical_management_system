@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Azure;
+using System.ComponentModel.DataAnnotations.Schema;
 namespace CCMS.DAL.Entities
 {
     [Table("Patient", Schema = "ccms")]
@@ -6,9 +7,17 @@ namespace CCMS.DAL.Entities
     {
 
         public int Id { get; private set; }
+        public string BloodType { get; set; }
+        public string? Allergies { get; set; }
+
+        //fix when person class is done
+        public void Edit(/* params*/)
+        {
+            this.ModifiedOn = DateTime.Now;
+        }
 
         //navigation
-        public List<PateintfFamilyJoin> pateintfFamily { get; set; }
+        public List<PateintFamilyJoin> pateintfFamily { get; set; }
         public List<MedicalHistory> MedicalHistories { get; set; }
         public List<Scan> Scans { get; set; }
 

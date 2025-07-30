@@ -8,6 +8,13 @@ namespace CCMS.DAL.Database
         {
 
         }
-        
+        public DbSet<Patient> patients { get; set; }
+        public DbSet<Scan> scans { get; set; }
+        public DbSet<FamilyMember> familyMembers { get; set; }
+        public DbSet<MedicalHistory> medicalHistories { get; set; }
+        public DbSet<Book> books { get; set; }
+        public DbSet<PateintFamilyJoin> pateintFamilyJoins { get; set; }
+        public DbSet<Doctor> doctors { get; set; }
+
     }
 }

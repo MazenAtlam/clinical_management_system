@@ -6,11 +6,11 @@ namespace CCMS.BLL.Services.Abstraction
     {
         public string? Create(/*CreateEmployee emp, */string creatingUser);
 
-        public /*(List<EmployeeDTO>, */string?/*)*/ GetAllAdmins();
+        public /*(List<EmployeeDTO>?, */string?/*)*/ GetAllAdmins();
 
-        public /*(EmployeeDTO, */string?/*)*/ GetAdminByID(int id);
+        public /*(EmployeeDTO?, */string?/*)*/ GetAdminByID(int id);
 
-        public /*(List<EmployeeDTO>, */string?/*)*/ GetAllEmployeesCrearedBy(int id);
+        public /*(List<EmployeeDTO>?, */string?/*)*/ GetAllEmployeesCrearedBy(int id);
 
         public string? Update(/*EmployeeDTO emp, */string modifyingUser);
 

@@ -6,24 +6,22 @@ namespace CCMS.BLL.Services.Implementation
 {
     public class AdministratorService : IAdministratorService
     {
-        private readonly IAdministratorService adminService = new AdministratorService();
-
         public string? Create(/*CreateEmployee emp, */string creatingUser)
         {
             throw new NotImplementedException();
         }
 
-        public /*(List<EmployeeDTO>, */string?/*)*/ GetAllAdmins()
+        public /*(List<EmployeeDTO>?, */string?/*)*/ GetAllAdmins()
         {
             throw new NotImplementedException();
         }
 
-        public /*(EmployeeDTO, */string?/*)*/ GetAdminByID(int id)
+        public /*(EmployeeDTO?, */string?/*)*/ GetAdminByID(int id)
         {
             throw new NotImplementedException();
         }
 
-        public /*(List<EmployeeDTO>, */string?/*)*/ GetAllEmployeesCrearedBy(int id)
+        public /*(List<EmployeeDTO>?, */string?/*)*/ GetAllEmployeesCrearedBy(int id)
         {
             throw new NotImplementedException();
         }

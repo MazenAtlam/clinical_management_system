@@ -8,6 +8,8 @@ namespace CCMS.DAL.Database
         {
 
         }
-        
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Person> Persons { get; set; }
+
     }
 }

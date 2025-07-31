@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace CCMS.DAL.Enums
 {
-    class EmployeeType
+    public enum EmployeeType
     {
+        Admin ,
+        Doctor ,
+        Nurse,
+        LabTechnician,
+        Engineer,
+        Receptionist    
     }
+
 }

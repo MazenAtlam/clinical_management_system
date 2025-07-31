@@ -27,10 +27,10 @@ namespace CCMS.BLL.Services.Implementation
         }
 
         // From table BiomedicalEngineer_MedicalDevice
-        //public (int, List<BiomedicalEngineerDTO>?, string) GetAllBiomedicalEngineersWorksOn(string serialNum)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public /*(List<EmployeeDTO>?, */string?/*)*/ GetAllBiomedicalEngineersWorkOn(string serialNum)
+        {
+            throw new NotImplementedException();
+        }
 
         public string? UpdateStatus(string serialNum, MedicalDeviceStatus newStatus, string modifyingUser)
         {

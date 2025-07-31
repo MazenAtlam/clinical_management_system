@@ -13,6 +13,15 @@ namespace CCMS.DAL.Entities
         public string phone { get; private set; }
 
         //navigation
-        public List<PateintfFamilyJoin> pateintfFamily { get; set; }
+        public List<PateintFamilyJoin> pateintfFamily { get; set; }
+
+        public void Edit(string name, Gender gender, int ssn, string phone)
+        {
+            this.name = name;
+            this.Gender = gender;
+            this.SSN = ssn;
+            this.phone = phone;
+            this.ModifiedOn = DateTime.Now;
+        }
     }
 }

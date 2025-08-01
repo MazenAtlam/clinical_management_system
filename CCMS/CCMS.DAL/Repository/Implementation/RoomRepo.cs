@@ -70,7 +70,7 @@ namespace CCMS.DAL.Repository.Implementation
                 if (rom == null)
                     return false;
                 //fix when person class is done
-                rom.Edit(/*rom.Name, rom.Age*/);
+                //rom.Edit(/*rom.Name, rom.Age*/);
                 db.SaveChanges();
                 return true;
             }

@@ -14,8 +14,8 @@ namespace CCMS.DAL.Repository.Abstraction
         Doctor GetById(int id);
         List<Doctor> GetAll();
         List<Doctor> GetAllByMajor(Specialization major);
-        List<Doctor> GetAllByName();
-        List<Doctor> GetAllByRating();
+        List<Doctor> GetAllByName(string name);
+        List<Doctor> GetAllByRating(Rating rating);
         bool Delete(int id);
         bool Update(Doctor doctor);
     }

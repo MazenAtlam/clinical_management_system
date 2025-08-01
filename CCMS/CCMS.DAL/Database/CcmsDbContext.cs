@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using CCMS.DAL.Entities;
 namespace CCMS.DAL.Database
 {
@@ -8,6 +8,8 @@ namespace CCMS.DAL.Database
         {
 
         }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Person> Persons { get; set; }
         public DbSet<Patient> patients { get; set; }
         public DbSet<Scan> scans { get; set; }
         public DbSet<FamilyMember> familyMembers { get; set; }
@@ -18,6 +20,5 @@ namespace CCMS.DAL.Database
         public DbSet<LabDoctor> labDoctors { get; set; }
         public DbSet<BiomedicalEngineer> biomedicalEngineers{ get; set; }
         public DbSet<Room> rooms { get; set; }
-
     }
 }

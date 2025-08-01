@@ -1,4 +1,6 @@
 using CCMS.DAL.Database;
+using CCMS.DAL.Repository.Abstraction;
+using CCMS.DAL.Repository.Implementation;
 using Microsoft.EntityFrameworkCore;
 
 namespace CCMS.PLL
@@ -14,6 +16,8 @@ namespace CCMS.PLL
 
             var connectionString = builder.Configuration.GetConnectionString("defaultConnection");
             builder.Services.AddDbContext<CcmsDbContext>(options => options.UseSqlServer(connectionString));
+            builder.Services.AddScoped<IEmployeeRepo, EmployeeRepo>();
+            builder.Services.AddScoped<IPersonRepo, PersonRepo>();
 
             var app = builder.Build();
 

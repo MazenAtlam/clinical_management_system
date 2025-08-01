@@ -8,6 +8,8 @@ namespace CCMS.DAL.Database
         {
 
         }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Person> Persons { get; set; }
         public DbSet<Patient> patients { get; set; }
         public DbSet<Scan> scans { get; set; }
         public DbSet<FamilyMember> familyMembers { get; set; }
@@ -15,6 +17,5 @@ namespace CCMS.DAL.Database
         public DbSet<Book> books { get; set; }
         public DbSet<PateintFamilyJoin> pateintFamilyJoins { get; set; }
         public DbSet<Doctor> doctors { get; set; }
-
     }
 }

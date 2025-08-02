@@ -1,6 +1,7 @@
 using CCMS.DAL.Database;
 using CCMS.DAL.Repository.Abstraction;
 using CCMS.DAL.Repository.Implementation;
+using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
 
 namespace CCMS.PLL
@@ -11,10 +12,18 @@ namespace CCMS.PLL
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            Env.Load();
+
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
             var connectionString = builder.Configuration.GetConnectionString("defaultConnection");
+            connectionString += connectionString[connectionString.Length - 1] == ';' ? "" : ";"
+                + $"Server={Environment.GetEnvironmentVariable("SERVER")}"
+                + $"Database={Environment.GetEnvironmentVariable("DATABASE")}"
+                + $"User Id={Environment.GetEnvironmentVariable("USER_ID")}"
+                + $"Password={Environment.GetEnvironmentVariable("PASSWORD")}";
+
             builder.Services.AddDbContext<CcmsDbContext>(options => options.UseSqlServer(connectionString));
             builder.Services.AddScoped<IEmployeeRepo, EmployeeRepo>();
             builder.Services.AddScoped<IPersonRepo, PersonRepo>();

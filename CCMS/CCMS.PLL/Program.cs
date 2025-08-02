@@ -19,7 +19,10 @@ namespace CCMS.PLL
 
             var connectionString = builder.Configuration.GetConnectionString("defaultConnection");
             connectionString += connectionString[connectionString.Length - 1] == ';' ? "" : ";"
-                + $"Password={Environment.GetEnvironmentVariable("SUPER_ADMIN_PASSWORD")}";
+                + $"Server={Environment.GetEnvironmentVariable("SERVER")}"
+                + $"Database={Environment.GetEnvironmentVariable("DATABASE")}"
+                + $"User Id={Environment.GetEnvironmentVariable("USER_ID")}"
+                + $"Password={Environment.GetEnvironmentVariable("PASSWORD")}";
 
             builder.Services.AddDbContext<CcmsDbContext>(options => options.UseSqlServer(connectionString));
             builder.Services.AddScoped<IEmployeeRepo, EmployeeRepo>();

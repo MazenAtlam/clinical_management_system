@@ -20,5 +20,7 @@ namespace CCMS.DAL.Database
         public DbSet<LabDoctor> labDoctors { get; set; }
         public DbSet<BiomedicalEngineer> biomedicalEngineers{ get; set; }
         public DbSet<Room> rooms { get; set; }
+        public DbSet<WorkingSlot> workingSlots { get; set; }
+
     }
 }

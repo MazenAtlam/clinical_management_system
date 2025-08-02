@@ -9,20 +9,20 @@ using System.Threading.Tasks;
 
 namespace CCMS.DAL.Repository.Implementation
 {
-    public class BiomedicalEngineerRepo:IBiomedicalEngineerRepo
+     public class WorkingSlotRepo:IWorkingSlotRepo
     {
         private readonly CcmsDbContext db;
 
-        public BiomedicalEngineerRepo(CcmsDbContext db)
+        public WorkingSlotRepo(CcmsDbContext db)
         {
             this.db = db;
         }
 
-        public bool Create(BiomedicalEngineer biomedicalEngineer)
+        public bool Create(WorkingSlot workingSlot)
         {
             try
             {
-                db.biomedicalEngineers.Add(biomedicalEngineer);
+                db.workingSlots.Add(workingSlot);
                 db.SaveChanges();
                 return true;
             }
@@ -36,11 +36,11 @@ namespace CCMS.DAL.Repository.Implementation
         {
             try
             {
-                var bioMed = db.biomedicalEngineers.Where(a => a.Id == id).FirstOrDefault();
-                if (bioMed == null)
+                var slot = db.workingSlots.Where(a => a.id == id).FirstOrDefault();
+                if (slot == null)
                     return false;
                 //add modifiing user
-                bioMed.Delete("admin");
+                slot.Delete("admin");
                 db.SaveChanges();
                 return true;
             }
@@ -50,26 +50,27 @@ namespace CCMS.DAL.Repository.Implementation
             }
         }
 
-        public List<BiomedicalEngineer> GetAll()
+        public List<WorkingSlot> GetAll()
         {
-            var result = db.biomedicalEngineers.Where(a => a.IsDeleted == false).ToList();
+            var result = db.workingSlots.Where(a => a.IsDeleted == false).ToList();
             return result;
         }
 
-        public BiomedicalEngineer GetById(int id)
+        public WorkingSlot GetById(int id)
         {
-            var bioMed = db.biomedicalEngineers.Where(a => a.Id == id).FirstOrDefault();
-            return bioMed;
+            var slot = db.workingSlots.Where(a => a.id == id).FirstOrDefault();
+            return slot;
         }
 
-        public bool Update(BiomedicalEngineer biomedicalEngineer )
+        public bool Update(WorkingSlot workingSlot)
         {
             try
             {
-                var bio = db.biomedicalEngineers.Where(a => a.Id == biomedicalEngineer.Id).FirstOrDefault();
-                if (bio == null)
+                var slt = db.workingSlots.Where(a => a.id == workingSlot.id).FirstOrDefault();
+                if (slt == null)
                     return false;
-                bio.Edit();
+
+                slt.Edit(workingSlot.day,workingSlot.startTime,workingSlot.endTime,workingSlot.status);
                 db.SaveChanges();
                 return true;
             }

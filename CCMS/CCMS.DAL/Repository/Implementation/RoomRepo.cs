@@ -69,8 +69,8 @@ namespace CCMS.DAL.Repository.Implementation
                 var rom = db.rooms.Where(a => a.id == room.id).FirstOrDefault();
                 if (rom == null)
                     return false;
-                //fix when person class is done
-                //rom.Edit(/*rom.Name, rom.Age*/);
+                
+                rom.Edit(room.capacity,room.floorNum,room.buildingNum,room.rtype,room.rstatus);
                 db.SaveChanges();
                 return true;
             }

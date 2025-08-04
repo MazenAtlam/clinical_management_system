@@ -9,7 +9,7 @@ namespace CCMS.BLL.Services.Implementation
 {
     public class MedicalDeviceService : IMedicalDeviceService
     {
-        private readonly IMedicalDeviceRepo medicalDeviceRepo = new MedicalDeviceRepo();
+        //private readonly IMedicalDeviceRepo medicalDeviceRepo = new MedicalDeviceRepo();
 
         public string? Create(CreateMedicalDevice md, string creatingUser)
         {

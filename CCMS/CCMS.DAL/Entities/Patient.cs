@@ -8,7 +8,7 @@ namespace CCMS.DAL.Entities
     public class Patient : Person
     {
         public int Id { get; private set; }
-        public string BloodType { get; set; }
+        public string BloodType { get;private set; }
 
         // Edit method to update patient info (name, ssn, gender, birthdate, bloodtype)
         public void Edit(string fName, string midName, string lName, string ssn, Gender gender, DateTime birthDate, string bloodType)

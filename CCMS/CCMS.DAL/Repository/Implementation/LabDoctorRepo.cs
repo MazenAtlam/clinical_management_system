@@ -70,7 +70,7 @@ namespace CCMS.DAL.Repository.Implementation
                 if (lab == null)
                     return false;
                 //fix when person class is done
-                lab.Edit();
+                lab.Edit(labDoctor.GetFullName());
                 db.SaveChanges();
                 return true;
             }

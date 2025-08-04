@@ -69,7 +69,7 @@ namespace CCMS.DAL.Repository.Implementation
                 var bio = db.biomedicalEngineers.Where(a => a.Id == biomedicalEngineer.Id).FirstOrDefault();
                 if (bio == null)
                     return false;
-                bio.Edit();
+                bio.Edit(biomedicalEngineer.GetFullName());
                 db.SaveChanges();
                 return true;
             }

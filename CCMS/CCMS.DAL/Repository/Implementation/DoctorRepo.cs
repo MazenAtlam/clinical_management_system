@@ -35,7 +35,6 @@ namespace CCMS.DAL.Repository.Implementation
 
         public bool Delete(int id)
         {
-            //mestany employee 3alashan id we delete
             try
             {
                 var doctor = db.doctors.Where(a => a.Id == id).FirstOrDefault();
@@ -65,7 +64,7 @@ namespace CCMS.DAL.Repository.Implementation
 
         public List<Doctor> GetAllByName(string name)
         {
-            var result = db.doctors.Where(a => a.IsDeleted == false /*&& a.name == name*/).ToList();
+            var result = db.doctors.Where(a => a.IsDeleted == false  && a.GetFullName() == name).ToList();
             return result;
         }
 
@@ -88,8 +87,7 @@ namespace CCMS.DAL.Repository.Implementation
                 var doc = db.doctors.Where(a => a.Id == doctor.Id).FirstOrDefault();
                 if (doc == null)
                     return false;
-                //fix when person class is done
-                //doc.Edit(/*doc.Name, doc.Age*/);
+                doc.Edit(doctor.GetFullName(),doctor.major);
                 db.SaveChanges();
                 return true;
             }

@@ -24,7 +24,9 @@ namespace CCMS.DAL.Entities
         //public Scan(){ }
         public void Edit(string scanType,string scanTech,DateTime SDate,int PatientId,string? Results)
         {
-            ModifiedOn = DateTime.Now;
+            //this.ModifiedOn = DateTime.Now;
+            // Take the modifyingUser as parameter for the attribute "ModifiedBy", then Use the following line
+            // SaveModification(modifyingUser);
             ScanType = scanType;
             ScanTech = scanTech;
             this.SDate = SDate;

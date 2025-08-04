@@ -32,7 +32,9 @@ namespace CCMS.DAL.Entities
             this.PatientId = patientId;
             this.DoctorId = doctorId;
             this.RoomId = roomId;
-            this.ModifiedOn = DateTime.Now;
+            //this.ModifiedOn = DateTime.Now;
+            // Take the modifyingUser as parameter for the attribute "ModifiedBy", then Use the following line
+            // SaveModification(modifyingUser);
             this.Perscription = Perscription;
         }
         

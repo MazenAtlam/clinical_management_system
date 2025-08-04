@@ -24,7 +24,6 @@ namespace CCMS.DAL.Entities
         {
             return $"{FName} {MidName} {LName}";
         }
-        // WRITE THE EDIT METHODS,
         public void EditRating(Rating rating)
         {
             this.rating = rating;

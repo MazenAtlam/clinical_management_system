@@ -68,8 +68,7 @@ namespace CCMS.DAL.Repository.Implementation
             {
                 var lab = db.labDoctors.Where(a => a.Id == labDoctor.Id).FirstOrDefault();
                 if (lab == null)
-                    return false;
-                //fix when person class is done
+                    return false;                
                 lab.Edit(labDoctor.GetFullName());
                 db.SaveChanges();
                 return true;

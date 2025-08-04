@@ -27,6 +27,10 @@ namespace CCMS.PLL
             builder.Services.AddDbContext<CcmsDbContext>(options => options.UseSqlServer(connectionString));
             builder.Services.AddScoped<IEmployeeRepo, EmployeeRepo>();
             builder.Services.AddScoped<IPersonRepo, PersonRepo>();
+            builder.Services.AddScoped<IDoctorRepo, DoctorRepo>();
+            builder.Services.AddScoped<IBiomedicalEngineerRepo, BiomedicalEngineerRepo>();
+            builder.Services.AddScoped<ILabDoctorRepo, LabDoctorRepo>();
+            builder.Services.AddScoped<IWorkingSlotRepo, WorkingSlotRepo>();
 
             var app = builder.Build();
 

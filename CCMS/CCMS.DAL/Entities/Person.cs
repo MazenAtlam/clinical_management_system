@@ -14,7 +14,7 @@ namespace CCMS.DAL.Entities
         public string FName { get;protected set; }
 
         [MaxLength(50)]
-        public string MidName { get;protected set; }
+        public string? MidName { get;protected set; }
 
         [Required]
         [MaxLength(50)]

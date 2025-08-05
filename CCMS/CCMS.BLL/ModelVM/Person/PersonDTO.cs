@@ -6,7 +6,7 @@ namespace CCMS.BLL.ModelVM.Person
     {
         public int Id { get; set; }
         public string FName { get; set; }
-        public string MidName { get; set; }
+        public string? MidName { get; set; }
         public string LName { get; set; }
         public string SSN { get; set; }
         public Gender Gender { get; set; }

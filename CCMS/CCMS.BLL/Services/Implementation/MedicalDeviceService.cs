@@ -60,12 +60,13 @@ namespace CCMS.BLL.Services.Implementation
             catch (Exception ex) { return (null, ex.Message); }
         }
 
-        // From table BiomedicalEngineer_MedicalDevice
         public async Task<(List<EmployeeDTO>?, string?)> GetAllBiomedicalEngineersWorkOn(string serialNum)
         {
             try
             {
-                List<BiomedicalEngineer> biomedicalEngineers = await medicalDeviceRepo.GetAllBiomedicalEngineersWorksOn(serialNum);
+                MedicalDevice medicalDevice = await medicalDeviceRepo.GetMedicalDeviceBySerialNumber(serialNum);
+
+                List<BiomedicalEngineer> biomedicalEngineers = medicalDevice.BiomedicalEngineers;
 
                 if (biomedicalEngineers.Count == 0)
                     return (null, "No data found.");

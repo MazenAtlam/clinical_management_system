@@ -20,8 +20,9 @@ namespace CCMS.DAL.Entities
         public long ExpirationHours { get; private set; }
         [Required]
         public MedicalDeviceStatus MDStatus { get; private set; }
+        public List<BiomedicalEngineer> BiomedicalEngineers { get; private set; } = new List<BiomedicalEngineer>();
 
-        public MedicalDevice() { }
+        public MedicalDevice() : base() { }
         
         private void SetAll(string serialNum, string mdName, string company, long expirationHours, MedicalDeviceStatus mdStatus)
         {

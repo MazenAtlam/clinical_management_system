@@ -18,6 +18,19 @@ namespace CCMS.DAL.Database
         public DbSet<PateintFamilyJoin> pateintFamilyJoins { get; set; }
         public DbSet<Doctor> doctors { get; set; }
         public DbSet<MedicalDevice> MedicalDevices { get; set; }
-        public DbSet<BiomedicalEngineer_MedicalDevice> BiomedicalEngineers_MedicalDevices { get; set; }
+
+        // For many to many relationships configuration
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            //modelBuilder.Entity<BiomedicalEngineer>()
+            //    .HasMany(bme => bme.MedicalDevices)
+            //    .WithMany(md => md.BiomedicalEngineers);
+
+            //modelBuilder.Entity<Patient>()
+            //    .HasMany(p => p.FamilyMembers)
+            //    .WithMany(fm => fm.Patients);
+        }
     }
 }

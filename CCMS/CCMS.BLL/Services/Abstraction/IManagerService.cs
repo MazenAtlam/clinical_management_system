@@ -2,16 +2,16 @@
 {
     public interface IManagerService
     {
-        public string? Create(/*CreateEmployee emp, */string creatingUser);
+        public Task<string?> Create(/*EmployeeDTO emp, */string creatingUser);
 
-        public /*(List<EmployeeDTO>?, */string?/*)*/ GetAllManagers();
+        public Task</*(List<EmployeeDTO>?, */string?/*)*/> GetAllManagers();
 
-        public /*(EmployeeDTO?, */string?/*)*/ GetManagerByID(int id);
+        public Task</*(EmployeeDTO?, */string?/*)*/> GetManagerByID(int id);
 
-        public /*(List<EmployeeDTO>?, */string?/*)*/ GetAllEmployeesManagedBy(int id);
+        public Task</*(List<EmployeeDTO>?, */string?/*)*/> GetAllEmployeesManagedBy(int id);
 
-        public string? Update(/*EmployeeDTO emp, */string modifyingUser);
+        public Task<string?> Update(/*EmployeeDTO emp, */string modifyingUser);
 
-        public string? Delete(int id, string modifyingUser);
+        public Task<string?> Delete(int id, string modifyingUser);
     }
 }

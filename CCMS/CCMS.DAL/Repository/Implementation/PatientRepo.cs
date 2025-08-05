@@ -1,5 +1,4 @@
-﻿
-using CCMS.DAL.Database;
+﻿using CCMS.DAL.Database;
 using CCMS.DAL.Entities;
 using CCMS.DAL.Repository.Abstraction;
 
@@ -65,8 +64,16 @@ namespace CCMS.DAL.Repository.Implementation
                 var pat = db.patients.Where(a => a.Id == patient.Id).FirstOrDefault();
                 if (pat == null)
                     return false;
-                //fix when person class is done
-                pat.Edit(/*patient.Name, patient.Age*/);
+                // Use the new Edit method to update patient info
+                pat.Edit(
+                    patient.FName,
+                    patient.MidName,
+                    patient.LName,
+                    patient.SSN,
+                    patient.Gender,
+                    patient.BirthDate,
+                    patient.BloodType
+                );
                 db.SaveChanges();
                 return true;
             }

@@ -17,6 +17,7 @@ namespace CCMS.DAL.Entities
         public string SerialNumber { get; private set; }
         public MedicalDevice MedicalDevice { get; private set; }
 
+        public BiomedicalEngineer_MedicalDevice() { }
         public BiomedicalEngineer_MedicalDevice(int bioEngID, string deviceSerialNum)
         {
             UID = bioEngID;

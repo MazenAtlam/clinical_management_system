@@ -21,6 +21,8 @@ namespace CCMS.DAL.Entities
         [Required]
         public MedicalDeviceStatus MDStatus { get; private set; }
 
+        public MedicalDevice() { }
+        
         private void SetAll(string serialNum, string mdName, string company, long expirationHours, MedicalDeviceStatus mdStatus)
         {
             SerialNumber = serialNum;

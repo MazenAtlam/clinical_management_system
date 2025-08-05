@@ -2,18 +2,18 @@
 {
     public interface IDepartmentService
     {
-        public string? Create(/*CreateDepartment dept, */string creatingUser);
+        public Task<string?> Create(/*DepartmentDTO dept, */string creatingUser);
 
-        public /*(List<DepartmentDTO>?, */string?/*)*/ GetAllDepartments();
+        public Task</*(List<DepartmentDTO>?, */string?/*)*/> GetAllDepartments();
 
-        public /*(List<EmployeeDTO>?, */string?/*)*/ GetAllEmployeesWorksOn(int deptID);
+        public Task</*(List<EmployeeDTO>?, */string?/*)*/> GetAllEmployeesWorksOn(int deptID);
 
-        public /*(List<RoomDTO>?, */string?/*)*/ GetAllRoomsAt(int deptID);
+        public Task</*(List<RoomDTO>?, */string?/*)*/> GetAllRoomsAt(int deptID);
 
-        public /*(DepartmentDTO?, */string?/*)*/ GetDepartmentByID(int deptID);
+        public Task</*(DepartmentDTO?, */string?/*)*/> GetDepartmentByID(int deptID);
 
-        public string? Update(/*DepartmentDTO dept, */string modifyingUser);
+        public Task<string?> Update(/*DepartmentDTO dept, */string modifyingUser);
 
-        public string? Delete(int deptID, string modifyingUser);
+        public Task<string?> Delete(int deptID, string modifyingUser);
     }
 }

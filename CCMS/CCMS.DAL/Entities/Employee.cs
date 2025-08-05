@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CCMS.DAL.Entities
 {
+    [Table("Employee", Schema="ccms")]
     public class Employee : Person
     {
         [Required]

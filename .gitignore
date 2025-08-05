@@ -65,5 +65,8 @@ nunit-*.xml
 # Solution-level build artifacts
 [Ss]olution [Oo]bjects/
 
+# Visual Studio launch settings
+**/Properties/launchSettings.json
+
 # Environment Variables
 .env

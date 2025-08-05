@@ -75,6 +75,7 @@ namespace CCMS.BLL.Services.Implementation
                 dto.MidName, // Update middle name
                 dto.LName, // Update last name
                 dto.SSN, // Update SSN
+                // We can use select input field or radio buttons instead of using text field
                 (DAL.Enums.Gender)Enum.Parse(typeof(DAL.Enums.Gender), dto.Gender), // Update gender (parsed from string)
                 dto.BirthDate, // Update birth date
                 dto.BloodType // Update blood type

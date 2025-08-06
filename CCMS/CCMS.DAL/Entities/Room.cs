@@ -33,14 +33,14 @@ namespace CCMS.DAL.Entities
             this.rtype = rtype;
             rstatus = Rstatus.Available;
         }
-        public void Edit(int capacity, int floorNum, string buildingNum, Rtype rtype,Rstatus rstatus)
+        public void Edit(int capacity, int floorNum, string buildingNum, Rtype rtype,Rstatus rstatus, string modifyingUser)
         {
             this.capacity = capacity;
             this.floorNum = floorNum;
             this.buildingNum = buildingNum;
             this.rtype = rtype;
             rstatus = Rstatus.Available;
-            this.ModifiedOn = DateTime.Now;
+            SaveModification(modifyingUser);
         }
         
     }

@@ -13,6 +13,6 @@ namespace CCMS.DAL.Repository.Abstraction
         Room GetById(int id);
         List<Room> GetAll();
         bool Delete(int id);
-        bool Update(Room room);
+        public bool Update(Room room, string modifyingUser);
     }
 }

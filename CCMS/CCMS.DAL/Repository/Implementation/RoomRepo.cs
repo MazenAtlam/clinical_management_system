@@ -62,7 +62,7 @@ namespace CCMS.DAL.Repository.Implementation
             return room;
         }
 
-        public bool Update(Room room)
+        public bool Update(Room room, string modifyingUser)
         {
             try
             {
@@ -70,7 +70,7 @@ namespace CCMS.DAL.Repository.Implementation
                 if (rom == null)
                     return false;
                 
-                rom.Edit(room.capacity,room.floorNum,room.buildingNum,room.rtype,room.rstatus);
+                rom.Edit(room.capacity,room.floorNum,room.buildingNum,room.rtype,room.rstatus, modifyingUser);
                 db.SaveChanges();
                 return true;
             }

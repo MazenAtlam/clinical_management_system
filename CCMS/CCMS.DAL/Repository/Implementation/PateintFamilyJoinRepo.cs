@@ -1,8 +1,10 @@
 using CCMS.DAL.Database;
 using CCMS.DAL.Entities;
 using CCMS.DAL.Repository.Abstraction;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CCMS.DAL.Repository.Implementation
 {
@@ -15,12 +17,12 @@ namespace CCMS.DAL.Repository.Implementation
             this.db = db;
         }
 
-        public bool Create(PateintFamilyJoin join)
+        public async Task<bool> CreateAsync(PateintFamilyJoin join)
         {
             try
             {
-                db.pateintFamilyJoins.Add(join);
-                db.SaveChanges();
+                await db.pateintFamilyJoins.AddAsync(join);
+                await db.SaveChangesAsync();
                 return true;
             }
             catch
@@ -29,15 +31,15 @@ namespace CCMS.DAL.Repository.Implementation
             }
         }
 
-        public bool Delete(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
             try
             {
-                var entity = db.pateintFamilyJoins.FirstOrDefault(a => a.Id == id);
+                var entity = await db.pateintFamilyJoins.FirstOrDefaultAsync(a => a.Id == id);
                 if (entity == null)
                     return false;
                 entity.Delete("admin");
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return true;
             }
             catch
@@ -46,25 +48,25 @@ namespace CCMS.DAL.Repository.Implementation
             }
         }
 
-        public List<PateintFamilyJoin> GetAll()
+        public async Task<List<PateintFamilyJoin>> GetAllAsync()
         {
-            return db.pateintFamilyJoins.Where(a => a.IsDeleted == false).ToList();
+            return await db.pateintFamilyJoins.Where(a => a.IsDeleted == false).ToListAsync();
         }
 
-        public PateintFamilyJoin GetById(int id)
+        public async Task<PateintFamilyJoin> GetByIdAsync(int id)
         {
-            return db.pateintFamilyJoins.FirstOrDefault(a => a.Id == id);
+            return await db.pateintFamilyJoins.FirstOrDefaultAsync(a => a.Id == id);
         }
 
-        public bool Update(PateintFamilyJoin join)
+        public async Task<bool> UpdateAsync(PateintFamilyJoin join)
         {
             try
             {
-                var entity = db.pateintFamilyJoins.FirstOrDefault(a => a.Id == join.Id);
+                var entity = await db.pateintFamilyJoins.FirstOrDefaultAsync(a => a.Id == join.Id);
                 if (entity == null)
                     return false;
                 entity.Edit(join.Relationship, join.PatientId, join.FamilyMemberId);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return true;
             }
             catch

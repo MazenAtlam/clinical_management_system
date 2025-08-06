@@ -3,12 +3,13 @@ using CCMS.DAL.Repository.Abstraction;
 using CCMS.DAL.Repository.Implementation;
 using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace CCMS.PLL
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -45,11 +46,11 @@ namespace CCMS.PLL
 
             app.UseAuthorization();
 
-
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
+            
 
             app.Run();
         }

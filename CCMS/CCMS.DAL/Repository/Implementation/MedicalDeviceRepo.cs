@@ -7,9 +7,8 @@ namespace CCMS.DAL.Repository.Implementation
     public class MedicalDeviceRepo : IMedicalDeviceRepo
     {
         private readonly CcmsDbContext medicalDeviceDbContext;
-        private readonly CcmsDbContext biomedicalEngineer_medicalDeviceDbContext;
 
-        public MedicalDeviceRepo(CcmsDbContext db) => medicalDeviceDbContext = biomedicalEngineer_medicalDeviceDbContext = db;
+        public MedicalDeviceRepo(CcmsDbContext db) => medicalDeviceDbContext = db;
 
         public async Task Add(MedicalDevice md) => medicalDeviceDbContext.Add(md);
 
@@ -24,12 +23,6 @@ namespace CCMS.DAL.Repository.Implementation
                 ? throw new ArgumentException($"There is no medical device with the serial number = {serialNum} .", "serialNum")
                 : medicalDevice;
         }
-
-        public async Task<List<BiomedicalEngineer>> GetAllBiomedicalEngineersWorksOn(string serialNum)
-            => biomedicalEngineer_medicalDeviceDbContext.BiomedicalEngineers_MedicalDevices
-            .Where( join => join.SerialNumber == serialNum && !join.MedicalDevice.IsDeleted)
-            .Select(join => join.BiomedicalEngineer)
-            .ToList();
 
         public async Task Save() => medicalDeviceDbContext.SaveChanges();
     }

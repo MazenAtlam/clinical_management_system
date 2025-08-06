@@ -10,8 +10,6 @@ namespace CCMS.DAL.Repository.Abstraction
 
         public Task<MedicalDevice> GetMedicalDeviceBySerialNumber(string serialNum);
 
-        public Task<List<BiomedicalEngineer>> GetAllBiomedicalEngineersWorksOn(string serialNum);
-
         public Task Save();
     }
 }

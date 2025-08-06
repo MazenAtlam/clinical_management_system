@@ -14,7 +14,7 @@ namespace CCMS.DAL.Entities
         public bool IsDeleted { get; private set; } = false;
         public DateTime? DeletedOn { get; private set; } = null;
 
-        protected Base() { } // Remove This Line
+        protected Base() { }
         protected Base(string creatingUser) => CreatedBy = creatingUser;
 
         public void Delete(string modifyingUser)

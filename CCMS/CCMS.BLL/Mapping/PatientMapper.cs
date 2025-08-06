@@ -16,8 +16,8 @@ namespace CCMS.BLL.Mapping
         public partial FamilyMember ToFamilyMember(CreateFamilyMemberDTO dto);
 
         // Reverse mappings
-        public partial Patient ToEntity(PatientDTO dto);
-        public partial List<Patient> ToEntityList(List<PatientDTO> dtos);
+        //public partial Patient ToEntity(PatientDTO dto);
+        //public partial List<Patient> ToEntityList(List<PatientDTO> dtos);
         public partial CreateBookDTO ToCreateBookDTO(Book book);
         public partial BookDTO ToBookDTO(Book book);
         public partial Book ToEntity(BookDTO dto);

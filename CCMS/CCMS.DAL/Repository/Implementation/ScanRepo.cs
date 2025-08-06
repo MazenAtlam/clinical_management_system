@@ -1,9 +1,10 @@
 using CCMS.DAL.Database;
 using CCMS.DAL.Entities;
 using CCMS.DAL.Repository.Abstraction;
-using System;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CCMS.DAL.Repository.Implementation
 {
@@ -16,12 +17,12 @@ namespace CCMS.DAL.Repository.Implementation
             this.db = db;
         }
 
-        public bool Create(Scan scan)
+        public async Task<bool> CreateAsync(Scan scan)
         {
             try
             {
-                db.scans.Add(scan);
-                db.SaveChanges();
+                await db.scans.AddAsync(scan);
+                await db.SaveChangesAsync();
                 return true;
             }
             catch
@@ -30,16 +31,15 @@ namespace CCMS.DAL.Repository.Implementation
             }
         }
 
-        public bool Delete(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
             try
             {
-                var scan = db.scans.Where(a => a.Id == id).FirstOrDefault();
+                var scan = await db.scans.FirstOrDefaultAsync(a => a.Id == id);
                 if (scan == null)
                     return false;
-                //add modifiing user
                 scan.Delete("admin");
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return true;
             }
             catch
@@ -48,25 +48,25 @@ namespace CCMS.DAL.Repository.Implementation
             }
         }
 
-        public List<Scan> GetAll()
+        public async Task<List<Scan>> GetAllAsync()
         {
-            return db.scans.Where(a => a.IsDeleted == false).ToList();
+            return await db.scans.Where(a => a.IsDeleted == false).ToListAsync();
         }
 
-        public Scan GetById(int id)
+        public async Task<Scan> GetByIdAsync(int id)
         {
-            return db.scans.Where(a => a.Id == id).FirstOrDefault();
+            return await db.scans.FirstOrDefaultAsync(a => a.Id == id);
         }
 
-        public bool Update(Scan scan)
+        public async Task<bool> UpdateAsync(Scan scan)
         {
             try
             {
-                var sc = db.scans.Where(a => a.Id == scan.Id).FirstOrDefault();
+                var sc = await db.scans.FirstOrDefaultAsync(a => a.Id == scan.Id);
                 if (sc == null)
                     return false;
-                sc.Edit(scan.ScanType, scan.ScanTech, scan.SDate, scan.PatientId,scan.Results);
-                db.SaveChanges();
+                sc.Edit(scan.ScanType, scan.ScanTech, scan.SDate, scan.PatientId, scan.Results);
+                await db.SaveChangesAsync();
                 return true;
             }
             catch

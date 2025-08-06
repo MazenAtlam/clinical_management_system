@@ -1,8 +1,10 @@
 using CCMS.DAL.Database;
 using CCMS.DAL.Entities;
 using CCMS.DAL.Repository.Abstraction;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CCMS.DAL.Repository.Implementation
 {
@@ -15,12 +17,12 @@ namespace CCMS.DAL.Repository.Implementation
             this.db = db;
         }
 
-        public bool Create(FamilyMember familyMember)
+        public async Task<bool> CreateAsync(FamilyMember familyMember)
         {
             try
             {
-                db.familyMembers.Add(familyMember);
-                db.SaveChanges();
+                await db.familyMembers.AddAsync(familyMember);
+                await db.SaveChangesAsync();
                 return true;
             }
             catch
@@ -29,15 +31,15 @@ namespace CCMS.DAL.Repository.Implementation
             }
         }
 
-        public bool Delete(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
             try
             {
-                var member = db.familyMembers.FirstOrDefault(a => a.Id == id);
+                var member = await db.familyMembers.FirstOrDefaultAsync(a => a.Id == id);
                 if (member == null)
                     return false;
                 member.Delete("admin");
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return true;
             }
             catch
@@ -46,25 +48,25 @@ namespace CCMS.DAL.Repository.Implementation
             }
         }
 
-        public List<FamilyMember> GetAll()
+        public async Task<List<FamilyMember>> GetAllAsync()
         {
-            return db.familyMembers.Where(a => a.IsDeleted == false).ToList();
+            return await db.familyMembers.Where(a => a.IsDeleted == false).ToListAsync();
         }
 
-        public FamilyMember GetById(int id)
+        public async Task<FamilyMember> GetByIdAsync(int id)
         {
-            return db.familyMembers.FirstOrDefault(a => a.Id == id);
+            return await db.familyMembers.FirstOrDefaultAsync(a => a.Id == id);
         }
 
-        public bool Update(FamilyMember familyMember)
+        public async Task<bool> UpdateAsync(FamilyMember familyMember)
         {
             try
             {
-                var member = db.familyMembers.FirstOrDefault(a => a.Id == familyMember.Id);
+                var member = await db.familyMembers.FirstOrDefaultAsync(a => a.Id == familyMember.Id);
                 if (member == null)
                     return false;
                 member.Edit(familyMember.name, familyMember.Gender, familyMember.SSN, familyMember.phone);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return true;
             }
             catch

@@ -2,6 +2,7 @@ using CCMS.BLL.ModelVM.MedicalHistory;
 using CCMS.DAL.Repository.Abstraction;
 using CCMS.BLL.Mapping;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CCMS.BLL.Services.Implementation
 {
@@ -16,9 +17,9 @@ namespace CCMS.BLL.Services.Implementation
             _medicalHistoryMapper = medicalHistoryMapper;
         }
 
-        public List<MedicalHistoryDTO> GetAllMedicalHistories()
+        public async Task<List<MedicalHistoryDTO>> GetAllMedicalHistoriesAsync()
         {
-            var histories = _medicalHistoryRepo.GetAll();
+            var histories = await _medicalHistoryRepo.GetAllAsync();
             return _medicalHistoryMapper.ToDTOList(histories);
         }
     }

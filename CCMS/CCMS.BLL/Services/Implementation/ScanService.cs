@@ -2,6 +2,7 @@ using CCMS.BLL.ModelVM.Scan;
 using CCMS.DAL.Repository.Abstraction;
 using CCMS.BLL.Mapping;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CCMS.BLL.Services.Implementation
 {
@@ -16,9 +17,9 @@ namespace CCMS.BLL.Services.Implementation
             _scanMapper = scanMapper;
         }
 
-        public List<ScanDTO> GetAllScans()
+        public async Task<List<ScanDTO>> GetAllScansAsync()
         {
-            var scans = _scanRepo.GetAll();
+            var scans = await _scanRepo.GetAllAsync();
             return _scanMapper.ToDTOList(scans);
         }
     }

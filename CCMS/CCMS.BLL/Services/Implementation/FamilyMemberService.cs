@@ -2,6 +2,7 @@ using CCMS.BLL.ModelVM.FamilyMember;
 using CCMS.DAL.Repository.Abstraction;
 using CCMS.BLL.Mapping;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CCMS.BLL.Services.Implementation
 {
@@ -16,9 +17,9 @@ namespace CCMS.BLL.Services.Implementation
             _familyMemberMapper = familyMemberMapper;
         }
 
-        public List<FamilyMemberDTO> GetAllFamilyMembers()
+        public async Task<List<FamilyMemberDTO>> GetAllFamilyMembersAsync()
         {
-            var members = _familyMemberRepo.GetAll();
+            var members = await _familyMemberRepo.GetAllAsync();
             return _familyMemberMapper.ToDTOList(members);
         }
     }

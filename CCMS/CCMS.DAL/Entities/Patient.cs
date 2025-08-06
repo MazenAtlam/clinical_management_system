@@ -8,7 +8,25 @@ namespace CCMS.DAL.Entities
     public class Patient : Person
     {
         public int Id { get; private set; }
-        public string BloodType { get;private set; }
+        public string BloodType { get; private set; }
+
+        // Parameterless constructor for EF
+        public Patient() { }
+
+        // Constructor to set all required properties
+        public Patient(string fName, string midName, string lName, string ssn, Gender gender, DateTime birthDate, string bloodType, PersonType pType, string createdBy)
+        {
+            FName = fName;
+            MidName = midName;
+            LName = lName;
+            SSN = ssn;
+            Gender = gender;
+            BirthDate = birthDate;
+            BloodType = bloodType;
+            PType = pType;
+            CreatedBy = createdBy;
+            CreatedOn = DateTime.Now;
+        }
 
         // Edit method to update patient info (name, ssn, gender, birthdate, bloodtype)
         public void Edit(string fName, string midName, string lName, string ssn, Gender gender, DateTime birthDate, string bloodType)
@@ -20,9 +38,6 @@ namespace CCMS.DAL.Entities
             this.Gender = gender;
             this.BirthDate = birthDate;
             this.BloodType = bloodType;
-            //this.ModifiedOn = DateTime.Now;
-            // Take the modifyingUser as parameter for the attribute "ModifiedBy", then Use the following line
-            // SaveModification(modifyingUser);
         }
 
         //navigation

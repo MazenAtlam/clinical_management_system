@@ -8,20 +8,26 @@ namespace CCMS.DAL.Entities
         [MaxLength(100)]
         public string CreatedBy { get; private set; }
         public DateTime CreatedOn { get; private set; } = DateTime.Now;
-        public string? ModifiedBy { get; protected set; } = null;
+        public string? ModifiedBy { get; private set; } = null;
         [MaxLength(100)]
-        public DateTime? ModifiedOn { get; protected set; } = null;
+        public DateTime? ModifiedOn { get; private set; } = null;
         public bool IsDeleted { get; private set; } = false;
         public DateTime? DeletedOn { get; private set; } = null;
 
-        protected Base() { }
+        protected Base() { } // Remove This Line
         protected Base(string creatingUser) => CreatedBy = creatingUser;
 
         public void Delete(string modifyingUser)
         {
             IsDeleted = true;
+            DeletedOn = DateTime.Now;
+            SaveModification(modifyingUser);
+        }
+
+        public void SaveModification(string modifyingUser)
+        {
             ModifiedBy = modifyingUser;
-            DeletedOn = ModifiedOn = DateTime.Now;
+            ModifiedOn = DateTime.Now;
         }
     }
 }

@@ -21,7 +21,9 @@ namespace CCMS.DAL.Entities
             this.Gender = gender;
             this.SSN = ssn;
             this.phone = phone;
-            this.ModifiedOn = DateTime.Now;
+            //this.ModifiedOn = DateTime.Now;
+            // Take the modifyingUser as parameter for the attribute "ModifiedBy", then Use the following line
+            // SaveModification(modifyingUser);
         }
     }
 }

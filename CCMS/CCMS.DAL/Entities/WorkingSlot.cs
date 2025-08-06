@@ -26,5 +26,12 @@ namespace CCMS.DAL.Entities
             this.endTime = endTime;
             status = WorkingSlotStatus.Available;
         }
+        public void Edit(DayOfWeek day, TimeSpan startTime, TimeSpan endTime,WorkingSlotStatus status)
+        {
+            this.day = day;
+            this.startTime = startTime;
+            this.endTime = endTime;
+            this.status = status;
+        }
     }
 }

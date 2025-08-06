@@ -4,32 +4,32 @@ namespace CCMS.BLL.Services.Implementation
 {
     public class ManagerService : IManagerService
     {
-        public string? Create(/*CreateEmployee emp, */string creatingUser)
+        public async Task<string?> Create(/*EmployeeDTO emp, */string creatingUser)
         {
             throw new NotImplementedException();
         }
 
-        public /*(List<EmployeeDTO>?, */string?/*)*/ GetAllManagers()
+        public async Task</*(List<EmployeeDTO>?, */string?/*)*/> GetAllManagers()
         {
             throw new NotImplementedException();
         }
 
-        public /*(EmployeeDTO?, */string?/*)*/ GetManagerByID(int id)
+        public async Task</*(EmployeeDTO?, */string?/*)*/> GetManagerByID(int id)
         {
             throw new NotImplementedException();
         }
 
-        public /*(List<EmployeeDTO>?, */string?/*)*/ GetAllEmployeesManagedBy(int id)
+        public async Task</*(List<EmployeeDTO>?, */string?/*)*/> GetAllEmployeesManagedBy(int id)
         {
             throw new NotImplementedException();
         }
 
-        public string? Update(/*EmployeeDTO emp, */string modifyingUser)
+        public async Task<string?> Update(/*EmployeeDTO emp, */string modifyingUser)
         {
             throw new NotImplementedException();
         }
 
-        public string? Delete(int id, string modifyingUser)
+        public async Task<string?> Delete(int id, string modifyingUser)
         {
             throw new NotImplementedException();
         }

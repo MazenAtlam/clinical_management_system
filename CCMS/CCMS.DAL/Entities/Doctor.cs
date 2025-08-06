@@ -6,27 +6,41 @@ namespace CCMS.DAL.Entities
     [Table("Doctor", Schema = "ccms")]
     public class Doctor : Employee
     {
+        public string name { get; private set; }
         public Specialization major { get; private set; }
         //Rating in the pdf of tasks says that Mazen will impelement it so when he does change this rating field to the corresponding class
         public Rating rating { get; private set; }
         //public List<Patient>? patients { get; private set; }
         //public List<Room>? rooms { get; private set; }
         //ternary relationship book
-        public List<Book> Books { get; set; }
+        public List<Book> Books { get; private set; }
+
+        public Doctor(string FName,string MidName, string LName, Specialization major)
+        {
+            this.FName = FName;
+
+            this.name = name;
+            this.major = major;
+        }
+
         public Doctor(Specialization major)
         {
-            //FIX THIS AND INCLUDE EMP CTOR
+            name = GetFullName();
             this.major = major;
             rating = Rating.Neutral;
         }
-        // WRITE THE EDIT METHODS,
+        public string GetFullName()
+        {
+            return $"{FName} {MidName} {LName}";
+        }
         public void EditRating(Rating rating)
         {
             this.rating = rating;
         }
-        public void Edit(Book book)
-        { 
-            
+        public void Edit(string name, Specialization major)
+        {
+            this.name = name;
+            this.major = major;
         }
     }
 }

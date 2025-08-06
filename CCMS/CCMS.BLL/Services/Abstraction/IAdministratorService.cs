@@ -1,19 +1,19 @@
-﻿using CCMS.DAL.Entities;
+﻿using CCMS.BLL.ModelVM.Employee;
 
 namespace CCMS.BLL.Services.Abstraction
 {
     public interface IAdministratorService
     {
-        public string? Create(/*CreateEmployee emp, */string creatingUser);
+        public Task<string?> Create(EmployeeDTO emp, string creatingUser);
 
-        public /*(List<EmployeeDTO>?, */string?/*)*/ GetAllAdmins();
+        public Task<(List<EmployeeDTO>?, string?)> GetAllAdmins();
 
-        public /*(EmployeeDTO?, */string?/*)*/ GetAdminByID(int id);
+        public Task<(EmployeeDTO?, string?)> GetAdminByID(int id);
 
-        public /*(List<EmployeeDTO>?, */string?/*)*/ GetAllEmployeesCrearedBy(int id);
+        public Task<(List<EmployeeDTO>?, string?)> GetAllEmployeesCrearedBy(int id);
 
-        public string? Update(/*EmployeeDTO emp, */string modifyingUser);
+        public Task<string?> Update(EmployeeDTO emp, string modifyingUser);
 
-        public string? Delete(int id, string modifyingUser);
+        public Task<string?> Delete(int id, string modifyingUser);
     }
 }

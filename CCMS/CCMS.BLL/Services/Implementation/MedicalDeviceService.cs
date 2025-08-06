@@ -1,50 +1,122 @@
-﻿/*using CCMS.BLL.ModelVM.Employee;*/
+﻿using CCMS.BLL.Mapping;
+using CCMS.BLL.ModelVM.Employee;
 using CCMS.BLL.ModelVM.MedicalDevice;
 using CCMS.BLL.Services.Abstraction;
+using CCMS.DAL.Entities;
 using CCMS.DAL.Enums;
 using CCMS.DAL.Repository.Abstraction;
-using CCMS.DAL.Repository.Implementation;
 
 namespace CCMS.BLL.Services.Implementation
 {
     public class MedicalDeviceService : IMedicalDeviceService
     {
-        private readonly IMedicalDeviceRepo medicalDeviceRepo = new MedicalDeviceRepo();
+        private readonly IMedicalDeviceRepo medicalDeviceRepo;
 
-        public string? Create(CreateMedicalDevice md, string creatingUser)
+        public MedicalDeviceService(IMedicalDeviceRepo MDRepo)
         {
-            throw new NotImplementedException();
+            medicalDeviceRepo = MDRepo;
         }
 
-        public (List<MedicalDeviceDTO>?, string?) GetAllMedicalDevices()
+        public async Task<string?> Create(MedicalDeviceDTO md, string creatingUser)
         {
-            throw new NotImplementedException();
+            try
+            {
+                MedicalDevice mdDevice = MedicalDeviceMapper.ToEntity(md);
+
+                await medicalDeviceRepo.Add(mdDevice);
+                await medicalDeviceRepo.Save();
+
+                return null;
+            }
+            catch (Exception ex) { return ex.Message; }
         }
 
-        public (MedicalDeviceDTO?, string?) GetMedicalDeviceBySerialNumber(string serialNum)
+        public async Task<(List<MedicalDeviceDTO>?, string?)> GetAllMedicalDevices()
         {
-            throw new NotImplementedException();
+            try
+            {
+                List<MedicalDevice> medicalDevices = await medicalDeviceRepo.GetAllMedicalDevices();
+
+                if (medicalDevices.Count == 0)
+                    return (null, "No data found.");
+
+                List<MedicalDeviceDTO> mdDevices = MedicalDeviceMapper.ToListResponseDto(medicalDevices);
+
+                return (mdDevices, null);
+            }
+            catch (Exception ex) { return (null, ex.Message); }
+        }
+
+        public async Task<(MedicalDeviceDTO?, string?)> GetMedicalDeviceBySerialNumber(string serialNum)
+        {
+            try
+            {
+                MedicalDevice medicalDevice = await medicalDeviceRepo.GetMedicalDeviceBySerialNumber(serialNum);
+
+                MedicalDeviceDTO mdDevice = MedicalDeviceMapper.ToResponseDto(medicalDevice);
+
+                return (mdDevice, null);
+            }
+            catch (Exception ex) { return (null, ex.Message); }
         }
 
         // From table BiomedicalEngineer_MedicalDevice
-        public /*(List<EmployeeDTO>?, */string?/*)*/ GetAllBiomedicalEngineersWorkOn(string serialNum)
+        public async Task<(List<EmployeeDTO>?, string?)> GetAllBiomedicalEngineersWorkOn(string serialNum)
         {
-            throw new NotImplementedException();
+            try
+            {
+                List<BiomedicalEngineer> biomedicalEngineers = await medicalDeviceRepo.GetAllBiomedicalEngineersWorksOn(serialNum);
+
+                if (biomedicalEngineers.Count == 0)
+                    return (null, "No data found.");
+
+                List<EmployeeDTO> bioEngs = BiomedicalEngineerMapper.ToListResponseDto(biomedicalEngineers);
+
+                return (bioEngs, null);
+            }
+            catch (Exception ex) { return (null, ex.Message); }
         }
 
-        public string? UpdateStatus(string serialNum, MedicalDeviceStatus newStatus, string modifyingUser)
+        public async Task<string?> UpdateStatus(string serialNum, MedicalDeviceStatus newStatus, string modifyingUser)
         {
-            throw new NotImplementedException();
+            try
+            {
+                MedicalDevice medicalDevice = await medicalDeviceRepo.GetMedicalDeviceBySerialNumber(serialNum);
+
+                medicalDevice.UpdateStatus(newStatus, modifyingUser);
+                await medicalDeviceRepo.Save();
+
+                return null;
+            }
+            catch (Exception ex) { return ex.Message; }
         }
 
-        public string? UpdateAll(MedicalDeviceDTO emp, string modifyingUser)
+        public async Task<string?> UpdateAll(MedicalDeviceDTO md, string modifyingUser)
         {
-            throw new NotImplementedException();
+            try
+            {
+                MedicalDevice medicalDevice = await medicalDeviceRepo.GetMedicalDeviceBySerialNumber(md.SerialNumber);
+
+                medicalDevice.UpdateAll(md.SerialNumber, md.MDName, md.Company, md.ExpirationHours, md.MDStatus, modifyingUser);
+                await medicalDeviceRepo.Save();
+
+                return null;
+            }
+            catch (Exception ex) { return ex.Message; }
         }
 
-        public string? Delete(string serialNum, string modifyingUser)
+        public async Task<string?> Delete(string serialNum, string modifyingUser)
         {
-            throw new NotImplementedException();
+            try
+            {
+                MedicalDevice medicalDevice = await medicalDeviceRepo.GetMedicalDeviceBySerialNumber(serialNum);
+
+                medicalDevice.Delete(modifyingUser);
+                await medicalDeviceRepo.Save();
+
+                return null;
+            }
+            catch (Exception ex) { return ex.Message; };
         }
     }
 }

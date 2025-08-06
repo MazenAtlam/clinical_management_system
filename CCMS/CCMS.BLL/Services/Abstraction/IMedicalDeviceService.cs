@@ -1,4 +1,4 @@
-﻿/*using CCMS.BLL.ModelVM.Employee;*/
+﻿using CCMS.BLL.ModelVM.Employee;
 using CCMS.BLL.ModelVM.MedicalDevice;
 using CCMS.DAL.Enums;
 
@@ -6,19 +6,19 @@ namespace CCMS.BLL.Services.Abstraction
 {
     public interface IMedicalDeviceService
     {
-        public string? Create(CreateMedicalDevice md, string creatingUser);
+        public Task<string?> Create(MedicalDeviceDTO md, string creatingUser);
 
-        public (List<MedicalDeviceDTO>?, string?) GetAllMedicalDevices();
+        public Task<(List<MedicalDeviceDTO>?, string?)> GetAllMedicalDevices();
 
-        public (MedicalDeviceDTO?, string?) GetMedicalDeviceBySerialNumber(string serialNum);
+        public Task<(MedicalDeviceDTO?, string?)> GetMedicalDeviceBySerialNumber(string serialNum);
 
         // From table BiomedicalEngineer_MedicalDevice
-        public /*(List<EmployeeDTO>?, */string?/*)*/ GetAllBiomedicalEngineersWorkOn(string serialNum);
+        public Task<(List<EmployeeDTO>?, string?)> GetAllBiomedicalEngineersWorkOn(string serialNum);
 
-        public string? UpdateStatus(string serialNum, MedicalDeviceStatus newStatus, string modifyingUser);
+        public Task<string?> UpdateStatus(string serialNum, MedicalDeviceStatus newStatus, string modifyingUser);
 
-        public string? UpdateAll(MedicalDeviceDTO emp, string modifyingUser);
+        public Task<string?> UpdateAll(MedicalDeviceDTO md, string modifyingUser);
 
-        public string? Delete(string serialNum, string modifyingUser);
+        public Task<string?> Delete(string serialNum, string modifyingUser);
     }
 }

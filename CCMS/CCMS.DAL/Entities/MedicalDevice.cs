@@ -21,11 +21,6 @@ namespace CCMS.DAL.Entities
         [Required]
         public MedicalDeviceStatus MDStatus { get; private set; }
 
-        public MedicalDevice() : base() { }
-        public MedicalDevice(string serialNum, string mdName, string company, long expirationHours, MedicalDeviceStatus mdStatus, string creatingUser)
-            : base(creatingUser)
-            => SetAll(serialNum, mdName, company, expirationHours, mdStatus);
-
         private void SetAll(string serialNum, string mdName, string company, long expirationHours, MedicalDeviceStatus mdStatus)
         {
             SerialNumber = serialNum;
@@ -33,12 +28,6 @@ namespace CCMS.DAL.Entities
             Company = company;
             ExpirationHours = expirationHours;
             MDStatus = mdStatus;
-        }
-
-        private void SaveModification(string modifyingUser)
-        {
-            ModifiedBy = modifyingUser;
-            ModifiedOn = DateTime.Now;
         }
 
         public void UpdateStatus(MedicalDeviceStatus newStatus, string modifyingUser)

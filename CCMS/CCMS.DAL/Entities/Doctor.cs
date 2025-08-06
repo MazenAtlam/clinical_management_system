@@ -14,6 +14,15 @@ namespace CCMS.DAL.Entities
         //public List<Room>? rooms { get; private set; }
         //ternary relationship book
         public List<Book> Books { get; private set; }
+
+        public Doctor(string FName,string MidName, string LName, Specialization major)
+        {
+            this.FName = FName;
+
+            this.name = name;
+            this.major = major;
+        }
+
         public Doctor(Specialization major)
         {
             name = GetFullName();

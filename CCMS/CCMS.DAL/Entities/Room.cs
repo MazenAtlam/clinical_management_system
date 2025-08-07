@@ -7,40 +7,39 @@ namespace CCMS.DAL.Entities
     [Table("Room", Schema = "ccms")]
     public class Room : Base
     {
-        public int id { get; private set; }
+        [Key]
+        [MaxLength(6)]
+        [MinLength(6)]
+        public string RNumber { get; private set; } // bbfrrr
         public int capacity { get; private set; }
-        [Required]
-        public int floorNum { get; private set; }
-        [Required]
-        [MaxLength(50)]
-        public string buildingNum { get; private set; }
         public Rtype rtype { get; private set; }
         public Rstatus rstatus { get; private set; }
         // FOREIGN KEY DEP ID
         [ForeignKey("Department")]
-        public int depId { get; private set; }
-        public Department department { get; private set; }
-        public List<MedicalDevice>? medicalDevices { get; private set; }
-
+        public int? DeptId { get; private set; }
+        public Department? Department { get; private set; }
+        public List<MedicalDevice> MedicalDevices { get; private set; } = new List<MedicalDevice>();
         //ternary relationship book
-        public List<Book> Books { get; set; }
+        public List<Book> Books { get; private set; } = new List<Book>();
 
-        public Room(int capacity, int floorNum, string buildingNum, Rtype rtype)
+        public Room() : base() { }
+        public Room(string rNumber, int capacity, Rtype rtype, Rstatus rstatus, int? deptID, string createdBy)
+            : base(createdBy)
+            => Set(rNumber, capacity, rtype, rstatus, deptID);
+
+        private void Set(string rNumber, int capacity, Rtype rtype, Rstatus rstatus, int? deptID)
         {
+            RNumber = rNumber;
             this.capacity = capacity;
-            this.floorNum = floorNum;
-            this.buildingNum = buildingNum;
             this.rtype = rtype;
-            rstatus = Rstatus.Available;
+            this.rstatus = rstatus;
+            DeptId = deptID;
         }
-        public void Edit(int capacity, int floorNum, string buildingNum, Rtype rtype,Rstatus rstatus, string modifyingUser)
+
+        public void Edit(string rNumber, int capacity, Rtype rtype, Rstatus rstatus, int? deptID, string modifiedBy)
         {
-            this.capacity = capacity;
-            this.floorNum = floorNum;
-            this.buildingNum = buildingNum;
-            this.rtype = rtype;
-            rstatus = Rstatus.Available;
-            SaveModification(modifyingUser);
+            Set(rNumber, capacity, rtype, rstatus, deptID);
+            SaveModification(modifiedBy);
         }
         
     }

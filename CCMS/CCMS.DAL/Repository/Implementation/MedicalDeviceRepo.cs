@@ -15,12 +15,12 @@ namespace CCMS.DAL.Repository.Implementation
         public async Task<List<MedicalDevice>> GetAllMedicalDevices()
             => medicalDeviceDbContext.MedicalDevices.Where(device => !device.IsDeleted).ToList();
 
-        public async Task<MedicalDevice> GetMedicalDeviceBySerialNumber(string serialNum)
+        public async Task<MedicalDevice> GetMedicalDeviceBySerialNumber(string serialNumber)
         {
-            MedicalDevice? medicalDevice = medicalDeviceDbContext.MedicalDevices.Where(device => device.SerialNumber == serialNum && !device.IsDeleted).FirstOrDefault();
+            MedicalDevice? medicalDevice = medicalDeviceDbContext.MedicalDevices.Where(device => device.SerialNumber == serialNumber && !device.IsDeleted).FirstOrDefault();
 
             return medicalDevice == null
-                ? throw new ArgumentException($"There is no medical device with the serial number = {serialNum} .", "serialNum")
+                ? throw new ArgumentException($"There is no medical device with the serial number = {serialNumber} .", "serialNumber")
                 : medicalDevice;
         }
 

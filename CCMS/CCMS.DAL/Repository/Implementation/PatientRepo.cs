@@ -35,7 +35,7 @@ namespace CCMS.DAL.Repository.Implementation
         {
             try
             {
-                var patient = await db.patients.FirstOrDefaultAsync(a => a.Id == id);
+                var patient = await db.patients.FirstOrDefaultAsync(a => a.UID == id);
                 if (patient == null)
                     return false;
                 patient.Delete("admin");
@@ -55,25 +55,26 @@ namespace CCMS.DAL.Repository.Implementation
 
         public async Task<Patient> GetByIdAsync(int id)
         {
-            return await db.patients.FirstOrDefaultAsync(a => a.Id == id);
+            return await db.patients.FirstOrDefaultAsync(a => a.UID == id);
         }
 
         public async Task<bool> UpdateAsync(Patient patient)
         {
             try
             {
-                var pat = await db.patients.FirstOrDefaultAsync(a => a.Id == patient.Id);
+                var pat = await db.patients.FirstOrDefaultAsync(a => a.UID == patient.UID);
                 if (pat == null)
                     return false;
-                pat.Edit(
-                    patient.FName,
-                    patient.MidName,
-                    patient.LName,
-                    patient.SSN,
-                    patient.Gender,
-                    patient.BirthDate,
-                    patient.BloodType
-                );
+                // The Edit method has been updated
+                //pat.Edit(
+                //    patient.FName,
+                //    patient.MidName,
+                //    patient.LName,
+                //    patient.SSN,
+                //    patient.Gender,
+                //    patient.BirthDate,
+                //    patient.BloodType
+                //);
                 await db.SaveChangesAsync();
                 return true;
             }

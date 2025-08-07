@@ -58,14 +58,14 @@ namespace CCMS.DAL.Repository.Implementation
             return await db.scans.FirstOrDefaultAsync(a => a.Id == id);
         }
 
-        public async Task<bool> UpdateAsync(Scan scan)
+        public async Task<bool> UpdateAsync(Scan scan, string modifiedBy)
         {
             try
             {
                 var sc = await db.scans.FirstOrDefaultAsync(a => a.Id == scan.Id);
                 if (sc == null)
                     return false;
-                sc.Edit(scan.ScanType, scan.ScanTech, scan.SDate, scan.PatientId, scan.Results);
+                sc.Edit(scan.ScanType, scan.ScanTech, scan.Results, scan.SDate, scan.LDID, scan.PatientId, modifiedBy);
                 await db.SaveChangesAsync();
                 return true;
             }

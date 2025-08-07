@@ -8,7 +8,7 @@ namespace CCMS.DAL.Repository.Abstraction
 
         public Task<List<MedicalDevice>> GetAllMedicalDevices();
 
-        public Task<MedicalDevice> GetMedicalDeviceBySerialNumber(string serialNum);
+        public Task<MedicalDevice> GetMedicalDeviceBySerialNumber(string serialNumber);
 
         public Task Save();
     }

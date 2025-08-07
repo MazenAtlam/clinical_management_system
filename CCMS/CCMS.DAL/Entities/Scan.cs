@@ -1,42 +1,54 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using CCMS.DAL.Enums;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace CCMS.DAL.Entities
 {
     [Table("Scan", Schema = "ccms")]
     public class Scan : Base
     {
-
         public int Id { get; private set; }
-        public string ScanType { get; private set; }
-        public string ScanTech { get; private set; }
-        public string? Results { get; private set; } //file location
+        [Required]
+        public SType ScanType { get; private set; }
+        [Required]
+        public STech ScanTech { get; private set; }
+        [Required]
+        // File location or Use file uploader
+        [MaxLength(500)] // if file location
+        public string Results { get; private set; }
+        [Required]
         public DateTime SDate { get; private set; }
+        // Navigation
+        public LabDoctor LabDoctor { get; private set; }
+        [Required]
+        [ForeignKey("Doctor")]
+        public int LDID { get; private set; }
+        [DeleteBehavior(DeleteBehavior.Restrict)]
+        public Patient Patient { get; private set; }
+        [Required]
+        [ForeignKey("Patient")]
+        public int PatientId { get; private set; }
 
-        //constructor
-        //public Scan(string scanType, string scanTech, string? results, DateTime sDate, string creatingUser)
-        //    : base(creatingUser)
-        //{
-        //    ScanType = scanType;
-        //    ScanTech = scanTech;
-        //    Results = results;
-        //    SDate = sDate;
-        //}
-        ////default constructor
-        //public Scan(){ }
-        public void Edit(string scanType,string scanTech,DateTime SDate,int PatientId,string? Results)
+        public Scan() : base() { }
+        public Scan(SType scanType, STech scanTech, string results, DateTime sDate, int ldID, int patientID, string createdBy)
+            : base(createdBy)
+            => Set(scanType, scanTech, results, sDate, ldID, patientID);
+
+        private void Set(SType scanType, STech scanTech, string results, DateTime sDate, int ldID, int patientID)
         {
-            //this.ModifiedOn = DateTime.Now;
-            // Take the modifyingUser as parameter for the attribute "ModifiedBy", then Use the following line
-            // SaveModification(modifyingUser);
             ScanType = scanType;
             ScanTech = scanTech;
-            this.SDate = SDate;
-            this.PatientId = PatientId;
-            this.Results = Results;
+            Results = results;
+            SDate = sDate;
+            LDID = ldID;
+            PatientId = patientID;
         }
-        //navigation
-        public Patient Patient { get; set; }
-        [ForeignKey("Patient")]
-        public int PatientId { get; set; }
 
+        public void Edit(SType scanType, STech scanTech, string results, DateTime sDate, int ldID, int patientID, string modifiedBy)
+        {
+            Set(scanType, scanTech, results, sDate, ldID, patientID);
+            SaveModification(modifiedBy);
+        }
     }
 }

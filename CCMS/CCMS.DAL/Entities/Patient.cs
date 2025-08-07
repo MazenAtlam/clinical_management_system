@@ -1,34 +1,31 @@
 ﻿using Azure;
 using System.ComponentModel.DataAnnotations.Schema;
 using CCMS.DAL.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace CCMS.DAL.Entities
 {
     [Table("Patient", Schema = "ccms")]
     public class Patient : Person
     {
-        public int Id { get; private set; }
-        public string BloodType { get;private set; }
+        [Required]
+        public BloodType BloodType { get; private set; }
 
-        // Edit method to update patient info (name, ssn, gender, birthdate, bloodtype)
-        public void Edit(string fName, string midName, string lName, string ssn, Gender gender, DateTime birthDate, string bloodType)
+        public Patient() : base() { }
+        public Patient(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate, BloodType bloodType, string createdBy)
+            : base(fName, midName, lName, ssn, gender, birthDate, createdBy)
+            => BloodType = bloodType;
+
+        public void Edit(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate, BloodType bloodType, string modifiedBy)
         {
-            this.FName = fName;
-            this.MidName = midName;
-            this.LName = lName;
-            this.SSN = ssn;
-            this.Gender = gender;
-            this.BirthDate = birthDate;
-            this.BloodType = bloodType;
-            //this.ModifiedOn = DateTime.Now;
-            // Take the modifyingUser as parameter for the attribute "ModifiedBy", then Use the following line
-            // SaveModification(modifyingUser);
+            base.Edit(fName, midName, lName, ssn, gender, birthDate, modifiedBy);
+            BloodType = bloodType;
         }
 
-        //navigation
-        public List<PateintFamilyJoin> pateintfFamily { get; set; }
-        public List<MedicalHistory> MedicalHistories { get; set; }
-        public List<Scan> Scans { get; set; }
-        public List<Book> Books { get; set; }
+        // Navigation
+        public List<PatientFamily> PatientFamilyMembers { get; private set; } = new List<PatientFamily>();
+        public List<MedicalHistory> MedicalHistories { get; private set; }= new List<MedicalHistory>();
+        public List<Scan> Scans { get; private set; } = new List<Scan>();
+        public List<Book> Books { get; private set; } = new List<Book>();
     }
 }

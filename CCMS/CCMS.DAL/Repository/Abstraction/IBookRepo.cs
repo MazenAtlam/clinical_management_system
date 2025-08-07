@@ -10,6 +10,6 @@ namespace CCMS.DAL.Repository.Abstraction
         Task<Book> GetByIdAsync(int id);
         Task<List<Book>> GetAllAsync();
         Task<bool> DeleteAsync(int id);
-        Task<bool> UpdateAsync(Book book);
+        Task<bool> UpdateAsync(Book book, string modifiedBy);
     }
 }

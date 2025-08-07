@@ -37,7 +37,7 @@ namespace CCMS.DAL.Repository.Implementation
         {
             try
             {
-                var doctor = db.doctors.Where(a => a.Id == id).FirstOrDefault();
+                var doctor = db.doctors.Where(a => a.UID == id).FirstOrDefault();
                 if (doctor == null)
                     return false;
                 doctor.Delete("admin");
@@ -76,7 +76,7 @@ namespace CCMS.DAL.Repository.Implementation
 
         public Doctor GetById(int id)
         {
-            var doctor = db.doctors.Where(a => a.Id == id).FirstOrDefault();
+            var doctor = db.doctors.Where(a => a.UID == id).FirstOrDefault();
             return doctor;
         }
 
@@ -84,10 +84,10 @@ namespace CCMS.DAL.Repository.Implementation
         {
             try
             {
-                var doc = db.doctors.Where(a => a.Id == doctor.Id).FirstOrDefault();
+                var doc = db.doctors.Where(a => a.UID == doctor.UID).FirstOrDefault();
                 if (doc == null)
                     return false;
-                doc.Edit(doctor.GetFullName(),doctor.major);
+                //doc.Edit(doctor.GetFullName(),doctor.major);
                 db.SaveChanges();
                 return true;
             }

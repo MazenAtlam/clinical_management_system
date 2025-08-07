@@ -58,14 +58,14 @@ namespace CCMS.DAL.Repository.Implementation
             return await db.books.FirstOrDefaultAsync(a => a.Id == id);
         }
 
-        public async Task<bool> UpdateAsync(Book book)
+        public async Task<bool> UpdateAsync(Book book, string modifiedBy)
         {
             try
             {
                 var b = await db.books.FirstOrDefaultAsync(a => a.Id == book.Id);
                 if (b == null)
                     return false;
-                b.Edit(book.price, book.BookDate, book.PatientId, book.DoctorId, book.RoomId, book.Perscription);
+                b.Edit(book.Price, book.Perscription, book.BookDate, book.PatientId, book.DoctorId, book.RNumber, modifiedBy);
                 await db.SaveChangesAsync();
                 return true;
             }

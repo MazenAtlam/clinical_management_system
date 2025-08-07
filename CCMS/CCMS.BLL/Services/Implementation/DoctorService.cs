@@ -22,16 +22,17 @@ namespace CCMS.BLL.Services.Implementation
         }
         public bool Create(CreateDoctor doctor)
         {
-            try
-            {
-                var doc = new Doctor(doctor.major);
-                repo.Create(doc);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
+            throw new NotImplementedException();
+            //try
+            //{
+            //    var doc = new Doctor(doctor.major);
+            //    repo.Create(doc);
+            //    return true;
+            //}
+            //catch (Exception ex)
+            //{
+            //    return false;
+            //}
         }
 
         public bool Delete(int id)

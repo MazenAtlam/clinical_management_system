@@ -10,6 +10,6 @@ namespace CCMS.DAL.Repository.Abstraction
         Task<MedicalHistory> GetByIdAsync(int id);
         Task<List<MedicalHistory>> GetAllAsync();
         Task<bool> DeleteAsync(int id);
-        Task<bool> UpdateAsync(MedicalHistory medicalHistory);
+        Task<bool> UpdateAsync(MedicalHistory medicalHistory, string modifiedBy);
     }
 }

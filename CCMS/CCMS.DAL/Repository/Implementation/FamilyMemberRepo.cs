@@ -58,14 +58,14 @@ namespace CCMS.DAL.Repository.Implementation
             return await db.familyMembers.FirstOrDefaultAsync(a => a.Id == id);
         }
 
-        public async Task<bool> UpdateAsync(FamilyMember familyMember)
+        public async Task<bool> UpdateAsync(FamilyMember familyMember, string modifiedBy)
         {
             try
             {
                 var member = await db.familyMembers.FirstOrDefaultAsync(a => a.Id == familyMember.Id);
                 if (member == null)
                     return false;
-                member.Edit(familyMember.name, familyMember.Gender, familyMember.SSN, familyMember.phone);
+                member.Edit(familyMember.Name, familyMember.Gender, familyMember.SSN, familyMember.PhoneNumber, modifiedBy);
                 await db.SaveChangesAsync();
                 return true;
             }

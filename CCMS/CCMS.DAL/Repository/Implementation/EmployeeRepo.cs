@@ -50,7 +50,7 @@ namespace CCMS.DAL.Repository.Implementation
                                  .Include(e => e.Manager)
                                  .Include(e => e.Admin)
                                  .Include(e => e.Department)
-                                 .FirstOrDefaultAsync(e => e.Id == id);
+                                 .FirstOrDefaultAsync(e => e.UID == id);
         }
 
         public async Task<bool> DeleteEmployee(int id)

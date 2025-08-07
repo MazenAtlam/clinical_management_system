@@ -2,7 +2,7 @@
 {
     public interface IDepartmentService
     {
-        public Task<string?> Create(/*DepartmentDTO dept, */string creatingUser);
+        public Task<string?> Create(/*DepartmentDTO dept, */string createdBy);
 
         public Task</*(List<DepartmentDTO>?, */string?/*)*/> GetAllDepartments();
 
@@ -12,8 +12,8 @@
 
         public Task</*(DepartmentDTO?, */string?/*)*/> GetDepartmentByID(int deptID);
 
-        public Task<string?> Update(/*DepartmentDTO dept, */string modifyingUser);
+        public Task<string?> Update(/*DepartmentDTO dept, */string modifiedBy);
 
-        public Task<string?> Delete(int deptID, string modifyingUser);
+        public Task<string?> Delete(int deptID, string modifiedBy);
     }
 }

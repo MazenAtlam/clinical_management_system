@@ -8,10 +8,7 @@ namespace CCMS.DAL.Enums
 {
     public enum PersonType
     {
-        Employee ,
-        Patient ,
-        FamilyMember ,
-        Doctor,
-        Other
+        Employee,
+        Patient
     }
 }

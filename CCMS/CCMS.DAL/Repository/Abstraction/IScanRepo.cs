@@ -10,6 +10,6 @@ namespace CCMS.DAL.Repository.Abstraction
         Task<Scan> GetByIdAsync(int id);
         Task<List<Scan>> GetAllAsync();
         Task<bool> DeleteAsync(int id);
-        Task<bool> UpdateAsync(Scan scan);
+        Task<bool> UpdateAsync(Scan scan, string modifiedBy);
     }
 }

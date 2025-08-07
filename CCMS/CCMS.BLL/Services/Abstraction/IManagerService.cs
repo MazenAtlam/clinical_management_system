@@ -2,7 +2,7 @@
 {
     public interface IManagerService
     {
-        public Task<string?> Create(/*EmployeeDTO emp, */string creatingUser);
+        public Task<string?> Create(/*EmployeeDTO emp, */string createdBy);
 
         public Task</*(List<EmployeeDTO>?, */string?/*)*/> GetAllManagers();
 
@@ -10,8 +10,8 @@
 
         public Task</*(List<EmployeeDTO>?, */string?/*)*/> GetAllEmployeesManagedBy(int id);
 
-        public Task<string?> Update(/*EmployeeDTO emp, */string modifyingUser);
+        public Task<string?> Update(/*EmployeeDTO emp, */string modifiedBy);
 
-        public Task<string?> Delete(int id, string modifyingUser);
+        public Task<string?> Delete(int id, string modifiedBy);
     }
 }

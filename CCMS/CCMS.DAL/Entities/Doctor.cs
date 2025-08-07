@@ -6,41 +6,36 @@ namespace CCMS.DAL.Entities
     [Table("Doctor", Schema = "ccms")]
     public class Doctor : Employee
     {
-        public string name { get; private set; }
         public Specialization major { get; private set; }
-        //Rating in the pdf of tasks says that Mazen will impelement it so when he does change this rating field to the corresponding class
         public Rating rating { get; private set; }
-        //public List<Patient>? patients { get; private set; }
-        //public List<Room>? rooms { get; private set; }
-        //ternary relationship book
+        // Navigation
         public List<Book> Books { get; private set; }
 
-        public Doctor(string FName,string MidName, string LName, Specialization major)
-        {
-            this.FName = FName;
+        public Doctor() : base() { }
+        public Doctor(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate,
+            decimal salary, int yearsOfExperience, DateTime hiringDate, int? mgrID, int? deptID,
+            Specialization major, Rating rating, string createdBy)
+            : base(fName, midName, lName, ssn, gender, birthDate, salary, yearsOfExperience, hiringDate, mgrID, deptID, createdBy)
+            => Set(major, rating);
 
-            this.name = name;
+        private void Set(Specialization major, Rating rating)
+        {
             this.major = major;
-        }
-
-        public Doctor(Specialization major)
-        {
-            name = GetFullName();
-            this.major = major;
-            rating = Rating.Neutral;
-        }
-        public string GetFullName()
-        {
-            return $"{FName} {MidName} {LName}";
-        }
-        public void EditRating(Rating rating)
-        {
             this.rating = rating;
         }
-        public void Edit(string name, Specialization major)
+
+        public void EditRating(Rating rating, string modifiedBy)
         {
-            this.name = name;
-            this.major = major;
+            this.rating = rating;
+            SaveModification(modifiedBy);
+        }
+
+        public void Edit(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate,
+            decimal salary, int yearsOfExperience, DateTime hiringDate, int? mgrID, int? deptID,
+            Specialization major, Rating rating, string modifiedBy)
+        {
+            base.Edit(fName, midName, lName, ssn, gender, birthDate, salary, yearsOfExperience, hiringDate, mgrID, deptID, modifiedBy);
+            Set(major, rating);
         }
     }
 }

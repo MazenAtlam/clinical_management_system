@@ -3,7 +3,6 @@ using CCMS.DAL.Entities;
 using CCMS.BLL.ModelVM.Patient;
 using CCMS.BLL.ModelVM.Book;
 using CCMS.BLL.ModelVM.FamilyMember;
-using System.Collections.Generic;
 
 namespace CCMS.BLL.Mapping
 {

@@ -17,7 +17,7 @@ namespace CCMS.BLL.Services.Implementation
         private readonly IPatientRepo _patientRepo;
         private readonly IBookRepo _bookRepo;
         private readonly IFamilyMemberRepo _familyMemberRepo;
-        private readonly IPateintFamilyJoinRepo _pateintFamilyJoinRepo;
+        private readonly IPatientFamilyRepo _pateintFamilyJoinRepo;
         private readonly IMedicalHistoryRepo _medicalHistoryRepo;
         private readonly IScanRepo _scanRepo;
         private readonly PatientMapper _patientMapper;
@@ -30,7 +30,7 @@ namespace CCMS.BLL.Services.Implementation
             IPatientRepo patientRepo,
             IBookRepo bookRepo,
             IFamilyMemberRepo familyMemberRepo,
-            IPateintFamilyJoinRepo pateintFamilyJoinRepo,
+            IPatientFamilyRepo pateintFamilyJoinRepo,
             IMedicalHistoryRepo medicalHistoryRepo,
             IScanRepo scanRepo,
             PatientMapper patientMapper,
@@ -68,15 +68,15 @@ namespace CCMS.BLL.Services.Implementation
         {
             var patient = await _patientRepo.GetByIdAsync(id);
             if (patient == null) return false;
-            patient.Edit(
-                dto.FName,
-                dto.MidName,
-                dto.LName,
-                dto.SSN,
-                (DAL.Enums.Gender)Enum.Parse(typeof(DAL.Enums.Gender), dto.Gender),
-                dto.BirthDate,
-                dto.BloodType
-            );
+            //patient.Edit(
+            //    dto.FName,
+            //    dto.MidName,
+            //    dto.LName,
+            //    dto.SSN,
+            //    (DAL.Enums.Gender)Enum.Parse(typeof(DAL.Enums.Gender), dto.Gender),
+            //    dto.BirthDate,
+            //    dto.BloodType
+            //);
             return await _patientRepo.UpdateAsync(patient);
         }
 
@@ -98,8 +98,8 @@ namespace CCMS.BLL.Services.Implementation
             var familyMember = _patientMapper.ToFamilyMember(dto);
             var created = await _familyMemberRepo.CreateAsync(familyMember);
             if (!created) return false;
-            var join = new PateintFamilyJoin();
-            join.Edit(relationship, patientId, familyMember.Id);
+            var join = new PatientFamily();
+            //join.Edit(relationship, patientId, familyMember.Id);
             return await _pateintFamilyJoinRepo.CreateAsync(join);
         }
 
@@ -112,7 +112,7 @@ namespace CCMS.BLL.Services.Implementation
         public async Task<bool> AddMedicalHistoryToPatientAsync(MedicalHistoryDTO dto)
         {
             var history = new MedicalHistory();
-            history.Edit(dto.FamilyHistory, dto.DiseaseName, dto.PatientId);
+            //history.Edit(dto.FamilyHistory, dto.DiseaseName, dto.PatientId);
             return await _medicalHistoryRepo.CreateAsync(history);
         }
 
@@ -130,17 +130,18 @@ namespace CCMS.BLL.Services.Implementation
 
         public async Task<bool> EditBookPrescriptionAsync(int bookId, string newPrescription)
         {
-            var book = await _bookRepo.GetByIdAsync(bookId);
-            if (book == null) return false;
-            book.Edit(book.price, book.BookDate, book.PatientId, book.DoctorId, book.RoomId, newPrescription);
-            return await _bookRepo.UpdateAsync(book);
+            throw new NotImplementedException();
+            //var book = await _bookRepo.GetByIdAsync(bookId);
+            //if (book == null) return false;
+            //book.Edit(book.price, book.BookDate, book.PatientId, book.DoctorId, book.RoomId, newPrescription);
+            //return await _bookRepo.UpdateAsync(book);
         }
 
         public async Task<List<PatientDTO>> GetAllPatientsWithBookByDoctorIdAsync(int doctorId)
         {
             var books = (await _bookRepo.GetAllAsync()).Where(b => b.DoctorId == doctorId).ToList();
             var patientIds = books.Select(b => b.PatientId).Distinct().ToList();
-            var patients = (await _patientRepo.GetAllAsync()).Where(p => patientIds.Contains(p.Id)).ToList();
+            var patients = (await _patientRepo.GetAllAsync()).Where(p => patientIds.Contains(p.UID)).ToList();
             return _patientMapper.ToDTOList(patients);
         }
     }

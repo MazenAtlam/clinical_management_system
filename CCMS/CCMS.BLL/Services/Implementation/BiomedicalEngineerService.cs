@@ -9,7 +9,7 @@ namespace CCMS.BLL.Services.Implementation
     {
         //private readonly IBiomedicalEngineerRepo biomedicalEngineerRepo = new BiomedicalEngineerRepo();
 
-        public async Task<string?> Create(/*EmployeeDTO emp, */string creatingUser)
+        public async Task<string?> Create(/*EmployeeDTO emp, */string createdBy)
         {
             throw new NotImplementedException();
         }
@@ -29,12 +29,12 @@ namespace CCMS.BLL.Services.Implementation
             throw new NotImplementedException();
         }
 
-        public async Task<string?> Update(/*EmployeeDTO emp, */string modifyingUser)
+        public async Task<string?> Update(/*EmployeeDTO emp, */string modifiedBy)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<string?> Delete(int id, string modifyingUser)
+        public async Task<string?> Delete(int id, string modifiedBy)
         {
             throw new NotImplementedException();
         }

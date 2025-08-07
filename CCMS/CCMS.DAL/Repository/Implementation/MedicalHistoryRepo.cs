@@ -58,14 +58,14 @@ namespace CCMS.DAL.Repository.Implementation
             return await db.medicalHistories.FirstOrDefaultAsync(a => a.Id == id);
         }
 
-        public async Task<bool> UpdateAsync(MedicalHistory medicalHistory)
+        public async Task<bool> UpdateAsync(MedicalHistory medicalHistory, string modifiedBy)
         {
             try
             {
                 var mh = await db.medicalHistories.FirstOrDefaultAsync(a => a.Id == medicalHistory.Id);
                 if (mh == null)
                     return false;
-                mh.Edit(medicalHistory.FamilyHistory, medicalHistory.DiseaseName, medicalHistory.PatientId);
+                mh.Edit(medicalHistory.IsAcceptable, medicalHistory.DiseaseName, medicalHistory.PatientId, modifiedBy);
                 await db.SaveChangesAsync();
                 return true;
             }

@@ -62,7 +62,7 @@ namespace CCMS.DAL.Repository.Implementation
             return slot;
         }
 
-        public bool Update(WorkingSlot workingSlot)
+        public bool Update(WorkingSlot workingSlot, string modifiedBy)
         {
             try
             {
@@ -70,7 +70,7 @@ namespace CCMS.DAL.Repository.Implementation
                 if (slt == null)
                     return false;
 
-                slt.Edit(workingSlot.day,workingSlot.startTime,workingSlot.endTime,workingSlot.status);
+                slt.Edit(workingSlot.status, workingSlot.day,workingSlot.startTime,workingSlot.endTime, modifiedBy);
                 db.SaveChanges();
                 return true;
             }

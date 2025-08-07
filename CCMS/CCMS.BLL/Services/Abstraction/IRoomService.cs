@@ -5,7 +5,7 @@ namespace CCMS.BLL.Services.Abstraction
 {
     public interface IRoomService
     {
-        public Task<string?> Create(/*RoomDTO room, */string creatingUser);
+        public Task<string?> Create(/*RoomDTO room, */string createdBy);
 
         public Task</*(List<RoomDTO>?, */string?/*)*/> GetAllRooms();
 
@@ -15,10 +15,10 @@ namespace CCMS.BLL.Services.Abstraction
 
         public Task</*(RoomDTO?, */string?/*)*/> GetRoomByNumber(string roomNum);
 
-        public Task<string?> UpdateStatus (string roomNum, Rstatus newStatus, string modifyingUser);
+        public Task<string?> UpdateStatus (string roomNum, Rstatus newStatus, string modifiedBy);
 
-        public Task<string?> Update(/*RoomDTO room, */string modifyingUser);
+        public Task<string?> Update(/*RoomDTO room, */string modifiedBy);
 
-        public Task<string?> Delete(string roomNum, string modifyingUser);
+        public Task<string?> Delete(string roomNum, string modifiedBy);
     }
 }

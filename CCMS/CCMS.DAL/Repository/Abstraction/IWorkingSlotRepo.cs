@@ -13,6 +13,6 @@ namespace CCMS.DAL.Repository.Abstraction
         WorkingSlot GetById(int id);
         List<WorkingSlot> GetAll();
         bool Delete(int id);
-        bool Update(WorkingSlot workingSlot);
+        bool Update(WorkingSlot workingSlot, string modifiedBy);
     }
 }

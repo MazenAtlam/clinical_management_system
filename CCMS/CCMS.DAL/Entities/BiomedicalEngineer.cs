@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CCMS.DAL.Entities
 {
-    [Table("BiomedicalEngineer", Schema="ccms")]
     public class BiomedicalEngineer : Employee
     {
         public List<MedicalDevice> MedicalDevices { get; private set; } = new List<MedicalDevice>();

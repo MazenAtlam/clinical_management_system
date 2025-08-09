@@ -32,11 +32,11 @@ namespace CCMS.DAL.Repository.Implementation
             }
         }
 
-        public bool Delete(int id)
+        public bool Delete(string rNumber)
         {
             try
             {
-                var room = db.rooms.Where(a => a.id == id).FirstOrDefault();
+                var room = db.rooms.Where(a => a.RNumber == rNumber).FirstOrDefault();
                 if (room == null)
                     return false;
                 //add modifiing user
@@ -56,21 +56,21 @@ namespace CCMS.DAL.Repository.Implementation
             return result;
         }
 
-        public Room GetById(int id)
+        public Room GetById(string rNumber)
         {
-            var room = db.rooms.Where(a => a.id == id).FirstOrDefault();
+            var room = db.rooms.Where(a => a.RNumber == rNumber).FirstOrDefault();
             return room;
         }
 
-        public bool Update(Room room)
+        public bool Update(Room room, string modifiedBy)
         {
             try
             {
-                var rom = db.rooms.Where(a => a.id == room.id).FirstOrDefault();
+                var rom = db.rooms.Where(a => a.RNumber == room.RNumber).FirstOrDefault();
                 if (rom == null)
                     return false;
                 
-                rom.Edit(room.capacity,room.floorNum,room.buildingNum,room.rtype,room.rstatus);
+                rom.Edit(room.RNumber, room.capacity,room.rtype,room.rstatus, room.DeptId, modifiedBy);
                 db.SaveChanges();
                 return true;
             }

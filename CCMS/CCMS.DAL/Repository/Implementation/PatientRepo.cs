@@ -1,6 +1,10 @@
 ﻿using CCMS.DAL.Database;
 using CCMS.DAL.Entities;
 using CCMS.DAL.Repository.Abstraction;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace CCMS.DAL.Repository.Implementation
 {
@@ -13,12 +17,12 @@ namespace CCMS.DAL.Repository.Implementation
             this.db = db;
         }
 
-        public bool Create(Patient patient)
+        public async Task<bool> CreateAsync(Patient patient)
         {
             try
             {
-                db.patients.Add(patient);
-                db.SaveChanges();
+                await db.patients.AddAsync(patient);
+                await db.SaveChangesAsync();
                 return true;
             }
             catch
@@ -27,16 +31,15 @@ namespace CCMS.DAL.Repository.Implementation
             }
         }
 
-        public bool Delete(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
             try
             {
-                var patient = db.patients.Where(a => a.Id == id).FirstOrDefault();
+                var patient = await db.patients.FirstOrDefaultAsync(a => a.UID == id);
                 if (patient == null)
                     return false;
-                //add modifiing user
                 patient.Delete("admin");
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return true;
             }
             catch
@@ -45,36 +48,34 @@ namespace CCMS.DAL.Repository.Implementation
             }
         }
 
-        public List<Patient> GetAll()
+        public async Task<List<Patient>> GetAllAsync()
         {
-            var result = db.patients.Where(a => a.IsDeleted == false).ToList();
-            return result;
+            return await db.patients.Where(a => a.IsDeleted == false).ToListAsync();
         }
 
-        public Patient GetById(int id)
+        public async Task<Patient> GetByIdAsync(int id)
         {
-            var patient = db.patients.Where(a => a.Id == id).FirstOrDefault();
-            return patient;
+            return await db.patients.FirstOrDefaultAsync(a => a.UID == id);
         }
 
-        public bool Update(Patient patient)
+        public async Task<bool> UpdateAsync(Patient patient)
         {
             try
             {
-                var pat = db.patients.Where(a => a.Id == patient.Id).FirstOrDefault();
+                var pat = await db.patients.FirstOrDefaultAsync(a => a.UID == patient.UID);
                 if (pat == null)
                     return false;
-                // Use the new Edit method to update patient info
-                pat.Edit(
-                    patient.FName,
-                    patient.MidName,
-                    patient.LName,
-                    patient.SSN,
-                    patient.Gender,
-                    patient.BirthDate,
-                    patient.BloodType
-                );
-                db.SaveChanges();
+                // The Edit method has been updated
+                //pat.Edit(
+                //    patient.FName,
+                //    patient.MidName,
+                //    patient.LName,
+                //    patient.SSN,
+                //    patient.Gender,
+                //    patient.BirthDate,
+                //    patient.BloodType
+                //);
+                await db.SaveChangesAsync();
                 return true;
             }
             catch

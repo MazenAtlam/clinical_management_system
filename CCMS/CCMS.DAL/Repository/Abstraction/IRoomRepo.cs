@@ -10,9 +10,9 @@ namespace CCMS.DAL.Repository.Abstraction
     public interface IRoomRepo
     {
         bool Create(Room room);
-        Room GetById(int id);
+        Room GetById(string rNumber);
         List<Room> GetAll();
-        bool Delete(int id);
-        bool Update(Room room);
+        bool Delete(string rNumber);
+        public bool Update(Room room, string modifiedBy);
     }
 }

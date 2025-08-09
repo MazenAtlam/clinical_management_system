@@ -10,7 +10,7 @@ namespace CCMS.BLL.ModelVM.Person
         public string LName { get; set; }
         public string SSN { get; set; }
         public Gender Gender { get; set; }
-        public DateTime BirthDate { get; set; }
+        public DateOnly BirthDate { get; set; }
         public string CreatedBy { get; set; }
     }
 }

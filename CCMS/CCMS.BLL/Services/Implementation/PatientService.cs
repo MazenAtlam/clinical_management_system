@@ -8,6 +8,7 @@ using CCMS.BLL.ModelVM.Scan;
 using CCMS.DAL.Entities;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CCMS.BLL.Services.Implementation
 {
@@ -16,7 +17,7 @@ namespace CCMS.BLL.Services.Implementation
         private readonly IPatientRepo _patientRepo;
         private readonly IBookRepo _bookRepo;
         private readonly IFamilyMemberRepo _familyMemberRepo;
-        private readonly IPateintFamilyJoinRepo _pateintFamilyJoinRepo;
+        private readonly IPatientFamilyRepo _pateintFamilyJoinRepo;
         private readonly IMedicalHistoryRepo _medicalHistoryRepo;
         private readonly IScanRepo _scanRepo;
         private readonly PatientMapper _patientMapper;
@@ -29,7 +30,7 @@ namespace CCMS.BLL.Services.Implementation
             IPatientRepo patientRepo,
             IBookRepo bookRepo,
             IFamilyMemberRepo familyMemberRepo,
-            IPateintFamilyJoinRepo pateintFamilyJoinRepo,
+            IPatientFamilyRepo pateintFamilyJoinRepo,
             IMedicalHistoryRepo medicalHistoryRepo,
             IScanRepo scanRepo,
             PatientMapper patientMapper,
@@ -51,133 +52,96 @@ namespace CCMS.BLL.Services.Implementation
             _familyMemberMapper = familyMemberMapper;
         }
 
-        public List<PatientDTO> GetAllPatients()
+        public async Task<List<PatientDTO>> GetAllPatientsAsync()
         {
-            var patients = _patientRepo.GetAll();
+            var patients = await _patientRepo.GetAllAsync();
             return _patientMapper.ToDTOList(patients);
         }
 
-        public PatientDTO GetPatientById(int id)
+        public async Task<PatientDTO?> GetPatientByIdAsync(int id)
         {
-            var patient = _patientRepo.GetById(id);
+            var patient = await _patientRepo.GetByIdAsync(id);
             return patient == null ? null : _patientMapper.ToDTO(patient);
         }
 
-        public bool EditPatient(int id, PatientDTO dto)
+        public async Task<bool> EditPatientAsync(int id, PatientDTO dto)
         {
-            // Retrieve the patient entity from the repository by its ID
-            var patient = _patientRepo.GetById(id);
-            // If the patient does not exist, return false
+            var patient = await _patientRepo.GetByIdAsync(id);
             if (patient == null) return false;
-            // Update the patient entity with new values from the DTO
-            patient.Edit(
-                dto.FName, // Update first name
-                dto.MidName, // Update middle name
-                dto.LName, // Update last name
-                dto.SSN, // Update SSN
-                // We can use select input field or radio buttons instead of using text field
-                (DAL.Enums.Gender)Enum.Parse(typeof(DAL.Enums.Gender), dto.Gender), // Update gender (parsed from string)
-                dto.BirthDate, // Update birth date
-                dto.BloodType // Update blood type
-            );
-            // Save the updated patient entity to the repository
-            return _patientRepo.Update(patient);
+            //patient.Edit(
+            //    dto.FName,
+            //    dto.MidName,
+            //    dto.LName,
+            //    dto.SSN,
+            //    (DAL.Enums.Gender)Enum.Parse(typeof(DAL.Enums.Gender), dto.Gender),
+            //    dto.BirthDate,
+            //    dto.BloodType
+            //);
+            return await _patientRepo.UpdateAsync(patient);
         }
 
-        public bool CreateBook(CreateBookDTO dto)
+        public async Task<bool> CreateBookAsync(CreateBookDTO dto)
         {
             var book = _patientMapper.ToBook(dto);
-            return _bookRepo.Create(book);
+            return await _bookRepo.CreateAsync(book);
         }
 
-        // Use Mapperly for mapping FamilyMember to FamilyMemberDTO
-        public List<FamilyMemberDTO> GetFamilyMembersByPatientId(int patientId)
+        public async Task<List<FamilyMemberDTO>> GetFamilyMembersByPatientIdAsync(int patientId)
         {
-            // Get all join records for the patient
-            var joins = _pateintFamilyJoinRepo.GetAll().Where(j => j.PatientId == patientId).ToList();
-            // Extract the related FamilyMember entities
+            var joins = (await _pateintFamilyJoinRepo.GetAllAsync()).Where(j => j.PatientId == patientId).ToList();
             var familyMembers = joins.Select(j => j.FamilyMember).ToList();
-            // Use Mapperly to map to DTOs
             return _familyMemberMapper.ToDTOList(familyMembers);
         }
 
-        public bool AddFamilyMemberToPatient(CreateFamilyMemberDTO dto, int patientId, string relationship)
+        public async Task<bool> AddFamilyMemberToPatientAsync(CreateFamilyMemberDTO dto, int patientId, string relationship)
         {
-            // Map the DTO to a FamilyMember entity
             var familyMember = _patientMapper.ToFamilyMember(dto);
-
-            // Create the new FamilyMember in the repository
-            var created = _familyMemberRepo.Create(familyMember);
-
-            // If creation failed, return false
+            var created = await _familyMemberRepo.CreateAsync(familyMember);
             if (!created) return false;
-
-            // Use the ID from the just-created familyMember
-            var join = new PateintFamilyJoin();
-            join.Edit(relationship, patientId, familyMember.Id);
-
-            // Save the join entity to the repository
-            return _pateintFamilyJoinRepo.Create(join);
+            var join = new PatientFamily();
+            //join.Edit(relationship, patientId, familyMember.Id);
+            return await _pateintFamilyJoinRepo.CreateAsync(join);
         }
 
-        // 1. Get all medical history for a patient
-        public List<MedicalHistoryDTO> GetAllMedicalHistoryByPatientId(int patientId)
+        public async Task<List<MedicalHistoryDTO>> GetAllMedicalHistoryByPatientIdAsync(int patientId)
         {
-            // Get all medical histories and filter by patientId
-            var histories = _medicalHistoryRepo.GetAll().Where(h => h.PatientId == patientId).ToList();
-            // Map to DTOs
+            var histories = (await _medicalHistoryRepo.GetAllAsync()).Where(h => h.PatientId == patientId).ToList();
             return _medicalHistoryMapper.ToDTOList(histories);
         }
 
-        // 2. Add medical history to a patient
-        public bool AddMedicalHistoryToPatient(MedicalHistoryDTO dto)
+        public async Task<bool> AddMedicalHistoryToPatientAsync(MedicalHistoryDTO dto)
         {
-            // Create a new MedicalHistory entity and set its properties
             var history = new MedicalHistory();
-            history.Edit(dto.FamilyHistory, dto.DiseaseName, dto.PatientId);
-            // Save to repository
-            return _medicalHistoryRepo.Create(history);
+            //history.Edit(dto.FamilyHistory, dto.DiseaseName, dto.PatientId);
+            return await _medicalHistoryRepo.CreateAsync(history);
         }
 
-        // 3. Get all scans for a patient
-        public List<ScanDTO> GetAllScansByPatientId(int patientId)
+        public async Task<List<ScanDTO>> GetAllScansByPatientIdAsync(int patientId)
         {
-            // Get all scans and filter by patientId
-            var scans = _scanRepo.GetAll().Where(s => s.PatientId == patientId).ToList();
-            // Map to DTOs
+            var scans = (await _scanRepo.GetAllAsync()).Where(s => s.PatientId == patientId).ToList();
             return _scanMapper.ToDTOList(scans);
         }
 
-        // 4. Get all books by patient id (including doctor name)
-        public List<(BookDTO Book, string DoctorName)> GetAllBooksByPatientIdWithDoctorName(int patientId)
+        public async Task<List<(BookDTO Book, string DoctorName)>> GetAllBooksByPatientIdWithDoctorNameAsync(int patientId)
         {
-            // Get all books for the patient
-            var books = _bookRepo.GetAll().Where(b => b.PatientId == patientId).ToList();
-            // Map to DTOs and include doctor name
+            var books = (await _bookRepo.GetAllAsync()).Where(b => b.PatientId == patientId).ToList();
             return books.Select(b => (_bookMapper.ToDTO(b), b.Doctor != null ? b.Doctor.FName + " " + b.Doctor.LName : "")).ToList();
         }
 
-        // 5. Edit book info (edit the prescription only)
-        public bool EditBookPrescription(int bookId, string newPrescription)
+        public async Task<bool> EditBookPrescriptionAsync(int bookId, string newPrescription)
         {
-            // Get the book by id
-            var book = _bookRepo.GetById(bookId);
-            if (book == null) return false;
-            // Use the Edit method to update only the prescription
-            book.Edit(book.price, book.BookDate, book.PatientId, book.DoctorId, book.RoomId, newPrescription);
-            // Save changes
-            return _bookRepo.Update(book);
+            throw new NotImplementedException();
+            //var book = await _bookRepo.GetByIdAsync(bookId);
+            //if (book == null) return false;
+            //book.Edit(book.price, book.BookDate, book.PatientId, book.DoctorId, book.RoomId, newPrescription);
+            //return await _bookRepo.UpdateAsync(book);
         }
 
-        // 6. Get all patients that have a book with a doctor using doctor id
-        public List<PatientDTO> GetAllPatientsWithBookByDoctorId(int doctorId)
+        public async Task<List<PatientDTO>> GetAllPatientsWithBookByDoctorIdAsync(int doctorId)
         {
-            // Get all books with the given doctorId
-            var books = _bookRepo.GetAll().Where(b => b.DoctorId == doctorId).ToList();
-            // Get unique patient ids
+            var books = (await _bookRepo.GetAllAsync()).Where(b => b.DoctorId == doctorId).ToList();
             var patientIds = books.Select(b => b.PatientId).Distinct().ToList();
-            // Get patients and map to DTOs
-            var patients = _patientRepo.GetAll().Where(p => patientIds.Contains(p.Id)).ToList();
+            var patients = (await _patientRepo.GetAllAsync()).Where(p => patientIds.Contains(p.UID)).ToList();
             return _patientMapper.ToDTOList(patients);
         }
     }

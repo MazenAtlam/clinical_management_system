@@ -4,7 +4,7 @@ namespace CCMS.BLL.Services.Abstraction
 {
     public interface IBiomedicalEngineerService
     {
-        public Task<string?> Create(/*EmployeeDTO emp, */string creatingUser);
+        public Task<string?> Create(/*EmployeeDTO emp, */string createdBy);
 
         public Task</*(List<EmployeeDTO>?, */string?/*)*/> GetAllBiomedicalEngineers();
 
@@ -12,8 +12,8 @@ namespace CCMS.BLL.Services.Abstraction
 
         public Task</*(EmployeeDTO?, */string?/*)*/> GetBiomedicalEngineerByID(int id);
 
-        public Task<string?> Update(/*EmployeeDTO emp, */string modifyingUser);
+        public Task<string?> Update(/*EmployeeDTO emp, */string modifiedBy);
 
-        public Task<string?> Delete(int id, string modifyingUser);
+        public Task<string?> Delete(int id, string modifiedBy);
     }
 }

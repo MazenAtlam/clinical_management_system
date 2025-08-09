@@ -1,8 +1,10 @@
 using CCMS.DAL.Database;
 using CCMS.DAL.Entities;
 using CCMS.DAL.Repository.Abstraction;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CCMS.DAL.Repository.Implementation
 {
@@ -15,12 +17,12 @@ namespace CCMS.DAL.Repository.Implementation
             this.db = db;
         }
 
-        public bool Create(MedicalHistory medicalHistory)
+        public async Task<bool> CreateAsync(MedicalHistory medicalHistory)
         {
             try
             {
-                db.medicalHistories.Add(medicalHistory);
-                db.SaveChanges();
+                await db.medicalHistories.AddAsync(medicalHistory);
+                await db.SaveChangesAsync();
                 return true;
             }
             catch
@@ -29,15 +31,15 @@ namespace CCMS.DAL.Repository.Implementation
             }
         }
 
-        public bool Delete(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
             try
             {
-                var mh = db.medicalHistories.FirstOrDefault(a => a.Id == id);
+                var mh = await db.medicalHistories.FirstOrDefaultAsync(a => a.Id == id);
                 if (mh == null)
                     return false;
                 mh.Delete("admin");
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return true;
             }
             catch
@@ -46,25 +48,25 @@ namespace CCMS.DAL.Repository.Implementation
             }
         }
 
-        public List<MedicalHistory> GetAll()
+        public async Task<List<MedicalHistory>> GetAllAsync()
         {
-            return db.medicalHistories.Where(a => a.IsDeleted == false).ToList();
+            return await db.medicalHistories.Where(a => a.IsDeleted == false).ToListAsync();
         }
 
-        public MedicalHistory GetById(int id)
+        public async Task<MedicalHistory> GetByIdAsync(int id)
         {
-            return db.medicalHistories.FirstOrDefault(a => a.Id == id);
+            return await db.medicalHistories.FirstOrDefaultAsync(a => a.Id == id);
         }
 
-        public bool Update(MedicalHistory medicalHistory)
+        public async Task<bool> UpdateAsync(MedicalHistory medicalHistory, string modifiedBy)
         {
             try
             {
-                var mh = db.medicalHistories.FirstOrDefault(a => a.Id == medicalHistory.Id);
+                var mh = await db.medicalHistories.FirstOrDefaultAsync(a => a.Id == medicalHistory.Id);
                 if (mh == null)
                     return false;
-                mh.Edit(medicalHistory.FamilyHistory, medicalHistory.DiseaseName, medicalHistory.PatientId);
-                db.SaveChanges();
+                mh.Edit(medicalHistory.IsAcceptable, medicalHistory.DiseaseName, medicalHistory.PatientId, modifiedBy);
+                await db.SaveChangesAsync();
                 return true;
             }
             catch

@@ -8,12 +8,12 @@ namespace CCMS.DAL.Enums
 {
     public enum EmployeeType
     {
-        Admin ,
-        Doctor ,
-        Nurse,
-        LabTechnician,
-        Engineer,
-        Receptionist    
+        Admin,
+        Manager,
+        Doctor,
+        LabDoctor,
+        BiomedicalEngineer,
+        Receptionist
     }
 
 }

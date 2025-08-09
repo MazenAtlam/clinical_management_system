@@ -20,13 +20,16 @@ namespace CCMS.PLL
             var connectionString = builder.Configuration.GetConnectionString("defaultConnection");
             connectionString += connectionString[connectionString.Length - 1] == ';' ? "" : ";"
                 + $"Server={Environment.GetEnvironmentVariable("SERVER")}"
-                + $"Database={Environment.GetEnvironmentVariable("DATABASE")}"
-                + $"User Id={Environment.GetEnvironmentVariable("USER_ID")}"
-                + $"Password={Environment.GetEnvironmentVariable("PASSWORD")}";
+                + $";Database={Environment.GetEnvironmentVariable("DATABASE")}"
+                + $";User Id={Environment.GetEnvironmentVariable("USER_ID")}"
+                + $";Password={Environment.GetEnvironmentVariable("PASSWORD")}";
 
             builder.Services.AddDbContext<CcmsDbContext>(options => options.UseSqlServer(connectionString));
             builder.Services.AddScoped<IEmployeeRepo, EmployeeRepo>();
-            builder.Services.AddScoped<IPersonRepo, PersonRepo>();
+            builder.Services.AddScoped<IDoctorRepo, DoctorRepo>();
+            builder.Services.AddScoped<IBiomedicalEngineerRepo, BiomedicalEngineerRepo>();
+            builder.Services.AddScoped<ILabDoctorRepo, LabDoctorRepo>();
+            builder.Services.AddScoped<IWorkingSlotRepo, WorkingSlotRepo>();
             builder.Services.AddScoped<IMedicalDeviceRepo, MedicalDeviceRepo>();
 
             var app = builder.Build();
@@ -45,11 +48,9 @@ namespace CCMS.PLL
 
             app.UseAuthorization();
 
-
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-
 
             app.Run();
         }

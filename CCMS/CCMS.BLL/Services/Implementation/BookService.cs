@@ -2,6 +2,7 @@ using CCMS.BLL.ModelVM.Book;
 using CCMS.DAL.Repository.Abstraction;
 using CCMS.BLL.Mapping;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CCMS.BLL.Services.Implementation
 {
@@ -16,9 +17,9 @@ namespace CCMS.BLL.Services.Implementation
             _bookMapper = bookMapper;
         }
 
-        public List<BookDTO> GetAllBooks()
+        public async Task<List<BookDTO>> GetAllBooksAsync()
         {
-            var books = _bookRepo.GetAll();
+            var books = await _bookRepo.GetAllAsync();
             return _bookMapper.ToDTOList(books);
         }
     }

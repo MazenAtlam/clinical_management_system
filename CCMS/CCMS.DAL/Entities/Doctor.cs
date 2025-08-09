@@ -7,26 +7,35 @@ namespace CCMS.DAL.Entities
     public class Doctor : Employee
     {
         public Specialization major { get; private set; }
-        //Rating in the pdf of tasks says that Mazen will impelement it so when he does change this rating field to the corresponding class
         public Rating rating { get; private set; }
-        //public List<Patient>? patients { get; private set; }
-        //public List<Room>? rooms { get; private set; }
-        //ternary relationship book
-        public List<Book> Books { get; set; }
-        public Doctor(Specialization major)
+        // Navigation
+        public List<Book> Books { get; private set; }
+
+        public Doctor() : base() { }
+        public Doctor(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate,
+            decimal salary, int yearsOfExperience, DateTime hiringDate, int? mgrID, int? deptID,
+            Specialization major, Rating rating, string createdBy)
+            : base(fName, midName, lName, ssn, gender, birthDate, salary, yearsOfExperience, hiringDate, mgrID, deptID, createdBy)
+            => Set(major, rating);
+
+        private void Set(Specialization major, Rating rating)
         {
-            //FIX THIS AND INCLUDE EMP CTOR
             this.major = major;
-            rating = Rating.Neutral;
-        }
-        // WRITE THE EDIT METHODS,
-        public void EditRating(Rating rating)
-        {
             this.rating = rating;
         }
-        public void Edit(Book book)
-        { 
-            
+
+        public void EditRating(Rating rating, string modifiedBy)
+        {
+            this.rating = rating;
+            SaveModification(modifiedBy);
+        }
+
+        public void Edit(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate,
+            decimal salary, int yearsOfExperience, DateTime hiringDate, int? mgrID, int? deptID,
+            Specialization major, Rating rating, string modifiedBy)
+        {
+            base.Edit(fName, midName, lName, ssn, gender, birthDate, salary, yearsOfExperience, hiringDate, mgrID, deptID, modifiedBy);
+            Set(major, rating);
         }
     }
 }

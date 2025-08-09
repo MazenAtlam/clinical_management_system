@@ -36,7 +36,7 @@ namespace CCMS.DAL.Repository.Implementation
         {
             try
             {
-                var bioMed = db.biomedicalEngineers.Where(a => a.Id == id).FirstOrDefault();
+                var bioMed = db.biomedicalEngineers.Where(a => a.UID == id).FirstOrDefault();
                 if (bioMed == null)
                     return false;
                 //add modifiing user
@@ -58,7 +58,7 @@ namespace CCMS.DAL.Repository.Implementation
 
         public BiomedicalEngineer GetById(int id)
         {
-            var bioMed = db.biomedicalEngineers.Where(a => a.Id == id).FirstOrDefault();
+            var bioMed = db.biomedicalEngineers.Where(a => a.UID == id).FirstOrDefault();
             return bioMed;
         }
 
@@ -66,10 +66,11 @@ namespace CCMS.DAL.Repository.Implementation
         {
             try
             {
-                var bio = db.biomedicalEngineers.Where(a => a.Id == biomedicalEngineer.Id).FirstOrDefault();
+                var bio = db.biomedicalEngineers.Where(a => a.UID == biomedicalEngineer.UID).FirstOrDefault();
                 if (bio == null)
                     return false;
-                bio.Edit();
+                // The Edit method has been updated
+                //bio.Edit(biomedicalEngineer.GetFullName());
                 db.SaveChanges();
                 return true;
             }

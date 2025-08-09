@@ -35,7 +35,29 @@ namespace CCMS.DAL.Entities
     
         public int? DeptId { get; private set; }
         [ForeignKey("DeptId")]
-        public Department Department { get; private set; }
+        public Department? Department { get; private set; }
+        public List<WorkingSlot> WorkingSlots { get; private set; } = new List<WorkingSlot>();
 
+        public Employee() : base() { }
+        public Employee(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate,
+            decimal salary, int yearsOfExperience, DateTime hiringDate, int? mgrID, int? deptID, string createdBy)
+            : base(fName, midName, lName, ssn, gender, birthDate, createdBy)
+            => Set(salary, yearsOfExperience, hiringDate, mgrID, deptID);
+
+        private void Set(decimal salary, int yearsOfExperience, DateTime hiringDate, int? mgrID, int? deptID)
+        {
+            Salary = salary;
+            YearsOfExperience = yearsOfExperience;
+            MgrId = mgrID;
+            DeptId = deptID;
+        }
+
+        public void Edit(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate,
+            decimal salary, int yearsOfExperience, DateTime hiringDate, int? mgrID, int? deptID, string modifiedBy)
+        {
+            base.Edit(fName, midName, lName, ssn, gender, birthDate, modifiedBy);
+
+            Set(salary, yearsOfExperience, hiringDate, mgrID, deptID);
+        }
     }
 }

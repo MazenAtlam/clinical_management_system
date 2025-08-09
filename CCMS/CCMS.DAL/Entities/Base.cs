@@ -14,19 +14,19 @@ namespace CCMS.DAL.Entities
         public bool IsDeleted { get; private set; } = false;
         public DateTime? DeletedOn { get; private set; } = null;
 
-        protected Base() { } // Remove This Line
-        protected Base(string creatingUser) => CreatedBy = creatingUser;
+        protected Base() { }
+        protected Base(string createdBy) => CreatedBy = createdBy;
 
-        public void Delete(string modifyingUser)
+        public void Delete(string modifiedBy)
         {
             IsDeleted = true;
             DeletedOn = DateTime.Now;
-            SaveModification(modifyingUser);
+            SaveModification(modifiedBy);
         }
 
-        public void SaveModification(string modifyingUser)
+        public void SaveModification(string modifiedBy)
         {
-            ModifiedBy = modifyingUser;
+            ModifiedBy = modifiedBy;
             ModifiedOn = DateTime.Now;
         }
     }

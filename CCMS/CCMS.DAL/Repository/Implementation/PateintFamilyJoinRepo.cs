@@ -1,76 +1,99 @@
-using CCMS.DAL.Database;
-using CCMS.DAL.Entities;
-using CCMS.DAL.Repository.Abstraction;
-using System.Collections.Generic;
-using System.Linq;
+﻿/**
+ * غالبا الريبو دي مش هيبقى ليها أهمية
+ * 
+ * أنت ممكن تتحكم في المريض وأقاربه عن طريق ال2 ريبوز بتاعتهم وخلاص
+ * 
+ * ممكن تتناقشوا فيها: علي ويوسف
+ */
 
-namespace CCMS.DAL.Repository.Implementation
-{
-    public class PateintFamilyJoinRepo : IPateintFamilyJoinRepo
-    {
-        private readonly CcmsDbContext db;
 
-        public PateintFamilyJoinRepo(CcmsDbContext db)
-        {
-            this.db = db;
-        }
 
-        public bool Create(PateintFamilyJoin join)
-        {
-            try
-            {
-                db.pateintFamilyJoins.Add(join);
-                db.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
 
-        public bool Delete(int id)
-        {
-            try
-            {
-                var entity = db.pateintFamilyJoins.FirstOrDefault(a => a.Id == id);
-                if (entity == null)
-                    return false;
-                entity.Delete("admin");
-                db.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
 
-        public List<PateintFamilyJoin> GetAll()
-        {
-            return db.pateintFamilyJoins.Where(a => a.IsDeleted == false).ToList();
-        }
 
-        public PateintFamilyJoin GetById(int id)
-        {
-            return db.pateintFamilyJoins.FirstOrDefault(a => a.Id == id);
-        }
 
-        public bool Update(PateintFamilyJoin join)
-        {
-            try
-            {
-                var entity = db.pateintFamilyJoins.FirstOrDefault(a => a.Id == join.Id);
-                if (entity == null)
-                    return false;
-                entity.Edit(join.Relationship, join.PatientId, join.FamilyMemberId);
-                db.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-    }
-}
+
+
+
+
+
+
+
+//using CCMS.DAL.Database;
+//using CCMS.DAL.Entities;
+//using CCMS.DAL.Repository.Abstraction;
+//using Microsoft.EntityFrameworkCore;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Threading.Tasks;
+
+//namespace CCMS.DAL.Repository.Implementation
+//{
+//    public class PatientFamilyRepo : IPatientFamilyRepo
+//    {
+//        private readonly CcmsDbContext db;
+
+//        public PatientFamilyRepo(CcmsDbContext db)
+//        {
+//            this.db = db;
+//        }
+
+//        public async Task<bool> CreateAsync(PatientFamily join)
+//        {
+//            try
+//            {
+//                await db.pateintFamilyJoins.AddAsync(join);
+//                await db.SaveChangesAsync();
+//                return true;
+//            }
+//            catch
+//            {
+//                return false;
+//            }
+//        }
+
+//        public async Task<bool> DeleteAsync(int id)
+//        {
+//            try
+//            {
+//                var entity = await db.pateintFamilyJoins.FirstOrDefaultAsync(a => a.Id == id);
+//                if (entity == null)
+//                    return false;
+//                entity.Delete("admin");
+//                await db.SaveChangesAsync();
+//                return true;
+//            }
+//            catch
+//            {
+//                return false;
+//            }
+//        }
+
+//        public async Task<List<PatientFamily>> GetAllAsync()
+//        {
+//            return await db.pateintFamilyJoins.Where(a => a.IsDeleted == false).ToListAsync();
+//        }
+
+//        public async Task<PatientFamily> GetByIdAsync(int id)
+//        {
+//            return await db.pateintFamilyJoins.FirstOrDefaultAsync(a => a.Id == id);
+//        }
+
+//        public async Task<bool> UpdateAsync(PatientFamily join)
+//        {
+//            try
+//            {
+//                var entity = await db.pateintFamilyJoins.FirstOrDefaultAsync(a => a.Id == join.Id);
+//                if (entity == null)
+//                    return false;
+//                entity.Edit(join.Relationship, join.PatientId, join.FamilyMemberId);
+//                await db.SaveChangesAsync();
+//                return true;
+//            }
+//            catch
+//            {
+//                return false;
+//            }
+//        }
+//    }
+//}

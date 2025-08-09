@@ -36,7 +36,7 @@ namespace CCMS.DAL.Repository.Implementation
         {
             try
             {
-                var labDoc = db.labDoctors.Where(a => a.Id == id).FirstOrDefault();
+                var labDoc = db.labDoctors.Where(a => a.UID == id).FirstOrDefault();
                 if (labDoc == null)
                     return false;
                 //add modifiing user
@@ -58,7 +58,7 @@ namespace CCMS.DAL.Repository.Implementation
 
         public LabDoctor GetById(int id)
         {
-            var labDoc = db.labDoctors.Where(a => a.Id == id).FirstOrDefault();
+            var labDoc = db.labDoctors.Where(a => a.UID == id).FirstOrDefault();
             return labDoc;
         }
 
@@ -66,11 +66,11 @@ namespace CCMS.DAL.Repository.Implementation
         {
             try
             {
-                var lab = db.labDoctors.Where(a => a.Id == labDoctor.Id).FirstOrDefault();
+                var lab = db.labDoctors.Where(a => a.UID == labDoctor.UID).FirstOrDefault();
                 if (lab == null)
                     return false;
-                //fix when person class is done
-                lab.Edit();
+                // The Edit method has been updated
+                //lab.Edit(labDoctor.GetFullName());
                 db.SaveChanges();
                 return true;
             }

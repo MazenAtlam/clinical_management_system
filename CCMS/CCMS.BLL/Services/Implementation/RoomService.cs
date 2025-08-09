@@ -6,7 +6,7 @@ namespace CCMS.BLL.Services.Implementation
 {
     public class RoomService : IRoomService
     {
-        public async Task<string?> Create(/*RoomDTO room, */string creatingUser)
+        public async Task<string?> Create(/*RoomDTO room, */string createdBy)
         {
             throw new NotImplementedException();
         }
@@ -31,17 +31,17 @@ namespace CCMS.BLL.Services.Implementation
             throw new NotImplementedException();
         }
 
-        public async Task<string?> UpdateStatus(string roomNum, Rstatus newStatus, string modifyingUser)
+        public async Task<string?> UpdateStatus(string roomNum, Rstatus newStatus, string modifiedBy)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<string?> Update(/*RoomDTO room, */string modifyingUser)
+        public async Task<string?> Update(/*RoomDTO room, */string modifiedBy)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<string?> Delete(string roomNum, string modifyingUser)
+        public async Task<string?> Delete(string roomNum, string modifiedBy)
         {
             throw new NotImplementedException();
         }

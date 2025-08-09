@@ -4,7 +4,7 @@ namespace CCMS.BLL.Services.Implementation
 {
     public class DepartmentService : IDepartmentService
     {
-        public async Task<string?> Create(/*DepartmentDTO dept, */string creatingUser)
+        public async Task<string?> Create(/*DepartmentDTO dept, */string createdBy)
         {
             throw new NotImplementedException();
         }
@@ -29,12 +29,12 @@ namespace CCMS.BLL.Services.Implementation
             throw new NotImplementedException();
         }
 
-        public async Task<string?> Update(/*DepartmentDTO dept, */string modifyingUser)
+        public async Task<string?> Update(/*DepartmentDTO dept, */string modifiedBy)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<string?> Delete(int deptID, string modifyingUser)
+        public async Task<string?> Delete(int deptID, string modifiedBy)
         {
             throw new NotImplementedException();
         }

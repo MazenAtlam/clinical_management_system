@@ -1,8 +1,10 @@
 using CCMS.DAL.Database;
 using CCMS.DAL.Entities;
 using CCMS.DAL.Repository.Abstraction;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CCMS.DAL.Repository.Implementation
 {
@@ -15,12 +17,12 @@ namespace CCMS.DAL.Repository.Implementation
             this.db = db;
         }
 
-        public bool Create(Book book)
+        public async Task<bool> CreateAsync(Book book)
         {
             try
             {
-                db.books.Add(book);
-                db.SaveChanges();
+                await db.books.AddAsync(book);
+                await db.SaveChangesAsync();
                 return true;
             }
             catch
@@ -29,15 +31,15 @@ namespace CCMS.DAL.Repository.Implementation
             }
         }
 
-        public bool Delete(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
             try
             {
-                var book = db.books.FirstOrDefault(a => a.Id == id);
+                var book = await db.books.FirstOrDefaultAsync(a => a.Id == id);
                 if (book == null)
                     return false;
                 book.Delete("admin");
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return true;
             }
             catch
@@ -46,25 +48,25 @@ namespace CCMS.DAL.Repository.Implementation
             }
         }
 
-        public List<Book> GetAll()
+        public async Task<List<Book>> GetAllAsync()
         {
-            return db.books.Where(a => a.IsDeleted == false).ToList();
+            return await db.books.Where(a => a.IsDeleted == false).ToListAsync();
         }
 
-        public Book GetById(int id)
+        public async Task<Book> GetByIdAsync(int id)
         {
-            return db.books.FirstOrDefault(a => a.Id == id);
+            return await db.books.FirstOrDefaultAsync(a => a.Id == id);
         }
 
-        public bool Update(Book book)
+        public async Task<bool> UpdateAsync(Book book, string modifiedBy)
         {
             try
             {
-                var b = db.books.FirstOrDefault(a => a.Id == book.Id);
+                var b = await db.books.FirstOrDefaultAsync(a => a.Id == book.Id);
                 if (b == null)
                     return false;
-                b.Edit(book.price, book.BookDate, book.PatientId, book.DoctorId, book.RoomId,book.Perscription);
-                db.SaveChanges();
+                b.Edit(book.Price, book.Perscription, book.BookDate, book.PatientId, book.DoctorId, book.RNumber, modifiedBy);
+                await db.SaveChangesAsync();
                 return true;
             }
             catch
@@ -72,6 +74,5 @@ namespace CCMS.DAL.Repository.Implementation
                 return false;
             }
         }
-
     }
 }

@@ -1,14 +1,15 @@
 using CCMS.DAL.Entities;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CCMS.DAL.Repository.Abstraction
 {
-    public interface IPateintFamilyJoinRepo
+    public interface IPatientFamilyRepo
     {
-        bool Create(PateintFamilyJoin join);
-        PateintFamilyJoin GetById(int id);
-        List<PateintFamilyJoin> GetAll();
-        bool Delete(int id);
-        bool Update(PateintFamilyJoin joinKeys);
+        Task<bool> CreateAsync(PatientFamily join);
+        Task<PatientFamily> GetByIdAsync(int id);
+        Task<List<PatientFamily>> GetAllAsync();
+        Task<bool> DeleteAsync(int id);
+        Task<bool> UpdateAsync(PatientFamily joinKeys);
     }
 }

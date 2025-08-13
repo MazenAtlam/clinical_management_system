@@ -1,8 +1,15 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@section HeaderButtons{
+    <li><a class="active" href="#home">home</a></li>
+    <li><a href="#departments">Department</a></li>
+    <li><a href="#about">about</a></li>
+    <li><a href="#doctors">Doctors</a></li>
+    <li><a href="#footer">Contact</a></li>
+}
 <!-- slider_area_start -->
-<div class="slider_area">
+<div class="slider_area" id="home">
     <div class="slider_active owl-carousel">
         <div class="single_slider  d-flex align-items-center slider_bg_2">
             <div class="container">
@@ -65,7 +72,7 @@
 </div>
 <!-- slider_area_end -->
 <!-- service_area_start -->
-<div class="service_area">
+<div class="service_area" id="about">
     <div class="container p-0">
         <div class="row no-gutters">
             <div class="col-xl-4 col-md-4">
@@ -141,7 +148,7 @@
 </div>
 <!-- welcome_docmed_area_end -->
 <!-- offers_area_start -->
-<div class="our_department_area">
+<div class="our_department_area" id="departments">
     <div class="container">
         <div class="row">
             <div class="col-xl-12">
@@ -404,7 +411,7 @@
 </div>
 <!-- business_expert_area_end  -->
 <!-- expert_doctors_area_start -->
-<div class="expert_doctors_area">
+<div class="expert_doctors_area" id="doctors">
     <div class="container">
         <div class="row">
             <div class="col-xl-12">

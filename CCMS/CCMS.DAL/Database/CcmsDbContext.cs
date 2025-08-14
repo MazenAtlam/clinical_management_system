@@ -26,5 +26,35 @@ namespace CCMS.DAL.Database
         public DbSet<Room> rooms { get; set; }
         public DbSet<Scan> scans { get; set; }
         public DbSet<WorkingSlot> workingSlots { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // BiomedicalEngineer_MedicalDevice many to many relationship
+            modelBuilder.Entity<BiomedicalEngineer>()
+                .HasMany(bme => bme.MedicalDevices)
+                .WithMany(md => md.BiomedicalEngineers);
+
+            // Employee_WorkingSlot many to many relationship
+            modelBuilder.Entity<Employee>()
+                .HasMany(emp => emp.WorkingSlots)
+                .WithMany(ws => ws.Employees);
+
+            // Patient_FamilyMember many to many relationship (Explict Join)
+            // Patient - PatientFamily one to many relationship
+            modelBuilder.Entity<PatientFamily>()
+                .HasOne(pf => pf.Patient)
+                .WithMany(p => p.PatientFamilyMembers)
+                .HasForeignKey(pf => pf.PatientId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // FamilyMember - PatientFamily one to many relationship
+            modelBuilder.Entity<PatientFamily>()
+                .HasOne(pf => pf.FamilyMember)
+                .WithMany(fm => fm.PatientFamilyMembers)
+                .HasForeignKey(pf => pf.FamilyMemberId)
+                .OnDelete(DeleteBehavior.Cascade);
+        }
     }
 }

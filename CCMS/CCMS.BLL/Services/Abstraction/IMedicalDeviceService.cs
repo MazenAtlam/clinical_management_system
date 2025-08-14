@@ -1,4 +1,4 @@
-﻿using CCMS.BLL.ModelVM.Employee;
+﻿using CCMS.BLL.ModelVM.BiomedicalEngineer;
 using CCMS.BLL.ModelVM.MedicalDevice;
 using CCMS.DAL.Enums;
 
@@ -13,7 +13,7 @@ namespace CCMS.BLL.Services.Abstraction
         public Task<(MedicalDeviceDTO?, string?)> GetMedicalDeviceBySerialNumber(string serialNumber);
 
         // From table BiomedicalEngineer_MedicalDevice
-        public Task<(List<EmployeeDTO>?, string?)> GetAllBiomedicalEngineersWorkOn(string serialNumber);
+        public Task<(List<BiomedicalEngineerDTO>?, string?)> GetAllBiomedicalEngineersWorkOn(string serialNumber);
 
         public Task<string?> UpdateStatus(string serialNumber, MedicalDeviceStatus newStatus, string modifiedBy);
 

@@ -11,11 +11,11 @@ namespace CCMS.DAL.Entities
         // Navigation
         public List<Book> Books { get; private set; }
 
-        public Doctor() : base() { }
+        //public Doctor() : base() { }
         public Doctor(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate,
-            decimal salary, int yearsOfExperience, DateTime hiringDate, int? mgrID, int? deptID,
+            decimal salary, int yearsOfExperience, DateTime hiringDate, int? mgrId, int? admId, int? deptId,
             Specialization major, Rating rating, string createdBy)
-            : base(fName, midName, lName, ssn, gender, birthDate, salary, yearsOfExperience, hiringDate, mgrID, deptID, createdBy)
+            : base(fName, midName, lName, ssn, gender, birthDate, salary, yearsOfExperience, hiringDate, mgrId, admId, deptId, createdBy)
             => Set(major, rating);
 
         private void Set(Specialization major, Rating rating)
@@ -31,10 +31,10 @@ namespace CCMS.DAL.Entities
         }
 
         public void Edit(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate,
-            decimal salary, int yearsOfExperience, DateTime hiringDate, int? mgrID, int? deptID,
+            decimal salary, int yearsOfExperience, DateTime hiringDate, int? mgrId, int? deptId,
             Specialization major, Rating rating, string modifiedBy)
         {
-            base.Edit(fName, midName, lName, ssn, gender, birthDate, salary, yearsOfExperience, hiringDate, mgrID, deptID, modifiedBy);
+            base.Edit(fName, midName, lName, ssn, gender, birthDate, salary, yearsOfExperience, hiringDate, mgrId, deptId, modifiedBy);
             Set(major, rating);
         }
     }

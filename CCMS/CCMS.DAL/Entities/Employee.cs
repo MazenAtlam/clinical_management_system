@@ -38,26 +38,29 @@ namespace CCMS.DAL.Entities
         public Department? Department { get; private set; }
         public List<WorkingSlot> WorkingSlots { get; private set; } = new List<WorkingSlot>();
 
-        public Employee() : base() { }
+        //public Employee() : base() { }
         public Employee(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate,
-            decimal salary, int yearsOfExperience, DateTime hiringDate, int? mgrID, int? deptID, string createdBy)
+            decimal salary, int yearsOfExperience, DateTime hiringDate, int? mgrId, int? admId, int? deptId, string createdBy)
             : base(fName, midName, lName, ssn, gender, birthDate, createdBy)
-            => Set(salary, yearsOfExperience, hiringDate, mgrID, deptID);
+        {
+            Set(salary, yearsOfExperience, hiringDate, mgrId, deptId);
+            AdmId = admId;
+        }
 
-        private void Set(decimal salary, int yearsOfExperience, DateTime hiringDate, int? mgrID, int? deptID)
+        private void Set(decimal salary, int yearsOfExperience, DateTime hiringDate, int? mgrId, int? deptId)
         {
             Salary = salary;
             YearsOfExperience = yearsOfExperience;
-            MgrId = mgrID;
-            DeptId = deptID;
+            MgrId = mgrId;
+            DeptId = deptId;
         }
 
         public void Edit(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate,
-            decimal salary, int yearsOfExperience, DateTime hiringDate, int? mgrID, int? deptID, string modifiedBy)
+            decimal salary, int yearsOfExperience, DateTime hiringDate, int? mgrId, int? deptId, string modifiedBy)
         {
             base.Edit(fName, midName, lName, ssn, gender, birthDate, modifiedBy);
 
-            Set(salary, yearsOfExperience, hiringDate, mgrID, deptID);
+            Set(salary, yearsOfExperience, hiringDate, mgrId, deptId);
         }
     }
 }

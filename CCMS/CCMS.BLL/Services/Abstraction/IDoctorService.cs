@@ -19,5 +19,16 @@ namespace CCMS.BLL.Services.Abstraction
         List<Doctor> GetAllByRating(Rating rating);
         bool Delete(int id);
         bool Update(DoctorDTO doctor);
+        
+        // New methods
+        List<Specialization> GetAllSpecializations();
+        List<Doctor> GetDoctorsBySpecialization(Specialization specialization);
+        List<WorkingSlot> GetDoctorWorkingSlots(int doctorId);
+        List<Room> GetEmptyRoomsInDoctorDepartment(int doctorId);
+        Doctor GetDoctorInfoById(int id);
+        bool EditDoctorInfoById(int id, DoctorDTO doctor);
+        List<Patient> GetPatientsWithBooksByDoctor(int doctorId);
+        bool UpdateDoctorWorkingSlots(int doctorId, List<WorkingSlot> workingSlots);
+        bool AddWorkingSlotsToDoctor(int doctorId, List<WorkingSlot> workingSlots);
     }
 }

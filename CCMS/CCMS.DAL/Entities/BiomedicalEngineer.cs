@@ -8,10 +8,10 @@ namespace CCMS.DAL.Entities
     {
         public List<MedicalDevice> MedicalDevices { get; private set; } = new List<MedicalDevice>();
 
-        public BiomedicalEngineer() : base() { }
+        //public BiomedicalEngineer() : base() { }
         public BiomedicalEngineer(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate,
-            decimal salary, int yearsOfExperience, DateTime hiringDate, int? mgrID, int? deptID, string createdBy)
-            : base(fName, midName, lName, ssn, gender, birthDate, salary, yearsOfExperience, hiringDate, mgrID, deptID, createdBy)
+            decimal salary, int yearsOfExperience, DateTime hiringDate, int? mgrId, int? admId, int? deptId, string createdBy)
+            : base(fName, midName, lName, ssn, gender, birthDate, salary, yearsOfExperience, hiringDate, mgrId, admId, deptId, createdBy)
         { }
     }
 }

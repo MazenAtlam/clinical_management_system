@@ -18,7 +18,7 @@ namespace CCMS.DAL.Entities
         public string RNumber { get; private set; } // bbfrrr
         public Room Room { get; private set; }
 
-        public MedicalDevice_Room() : base() { }
+        //public MedicalDevice_Room() : base() { }
         public MedicalDevice_Room(string serialNumber, string rNumber, string createdBy)
             : base(createdBy)
             => Set(serialNumber, rNumber);

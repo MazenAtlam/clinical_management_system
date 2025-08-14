@@ -34,7 +34,7 @@ namespace CCMS.DAL.Entities
         [ForeignKey("Room")]
         public string RNumber { get; private set; } // bbfrrr
 
-        public Book() : base() { }
+        //public Book() : base() { }
         public Book(double price, string? perscription, DateTime bookDate, int patientId, int doctorId, string rNumber, string createdBy)
             : base(createdBy)
             => Set(price, perscription, bookDate, patientId, doctorId, rNumber);

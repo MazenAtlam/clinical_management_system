@@ -18,5 +18,13 @@ namespace CCMS.DAL.Repository.Abstraction
         List<Doctor> GetAllByRating(Rating rating);
         bool Delete(int id);
         bool Update(Doctor doctor);
+        
+        // New methods
+        List<Specialization> GetAllSpecializations();
+        List<Doctor> GetDoctorsBySpecialization(Specialization specialization);
+        List<WorkingSlot> GetDoctorWorkingSlots(int doctorId);
+        List<Room> GetEmptyRoomsInDoctorDepartment(int doctorId);
+        bool UpdateDoctorWorkingSlots(int doctorId, List<WorkingSlot> workingSlots);
+        bool AddWorkingSlotsToDoctor(int doctorId, List<WorkingSlot> workingSlots);
     }
 }

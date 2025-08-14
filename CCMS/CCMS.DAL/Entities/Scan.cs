@@ -30,7 +30,7 @@ namespace CCMS.DAL.Entities
         [ForeignKey("Patient")]
         public int PatientId { get; private set; }
 
-        public Scan() : base() { }
+        //public Scan() : base() { }
         public Scan(SType scanType, STech scanTech, string results, DateTime sDate, int ldID, int patientID, string createdBy)
             : base(createdBy)
             => Set(scanType, scanTech, results, sDate, ldID, patientID);

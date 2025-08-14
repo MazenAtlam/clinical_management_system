@@ -19,7 +19,7 @@ namespace CCMS.DAL.Entities
         [ForeignKey("FamilyMember")]
         public int FamilyMemberId { get; private set; }
 
-        public PatientFamily() : base() { }
+        //public PatientFamily() : base() { }
         public PatientFamily(string relationship, int patientId, int familyMemberId, string createdBy)
             : base(createdBy)
             => Set(relationship, patientId, familyMemberId);

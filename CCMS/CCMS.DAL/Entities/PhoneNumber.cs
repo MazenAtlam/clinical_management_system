@@ -17,7 +17,7 @@ namespace CCMS.DAL.Entities
         [MaxLength(20)]
         public string Number { get; private set; }
 
-        public PhoneNumber() : base() { }
+        //public PhoneNumber() : base() { }
         public PhoneNumber(int id, string number, string createdBy)
             : base(createdBy)
             => Set(id, number);

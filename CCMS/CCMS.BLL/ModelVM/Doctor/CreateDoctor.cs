@@ -1,35 +1,24 @@
 ﻿using CCMS.DAL.Enums;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CCMS.BLL.ModelVM.Doctor
 {
     public class CreateDoctor
     {
-        public string FName { get;  set; }
-
-        [MaxLength(50)]
-        public string MidName { get;  set; }
-
-        [Required]
-        [MaxLength(50)]
-        public string LName { get;  set; }
-
-        [Required]
-        [StringLength(14, MinimumLength = 14)]
-        public string SSN { get;  set; }
-
-        [Required]
-        public Gender Gender { get;  set; }
-
-        [Required]
-        [DataType(DataType.Date)]
-        public DateTime BirthDate { get;  set; }
-        public Specialization major { get;  set; }
-
+        public string FName { get; set; }
+        public string? MidName { get; set; }
+        public string LName { get; set; }
+        public string Ssn { get; set; }
+        public Gender Gender { get; set; }
+        public DateOnly BirthDate { get; set; }
+        public decimal Salary { get; set; }
+        public int YearsOfExperience { get; set; }
+        public DateTime HiringDate { get; set; }
+        public int? MgrId { get; set; }
+        public int? AdmId { get; set; }
+        public int? DeptId { get; set; }
+        public Specialization major { get; set; }
+        public Rating rating { get; set; }
     }
 }

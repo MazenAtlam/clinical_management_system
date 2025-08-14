@@ -5,14 +5,14 @@ using Riok.Mapperly.Abstractions;
 namespace CCMS.BLL.Mapping
 {
     [Mapper]
-    public static partial class MedicalDeviceMapper
+    public partial class MedicalDeviceMapper
     {
         // Map MedicalDevice -> MedicalDeviceDTO
-        public static partial MedicalDeviceDTO ToResponseDto(MedicalDevice medicalDevice);
-        public static partial List<MedicalDeviceDTO> ToListResponseDto(List<MedicalDevice> medicalDevices);
+        public partial MedicalDeviceDTO ToResponseDto(MedicalDevice medicalDevice);
+        public partial List<MedicalDeviceDTO> ToListResponseDto(List<MedicalDevice> medicalDevices);
 
         // Map MedicalDeviceDTO -> MedicalDevice
-        public static partial MedicalDevice ToEntity(MedicalDeviceDTO mdDeviceDTO);
+        public partial MedicalDevice ToEntity(MedicalDeviceDTO mdDeviceDTO);
 
     }
 }

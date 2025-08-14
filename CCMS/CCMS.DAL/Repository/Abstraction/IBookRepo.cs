@@ -1,15 +1,17 @@
 using CCMS.DAL.Entities;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace CCMS.DAL.Repository.Abstraction
 {
     public interface IBookRepo
     {
-        Task<bool> CreateAsync(Book book);
-        Task<Book> GetByIdAsync(int id);
-        Task<List<Book>> GetAllAsync();
-        Task<bool> DeleteAsync(int id);
-        Task<bool> UpdateAsync(Book book, string modifiedBy);
+        public Task Add(Book book);
+        public Task<Book> GetById(int id);
+        public Task<List<Book>> GetAll();
+        public Task Save(int id);
+        
+        // New methods
+        //public Task<bool> CreateBookWithFixedPriceAsync(int patientId, int doctorId, string roomNumber, DateTime bookDate, string prescription, string createdBy);
+        //public Task<List<Patient>> GetPatientsWithBooksByDoctorAsync(int doctorId);
+        //public Task<bool> AddPrescriptionToPatientBookAsync(int bookId, string prescription, string modifiedBy);
     }
 }

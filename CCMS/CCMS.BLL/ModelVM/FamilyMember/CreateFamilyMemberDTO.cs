@@ -6,7 +6,7 @@ namespace CCMS.BLL.ModelVM.FamilyMember
     {
         public string Name { get; set; }
         public Gender Gender { get; set; }
-        public int SSN { get; set; }
+        public int Ssn { get; set; }
         public string Phone { get; set; }
     }
 }

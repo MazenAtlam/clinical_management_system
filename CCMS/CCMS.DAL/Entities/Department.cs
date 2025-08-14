@@ -13,7 +13,7 @@ namespace CCMS.DAL.Entities
         public List<Room> Rooms { get; private set; } = new List<Room>();
         public List<Employee> Employees { get; private set; } = new List<Employee>();
 
-        public Department() : base() { }
+        //public Department() : base() { }
         public Department(string dName, string createdBy)
             : base(createdBy)
             => DName = dName;

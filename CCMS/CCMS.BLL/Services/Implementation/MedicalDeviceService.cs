@@ -1,5 +1,5 @@
 ﻿using CCMS.BLL.Mapping;
-using CCMS.BLL.ModelVM.Employee;
+using CCMS.BLL.ModelVM.BiomedicalEngineer;
 using CCMS.BLL.ModelVM.MedicalDevice;
 using CCMS.BLL.Services.Abstraction;
 using CCMS.DAL.Entities;
@@ -11,6 +11,8 @@ namespace CCMS.BLL.Services.Implementation
     public class MedicalDeviceService : IMedicalDeviceService
     {
         private readonly IMedicalDeviceRepo medicalDeviceRepo;
+        private readonly MedicalDeviceMapper medicalDeviceMapper = new MedicalDeviceMapper();
+        private readonly BiomedicalEngineerMapper biomedicalEngineerMapper = new BiomedicalEngineerMapper();
 
         public MedicalDeviceService(IMedicalDeviceRepo MDRepo)
         {
@@ -21,7 +23,7 @@ namespace CCMS.BLL.Services.Implementation
         {
             try
             {
-                MedicalDevice mdDevice = MedicalDeviceMapper.ToEntity(md);
+                MedicalDevice mdDevice = medicalDeviceMapper.ToEntity(md);
 
                 await medicalDeviceRepo.Add(mdDevice);
                 await medicalDeviceRepo.Save();
@@ -40,7 +42,7 @@ namespace CCMS.BLL.Services.Implementation
                 if (medicalDevices.Count == 0)
                     return (null, "No data found.");
 
-                List<MedicalDeviceDTO> mdDevices = MedicalDeviceMapper.ToListResponseDto(medicalDevices);
+                List<MedicalDeviceDTO> mdDevices = medicalDeviceMapper.ToListResponseDto(medicalDevices);
 
                 return (mdDevices, null);
             }
@@ -53,14 +55,14 @@ namespace CCMS.BLL.Services.Implementation
             {
                 MedicalDevice medicalDevice = await medicalDeviceRepo.GetMedicalDeviceBySerialNumber(serialNumber);
 
-                MedicalDeviceDTO mdDevice = MedicalDeviceMapper.ToResponseDto(medicalDevice);
+                MedicalDeviceDTO mdDevice = medicalDeviceMapper.ToResponseDto(medicalDevice);
 
                 return (mdDevice, null);
             }
             catch (Exception ex) { return (null, ex.Message); }
         }
 
-        public async Task<(List<EmployeeDTO>?, string?)> GetAllBiomedicalEngineersWorkOn(string serialNumber)
+        public async Task<(List<BiomedicalEngineerDTO>?, string?)> GetAllBiomedicalEngineersWorkOn(string serialNumber)
         {
             try
             {
@@ -71,7 +73,7 @@ namespace CCMS.BLL.Services.Implementation
                 if (biomedicalEngineers.Count == 0)
                     return (null, "No data found.");
 
-                List<EmployeeDTO> bioEngs = BiomedicalEngineerMapper.ToListResponseDto(biomedicalEngineers);
+                List<BiomedicalEngineerDTO> bioEngs = biomedicalEngineerMapper.ToListResponseDto(biomedicalEngineers);
 
                 return (bioEngs, null);
             }

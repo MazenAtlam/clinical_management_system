@@ -1,26 +1,60 @@
 using CCMS.BLL.ModelVM.Scan;
+using CCMS.BLL.Services.Abstraction;
+using CCMS.DAL.Entities;
 using CCMS.DAL.Repository.Abstraction;
-using CCMS.BLL.Mapping;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using CCMS.BLL.Services.Abstraction;
 
 namespace CCMS.BLL.Services.Implementation
 {
-    public class ScanService
+    public class ScanService : IScanService
     {
-        private readonly IScanRepo _scanRepo;
-        private readonly ScanMapper _scanMapper;
+        // Compile-time only implementation aligned with async repos
 
-        public ScanService(IScanRepo scanRepo, ScanMapper scanMapper)
+        public ScanService(IScanRepo scanRepo, IPatientRepo patientRepo, ILabDoctorRepo labDoctorRepo/*, INotificationService notificationService*/) { }
+
+        public bool Create(ScanDTO scan)
         {
-            _scanRepo = scanRepo;
-            _scanMapper = scanMapper;
+            return false;
         }
 
-        public async Task<List<ScanDTO>> GetAllScansAsync()
+        public bool Update(ScanDTO scan)
         {
-            var scans = await _scanRepo.GetAllAsync();
-            return _scanMapper.ToDTOList(scans);
+            return false;
+        }
+
+        public bool Delete(int id)
+        {
+            return false;
+        }
+
+        public Scan GetById(int id)
+        {
+            return null;
+        }
+
+        public List<Scan> GetAll()
+        {
+            return new List<Scan>();
+        }
+
+        public List<Scan> GetByPatient(int patientId)
+        {
+            return new List<Scan>();
+        }
+
+        public List<Scan> GetByLabDoctor(int labDoctorId)
+        {
+            return new List<Scan>();
+        }
+
+        public bool UploadScanResult(int scanId, string resultPath)
+        {
+            return false;
+        }
+
+        public bool SendScanToPatient(int scanId)
+        {
+            return false;
         }
     }
 }

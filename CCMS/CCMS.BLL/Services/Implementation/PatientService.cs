@@ -1,148 +1,196 @@
 using CCMS.BLL.ModelVM.Patient;
-using CCMS.DAL.Repository.Abstraction;
-using CCMS.BLL.Mapping;
-using CCMS.BLL.ModelVM.Book;
-using CCMS.BLL.ModelVM.FamilyMember;
-using CCMS.BLL.ModelVM.MedicalHistory;
-using CCMS.BLL.ModelVM.Scan;
+using CCMS.BLL.Services.Abstraction;
 using CCMS.DAL.Entities;
+using CCMS.DAL.Enums;
+using CCMS.DAL.Repository.Abstraction;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace CCMS.BLL.Services.Implementation
 {
-    public class PatientService
+    public class PatientService : IPatientService
     {
-        private readonly IPatientRepo _patientRepo;
-        private readonly IBookRepo _bookRepo;
-        private readonly IFamilyMemberRepo _familyMemberRepo;
-        private readonly IPatientFamilyRepo _pateintFamilyJoinRepo;
-        private readonly IMedicalHistoryRepo _medicalHistoryRepo;
-        private readonly IScanRepo _scanRepo;
-        private readonly PatientMapper _patientMapper;
-        private readonly MedicalHistoryMapper _medicalHistoryMapper;
-        private readonly ScanMapper _scanMapper;
-        private readonly BookMapper _bookMapper;
-        private readonly FamilyMemberMapper _familyMemberMapper;
+        private readonly IPatientRepo patientRepo;
+        private readonly IBookRepo bookRepo;
+        private readonly IDoctorRepo doctorRepo;
+        //private readonly INotificationService notificationService;
 
-        public PatientService(
-            IPatientRepo patientRepo,
-            IBookRepo bookRepo,
-            IFamilyMemberRepo familyMemberRepo,
-            IPatientFamilyRepo pateintFamilyJoinRepo,
-            IMedicalHistoryRepo medicalHistoryRepo,
-            IScanRepo scanRepo,
-            PatientMapper patientMapper,
-            MedicalHistoryMapper medicalHistoryMapper,
-            ScanMapper scanMapper,
-            BookMapper bookMapper,
-            FamilyMemberMapper familyMemberMapper)
+        public PatientService(IPatientRepo patientRepo, IBookRepo bookRepo, IDoctorRepo doctorRepo/*, INotificationService notificationService*/)
         {
-            _patientRepo = patientRepo;
-            _bookRepo = bookRepo;
-            _familyMemberRepo = familyMemberRepo;
-            _pateintFamilyJoinRepo = pateintFamilyJoinRepo;
-            _medicalHistoryRepo = medicalHistoryRepo;
-            _scanRepo = scanRepo;
-            _patientMapper = patientMapper;
-            _medicalHistoryMapper = medicalHistoryMapper;
-            _scanMapper = scanMapper;
-            _bookMapper = bookMapper;
-            _familyMemberMapper = familyMemberMapper;
+            this.patientRepo = patientRepo;
+            this.bookRepo = bookRepo;
+            this.doctorRepo = doctorRepo;
+            //this.notificationService = notificationService;
         }
 
-        public async Task<List<PatientDTO>> GetAllPatientsAsync()
+        public bool Create(PatientDTO patient)
         {
-            var patients = await _patientRepo.GetAllAsync();
-            return _patientMapper.ToDTOList(patients);
+            try
+            {
+                var newPatient = new Patient(
+                    patient.FName,
+                    patient.MidName,
+                    patient.LName,
+                    patient.Ssn,
+                    patient.Gender,
+                    patient.BirthDate,
+                    patient.BloodType,
+                    "admin"
+                );
+                
+                // Set the UserId if provided
+                if (!string.IsNullOrEmpty(patient.UserId))
+                {
+                    //newPatient.UserId = patient.UserId;
+                }
+                
+                return patientRepo.CreateAsync(newPatient).Result;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public async Task<PatientDTO?> GetPatientByIdAsync(int id)
+        public bool Update(PatientDTO patient)
         {
-            var patient = await _patientRepo.GetByIdAsync(id);
-            return patient == null ? null : _patientMapper.ToDTO(patient);
+            try
+            {
+                var existingPatient = patientRepo.GetByIdAsync(patient.UID).Result;
+                if (existingPatient == null)
+                    return false;
+
+                existingPatient.Edit(
+                    patient.FName,
+                    patient.MidName,
+                    patient.LName,
+                    patient.Ssn,
+                    patient.Gender,
+                    patient.BirthDate,
+                    patient.BloodType,
+                    "admin"
+                );
+
+                // Update UserId if provided
+                if (!string.IsNullOrEmpty(patient.UserId))
+                {
+                    //existingPatient.UserId = patient.UserId;
+                }
+
+                return patientRepo.UpdateAsync(existingPatient).Result;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public async Task<bool> EditPatientAsync(int id, PatientDTO dto)
+        public bool Delete(int id)
         {
-            var patient = await _patientRepo.GetByIdAsync(id);
-            if (patient == null) return false;
-            //patient.Edit(
-            //    dto.FName,
-            //    dto.MidName,
-            //    dto.LName,
-            //    dto.SSN,
-            //    (DAL.Enums.Gender)Enum.Parse(typeof(DAL.Enums.Gender), dto.Gender),
-            //    dto.BirthDate,
-            //    dto.BloodType
-            //);
-            return await _patientRepo.UpdateAsync(patient);
+            return patientRepo.DeleteAsync(id).Result;
         }
 
-        public async Task<bool> CreateBookAsync(CreateBookDTO dto)
+        public Patient GetById(int id)
         {
-            var book = _patientMapper.ToBook(dto);
-            return await _bookRepo.CreateAsync(book);
+            return patientRepo.GetByIdAsync(id).Result;
         }
 
-        public async Task<List<FamilyMemberDTO>> GetFamilyMembersByPatientIdAsync(int patientId)
+        public List<Patient> GetAll()
         {
-            var joins = (await _pateintFamilyJoinRepo.GetAllAsync()).Where(j => j.PatientId == patientId).ToList();
-            var familyMembers = joins.Select(j => j.FamilyMember).ToList();
-            return _familyMemberMapper.ToDTOList(familyMembers);
+            return patientRepo.GetAllAsync().Result;
         }
 
-        public async Task<bool> AddFamilyMemberToPatientAsync(CreateFamilyMemberDTO dto, int patientId, string relationship)
+        public List<Patient> GetPatientsByDoctor(int doctorId)
         {
-            var familyMember = _patientMapper.ToFamilyMember(dto);
-            var created = await _familyMemberRepo.CreateAsync(familyMember);
-            if (!created) return false;
-            var join = new PatientFamily();
-            //join.Edit(relationship, patientId, familyMember.Id);
-            return await _pateintFamilyJoinRepo.CreateAsync(join);
+            //return bookRepo.GetPatientsWithBooksByDoctorAsync(doctorId).Result;
+            return new List<Patient>();
         }
 
-        public async Task<List<MedicalHistoryDTO>> GetAllMedicalHistoryByPatientIdAsync(int patientId)
+        public List<Book> GetPatientAppointments(int patientId)
         {
-            var histories = (await _medicalHistoryRepo.GetAllAsync()).Where(h => h.PatientId == patientId).ToList();
-            return _medicalHistoryMapper.ToDTOList(histories);
+            return patientRepo.GetAllBooksOfPatientAsync(patientId).Result;
         }
 
-        public async Task<bool> AddMedicalHistoryToPatientAsync(MedicalHistoryDTO dto)
+        public bool RateDoctor(int patientId, int doctorId, int rating)
         {
-            var history = new MedicalHistory();
-            //history.Edit(dto.FamilyHistory, dto.DiseaseName, dto.PatientId);
-            return await _medicalHistoryRepo.CreateAsync(history);
+            try
+            {
+                var doctor = doctorRepo.GetById(doctorId);
+                if (doctor == null)
+                    return false;
+
+                var ratingEnum = (Rating)rating;
+                doctor.EditRating(ratingEnum, "admin");
+                return doctorRepo.Update(doctor);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public async Task<List<ScanDTO>> GetAllScansByPatientIdAsync(int patientId)
+        // New methods implementation
+        public Patient GetPatientInfoById(int id)
         {
-            var scans = (await _scanRepo.GetAllAsync()).Where(s => s.PatientId == patientId).ToList();
-            return _scanMapper.ToDTOList(scans);
+            return patientRepo.GetPatientInfoByIdAsync(id).Result;
         }
 
-        public async Task<List<(BookDTO Book, string DoctorName)>> GetAllBooksByPatientIdWithDoctorNameAsync(int patientId)
+        public bool EditPatientById(int id, PatientDTO patient)
         {
-            var books = (await _bookRepo.GetAllAsync()).Where(b => b.PatientId == patientId).ToList();
-            return books.Select(b => (_bookMapper.ToDTO(b), b.Doctor != null ? b.Doctor.FName + " " + b.Doctor.LName : "")).ToList();
+            try
+            {
+                var existingPatient = new Patient(
+                    patient.FName,
+                    patient.MidName,
+                    patient.LName,
+                    patient.Ssn,
+                    patient.Gender,
+                    patient.BirthDate,
+                    patient.BloodType,
+                    "admin"
+                );
+
+                return patientRepo.EditPatientByIdAsync(id, existingPatient).Result;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public async Task<bool> EditBookPrescriptionAsync(int bookId, string newPrescription)
+        public List<FamilyMember> GetFamilyMembersOfPatient(int patientId)
         {
-            throw new NotImplementedException();
-            //var book = await _bookRepo.GetByIdAsync(bookId);
-            //if (book == null) return false;
-            //book.Edit(book.price, book.BookDate, book.PatientId, book.DoctorId, book.RoomId, newPrescription);
-            //return await _bookRepo.UpdateAsync(book);
+            return patientRepo.GetFamilyMembersOfPatientAsync(patientId).Result;
         }
 
-        public async Task<List<PatientDTO>> GetAllPatientsWithBookByDoctorIdAsync(int doctorId)
+        public bool AddFamilyMemberToPatient(int patientId, FamilyMember familyMember)
         {
-            var books = (await _bookRepo.GetAllAsync()).Where(b => b.DoctorId == doctorId).ToList();
-            var patientIds = books.Select(b => b.PatientId).Distinct().ToList();
-            var patients = (await _patientRepo.GetAllAsync()).Where(p => patientIds.Contains(p.UID)).ToList();
-            return _patientMapper.ToDTOList(patients);
+            return patientRepo.AddFamilyMemberToPatientAsync(patientId, familyMember).Result;
+        }
+
+        public List<MedicalHistory> GetMedicalHistoryOfPatient(int patientId)
+        {
+            return patientRepo.GetMedicalHistoryOfPatientAsync(patientId).Result;
+        }
+
+        public bool AddMedicalHistoryToPatient(int patientId, MedicalHistory medicalHistory)
+        {
+            return patientRepo.AddMedicalHistoryToPatientAsync(patientId, medicalHistory).Result;
+        }
+
+        public List<Scan> GetScansOfPatient(int patientId)
+        {
+            return patientRepo.GetScansOfPatientAsync(patientId).Result;
+        }
+
+        public bool AddScanToPatient(int patientId, Scan scan)
+        {
+            return patientRepo.AddScanToPatientAsync(patientId, scan).Result;
+        }
+
+        public List<Book> GetAllBooksOfPatient(int patientId)
+        {
+            return patientRepo.GetAllBooksOfPatientAsync(patientId).Result;
         }
     }
 }

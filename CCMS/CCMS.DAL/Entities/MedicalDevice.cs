@@ -25,7 +25,7 @@ namespace CCMS.DAL.Entities
         public Room? Room { get; private set; }
         public List<BiomedicalEngineer> BiomedicalEngineers { get; private set; } = new List<BiomedicalEngineer>();
 
-        public MedicalDevice() : base() { }
+        //public MedicalDevice() : base() { }
         public MedicalDevice(string serialNumber, string mdName, string company, long expirationHours, MedicalDeviceStatus mdStatus, string? rNumber, string createdBy)
             : base (createdBy)
             => SetAll(serialNumber, mdName, company, expirationHours, mdStatus, rNumber);

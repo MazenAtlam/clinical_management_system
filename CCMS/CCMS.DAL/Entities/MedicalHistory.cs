@@ -18,7 +18,7 @@ namespace CCMS.DAL.Entities
         [ForeignKey("Patient")]
         public int PatientId { get; set; }
 
-        public MedicalHistory() : base() { }
+        //public MedicalHistory() : base() { }
         public MedicalHistory(bool isAcceptable, string diseaseName, int patientId, string createdBy)
             : base(createdBy)
             => Set(isAcceptable, diseaseName, patientId);

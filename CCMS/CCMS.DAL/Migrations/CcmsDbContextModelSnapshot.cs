@@ -214,7 +214,7 @@ namespace CCMS.DAL.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("SSN")
+                    b.Property<string>("Ssn")
                         .IsRequired()
                         .HasMaxLength(14)
                         .HasColumnType("nvarchar(14)");
@@ -456,7 +456,7 @@ namespace CCMS.DAL.Migrations
                     b.Property<int>("PType")
                         .HasColumnType("int");
 
-                    b.Property<string>("SSN")
+                    b.Property<string>("Ssn")
                         .IsRequired()
                         .HasMaxLength(14)
                         .HasColumnType("nvarchar(14)");

@@ -64,7 +64,7 @@ namespace CCMS.DAL.Repository.Implementation
 
         public List<Doctor> GetAllByName(string name)
         {
-            var result = db.doctors.Where(a => a.IsDeleted == false  && a.GetFullName() == name).ToList();
+            var result = db.doctors.Where(a => a.IsDeleted == false && a.GetFullName() == name).ToList();
             return result;
         }
 
@@ -87,7 +87,8 @@ namespace CCMS.DAL.Repository.Implementation
                 var doc = db.doctors.Where(a => a.UID == doctor.UID).FirstOrDefault();
                 if (doc == null)
                     return false;
-                //doc.Edit(doctor.GetFullName(),doctor.major);
+                //fix when person class is done
+                doc.Edit(doctor.FName,doctor.MidName,doctor.LName,doctor.SSN,doctor.Gender,doctor.BirthDate,doctor.ModifiedBy);
                 db.SaveChanges();
                 return true;
             }

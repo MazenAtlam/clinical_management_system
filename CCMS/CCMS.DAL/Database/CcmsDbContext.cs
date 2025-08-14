@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using CCMS.DAL.Entities;
 namespace CCMS.DAL.Database
 {

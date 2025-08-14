@@ -70,3 +70,6 @@ nunit-*.xml
 
 # Environment Variables
 .env
+
+# VS Code
+.vscode/

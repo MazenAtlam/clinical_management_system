@@ -33,6 +33,7 @@ namespace CCMS.PLL
             builder.Services.AddScoped<IWorkingSlotRepo, WorkingSlotRepo>();
             builder.Services.AddScoped<IMedicalDeviceRepo, MedicalDeviceRepo>();
             builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+            builder.Services.AddScoped<IPatientService, PatientService>();
 
             var app = builder.Build();
 

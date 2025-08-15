@@ -3,8 +3,6 @@ using CCMS.BLL.Services.Abstraction;
 using CCMS.DAL.Entities;
 using CCMS.DAL.Enums;
 using CCMS.DAL.Repository.Abstraction;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace CCMS.BLL.Services.Implementation
 {
@@ -23,7 +21,7 @@ namespace CCMS.BLL.Services.Implementation
             //this.notificationService = notificationService;
         }
 
-        public bool Create(PatientDTO patient)
+        public async Task<bool> Create(PatientDTO patient)
         {
             try
             {
@@ -37,8 +35,9 @@ namespace CCMS.BLL.Services.Implementation
                     patient.BloodType,
                     "admin"
                 );
-                
-                return patientRepo.CreateAsync(newPatient).Result;
+
+                //return await patientRepo.Add(newPatient);
+                return false;
             }
             catch
             {
@@ -46,11 +45,11 @@ namespace CCMS.BLL.Services.Implementation
             }
         }
 
-        public bool Update(PatientDTO patient)
+        public async Task<bool> Update(PatientDTO patient)
         {
             try
             {
-                var existingPatient = patientRepo.GetByIdAsync(patient.UID).Result;
+                var existingPatient = await patientRepo.GetById(patient.UID);
                 if (existingPatient == null)
                     return false;
 
@@ -65,7 +64,8 @@ namespace CCMS.BLL.Services.Implementation
                     "admin"
                 );
 
-                return patientRepo.UpdateAsync(existingPatient).Result;
+                //return patientRepo.Update(existingPatient).Result;
+                return true;
             }
             catch
             {
@@ -75,17 +75,18 @@ namespace CCMS.BLL.Services.Implementation
 
         public bool Delete(int id)
         {
-            return patientRepo.DeleteAsync(id).Result;
+            //return patientRepo.DeleteAsync(id).Result;
+            return false ;
         }
 
-        public Patient GetById(int id)
+        public async Task<Patient> GetById(int id)
         {
-            return patientRepo.GetByIdAsync(id).Result;
+            return await patientRepo.GetById(id);
         }
 
-        public List<Patient> GetAll()
+        public async Task<List<Patient>> GetAll()
         {
-            return patientRepo.GetAllAsync().Result;
+            return await patientRepo.GetAll();
         }
 
         public List<Patient> GetPatientsByDoctor(int doctorId)
@@ -96,20 +97,22 @@ namespace CCMS.BLL.Services.Implementation
 
         public List<Book> GetPatientAppointments(int patientId)
         {
-            return patientRepo.GetAllBooksOfPatientAsync(patientId).Result;
+            //return patientRepo.GetAllBooksOfPatient(patientId).Result;
+            return new List<Book>();
         }
 
-        public bool RateDoctor(int patientId, int doctorId, int rating)
+        public async Task<bool> RateDoctor(int patientId, int doctorId, int rating)
         {
             try
             {
-                var doctor = doctorRepo.GetById(doctorId);
+                var doctor = await doctorRepo.GetById(doctorId);
                 if (doctor == null)
                     return false;
 
                 var ratingEnum = (Rating)rating;
                 doctor.EditRating(ratingEnum, "admin");
-                return doctorRepo.Update(doctor);
+                //return doctorRepo.Update(doctor);
+                return true;
             }
             catch
             {
@@ -118,67 +121,67 @@ namespace CCMS.BLL.Services.Implementation
         }
 
         // New methods implementation
-        public Patient GetPatientInfoById(int id)
-        {
-            return patientRepo.GetPatientInfoByIdAsync(id).Result;
-        }
+        //public Patient GetPatientInfoById(int id)
+        //{
+        //    return patientRepo.GetPatientInfoByIdAsync(id).Result;
+        //}
 
-        public bool EditPatientById(int id, PatientDTO patient)
-        {
-            try
-            {
-                var existingPatient = new Patient(
-                    patient.FName,
-                    patient.MidName,
-                    patient.LName,
-                    patient.Ssn,
-                    patient.Gender,
-                    patient.BirthDate,
-                    patient.BloodType,
-                    "admin"
-                );
+        //public bool EditPatientById(int id, PatientDTO patient)
+        //{
+        //    try
+        //    {
+        //        var existingPatient = new Patient(
+        //            patient.FName,
+        //            patient.MidName,
+        //            patient.LName,
+        //            patient.Ssn,
+        //            patient.Gender,
+        //            patient.BirthDate,
+        //            patient.BloodType,
+        //            "admin"
+        //        );
 
-                return patientRepo.EditPatientByIdAsync(id, existingPatient).Result;
-            }
-            catch
-            {
-                return false;
-            }
-        }
+        //        return patientRepo.EditPatientByIdAsync(id, existingPatient).Result;
+        //    }
+        //    catch
+        //    {
+        //        return false;
+        //    }
+        //}
 
-        public List<FamilyMember> GetFamilyMembersOfPatient(int patientId)
-        {
-            return patientRepo.GetFamilyMembersOfPatientAsync(patientId).Result;
-        }
+        //public List<FamilyMember> GetFamilyMembersOfPatient(int patientId)
+        //{
+        //    return patientRepo.GetFamilyMembersOfPatientAsync(patientId).Result;
+        //}
 
-        public bool AddFamilyMemberToPatient(int patientId, FamilyMember familyMember)
-        {
-            return patientRepo.AddFamilyMemberToPatientAsync(patientId, familyMember).Result;
-        }
+        //public bool AddFamilyMemberToPatient(int patientId, FamilyMember familyMember)
+        //{
+        //    return patientRepo.AddFamilyMemberToPatientAsync(patientId, familyMember).Result;
+        //}
 
-        public List<MedicalHistory> GetMedicalHistoryOfPatient(int patientId)
-        {
-            return patientRepo.GetMedicalHistoryOfPatientAsync(patientId).Result;
-        }
+        //public List<MedicalHistory> GetMedicalHistoryOfPatient(int patientId)
+        //{
+        //    return patientRepo.GetMedicalHistoryOfPatientAsync(patientId).Result;
+        //}
 
-        public bool AddMedicalHistoryToPatient(int patientId, MedicalHistory medicalHistory)
-        {
-            return patientRepo.AddMedicalHistoryToPatientAsync(patientId, medicalHistory).Result;
-        }
+        //public bool AddMedicalHistoryToPatient(int patientId, MedicalHistory medicalHistory)
+        //{
+        //    return patientRepo.AddMedicalHistoryToPatientAsync(patientId, medicalHistory).Result;
+        //}
 
-        public List<Scan> GetScansOfPatient(int patientId)
-        {
-            return patientRepo.GetScansOfPatientAsync(patientId).Result;
-        }
+        //public List<Scan> GetScansOfPatient(int patientId)
+        //{
+        //    return patientRepo.GetScansOfPatientAsync(patientId).Result;
+        //}
 
-        public bool AddScanToPatient(int patientId, Scan scan)
-        {
-            return patientRepo.AddScanToPatientAsync(patientId, scan).Result;
-        }
+        //public bool AddScanToPatient(int patientId, Scan scan)
+        //{
+        //    return patientRepo.AddScanToPatientAsync(patientId, scan).Result;
+        //}
 
-        public List<Book> GetAllBooksOfPatient(int patientId)
-        {
-            return patientRepo.GetAllBooksOfPatientAsync(patientId).Result;
-        }
+        //public List<Book> GetAllBooksOfPatient(int patientId)
+        //{
+        //    return patientRepo.GetAllBooksOfPatientAsync(patientId).Result;
+        //}
     }
 }

@@ -1,10 +1,6 @@
 using CCMS.DAL.Database;
 using CCMS.DAL.Entities;
 using CCMS.DAL.Repository.Abstraction;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CCMS.DAL.Repository.Implementation
 {
@@ -12,67 +8,56 @@ namespace CCMS.DAL.Repository.Implementation
     {
         private readonly CcmsDbContext db;
 
-        public MedicalHistoryRepo(CcmsDbContext db)
-        {
-            this.db = db;
-        }
+        public MedicalHistoryRepo(CcmsDbContext db) => this.db = db;
 
-        public async Task<bool> CreateAsync(MedicalHistory medicalHistory)
-        {
-            try
-            {
-                await db.medicalHistories.AddAsync(medicalHistory);
-                await db.SaveChangesAsync();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
+        public async Task Add(MedicalHistory medicalHistory) => db.medicalHistories.Add(medicalHistory);
 
-        public async Task<bool> DeleteAsync(int id)
-        {
-            try
-            {
-                var mh = await db.medicalHistories.FirstOrDefaultAsync(a => a.Id == id);
-                if (mh == null)
-                    return false;
-                mh.Delete("admin");
-                await db.SaveChangesAsync();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
+        // In MedicalHistoryService
+        //public async Task<bool> DeleteAsync(int id)
+        //{
+        //    try
+        //    {
+        //        var mh = await db.medicalHistories.FirstOrDefaultAsync(a => a.Id == id);
+        //        if (mh == null)
+        //            return false;
+        //        mh.Delete("admin");
+        //        await db.SaveChangesAsync();
+        //        return true;
+        //    }
+        //    catch
+        //    {
+        //        return false;
+        //    }
+        //}
 
-        public async Task<List<MedicalHistory>> GetAllAsync()
-        {
-            return await db.medicalHistories.Where(a => a.IsDeleted == false).ToListAsync();
-        }
+        public async Task<List<MedicalHistory>> GetAll() => db.medicalHistories.Where(a => !a.IsDeleted).ToList();
 
-        public async Task<MedicalHistory> GetByIdAsync(int id)
+        public async Task<MedicalHistory> GetById(int id)
         {
-            return await db.medicalHistories.FirstOrDefaultAsync(a => a.Id == id);
-        }
+            MedicalHistory? medicalHistory =  db.medicalHistories.FirstOrDefault(a => a.Id == id && !a.IsDeleted);
 
-        public async Task<bool> UpdateAsync(MedicalHistory medicalHistory, string modifiedBy)
-        {
-            try
-            {
-                var mh = await db.medicalHistories.FirstOrDefaultAsync(a => a.Id == medicalHistory.Id);
-                if (mh == null)
-                    return false;
-                mh.Edit(medicalHistory.IsAcceptable, medicalHistory.DiseaseName, medicalHistory.PatientId, modifiedBy);
-                await db.SaveChangesAsync();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            return medicalHistory == null
+                ? throw new ArgumentException($"There is no medical history with the ID = {id}", "id")
+                : medicalHistory;
         }
+        public async Task Save() => db.SaveChanges();
+
+        // In MedicalHistoryService
+        //public async Task<bool> UpdateAsync(MedicalHistory medicalHistory, string modifiedBy)
+        //{
+        //    try
+        //    {
+        //        var mh = await db.medicalHistories.FirstOrDefaultAsync(a => a.Id == medicalHistory.Id);
+        //        if (mh == null)
+        //            return false;
+        //        mh.Edit(medicalHistory.IsAcceptable, medicalHistory.DiseaseName, medicalHistory.PatientId, modifiedBy);
+        //        await db.SaveChangesAsync();
+        //        return true;
+        //    }
+        //    catch
+        //    {
+        //        return false;
+        //    }
+        //}
     }
 }

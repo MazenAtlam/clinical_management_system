@@ -90,7 +90,8 @@ namespace CCMS.BLL.Services.Implementation
 
         public List<Book> GetByPatient(int patientId)
         {
-            return patientRepo.GetAllBooksOfPatientAsync(patientId).Result;
+            //return patientRepo.GetAllBooksOfPatientAsync(patientId).Result;
+            return new List<Book>();
         }
 
         public List<Book> GetByDoctor(int doctorId)

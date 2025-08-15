@@ -5,12 +5,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace CCMS.DAL.Entities
 {
     [Table("Person_PhoneNumber", Schema="ccms")]
-    [PrimaryKey("UID", "Number")]
+    [PrimaryKey("PersonId", "Number")]
     public class PhoneNumber : Base
     {
         [Required]
         [ForeignKey("Person")]
-        public int UID { get; private set; }
+        public int PersonId { get; private set; }
         public Person Person { get; private set; }
         [Required]
         [MinLength(11)]
@@ -18,19 +18,19 @@ namespace CCMS.DAL.Entities
         public string Number { get; private set; }
 
         //public PhoneNumber() : base() { }
-        public PhoneNumber(int id, string number, string createdBy)
+        public PhoneNumber(int personId, string number, string createdBy)
             : base(createdBy)
-            => Set(id, number);
+            => Set(personId, number);
 
-        private void Set(int id, string number)
+        private void Set(int personId, string number)
         {
-            UID = id;
+            PersonId = personId;
             Number = number;
         }
 
-        public void Edit(int id, string number, string modifiedBy)
+        public void Edit(int personId, string number, string modifiedBy)
         {
-            Set(id, number);
+            Set(personId, number);
             SaveModification(modifiedBy);
         }
     }

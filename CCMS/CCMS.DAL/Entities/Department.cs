@@ -6,7 +6,7 @@ namespace CCMS.DAL.Entities
     [Table("Department", Schema = "ccms")]
     public class Department : Base
     {
-        public int ID { get; private set; }
+        public int Id { get; private set; }
         [Required]
         [MaxLength(100)]
         public string DName { get; private set; }

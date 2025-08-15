@@ -9,6 +9,7 @@ namespace CCMS.BLL.ModelVM.MedicalDevice
         public string Company { get; set; }
         public long ExpirationHours { get; set; }
         public MedicalDeviceStatus MDStatus { get; set; }
+        public string? RNumber { get; set; }
         public string CreatedBy { get; set; }
     }
 }

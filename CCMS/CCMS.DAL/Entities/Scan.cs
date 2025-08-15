@@ -31,23 +31,23 @@ namespace CCMS.DAL.Entities
         public int PatientId { get; private set; }
 
         //public Scan() : base() { }
-        public Scan(SType scanType, STech scanTech, string results, DateTime sDate, int ldID, int patientID, string createdBy)
+        public Scan(SType scanType, STech scanTech, string results, DateTime sDate, int lDID, int patientId, string createdBy)
             : base(createdBy)
-            => Set(scanType, scanTech, results, sDate, ldID, patientID);
+            => Set(scanType, scanTech, results, sDate, lDID, patientId);
 
-        private void Set(SType scanType, STech scanTech, string results, DateTime sDate, int ldID, int patientID)
+        private void Set(SType scanType, STech scanTech, string results, DateTime sDate, int lDID, int patientId)
         {
             ScanType = scanType;
             ScanTech = scanTech;
             Results = results;
             SDate = sDate;
-            LDID = ldID;
-            PatientId = patientID;
+            LDID = lDID;
+            PatientId = patientId;
         }
 
-        public void Edit(SType scanType, STech scanTech, string results, DateTime sDate, int ldID, int patientID, string modifiedBy)
+        public void Edit(SType scanType, STech scanTech, string results, DateTime sDate, int lDID, int patientId, string modifiedBy)
         {
-            Set(scanType, scanTech, results, sDate, ldID, patientID);
+            Set(scanType, scanTech, results, sDate, lDID, patientId);
             SaveModification(modifiedBy);
         }
     }

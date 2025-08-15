@@ -8,5 +8,6 @@ namespace CCMS.BLL.ModelVM.MedicalHistory
         public bool IsAcceptable { get; set; }
         public string DiseaseName { get; set; }
         public int PatientId { get; set; }
+        public string CreatedBy { get; set; }
     }
 }

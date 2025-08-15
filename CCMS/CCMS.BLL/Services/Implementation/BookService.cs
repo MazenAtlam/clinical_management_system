@@ -2,8 +2,6 @@ using CCMS.BLL.ModelVM.Book;
 using CCMS.BLL.Services.Abstraction;
 using CCMS.DAL.Entities;
 using CCMS.DAL.Repository.Abstraction;
-using System;
-using System.Collections.Generic;
 
 namespace CCMS.BLL.Services.Implementation
 {
@@ -34,7 +32,7 @@ namespace CCMS.BLL.Services.Implementation
                     book.BookDate,
                     book.PatientId,
                     book.DoctorId,
-                    book.RoomNumber,
+                    book.RNumber,
                     "admin"
                 );
                 await bookRepo.Add(newBook);
@@ -78,10 +76,10 @@ namespace CCMS.BLL.Services.Implementation
             return true;
         }
 
-        public Book GetById(int id)
+        public Book? GetById(int id)
         {
             //return bookRepo.GetByIdAsync(id).Result;
-            return new Book();
+            return null;
         }
 
         public List<Book> GetAll()

@@ -10,7 +10,7 @@ namespace CCMS.BLL.Services.Abstraction
         Task Create(CreateBookDTO book);
         bool Update(BookDTO book);
         bool Delete(int id);
-        Book GetById(int id);
+        Book? GetById(int id);
         List<Book> GetAll();
         List<Book> GetByPatient(int patientId);
         List<Book> GetByDoctor(int doctorId);

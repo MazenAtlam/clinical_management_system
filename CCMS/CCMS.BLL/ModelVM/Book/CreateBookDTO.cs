@@ -7,6 +7,7 @@ namespace CCMS.BLL.ModelVM.Book
         public DateTime BookDate { get; set; }
         public int PatientId { get; set; }
         public int DoctorId { get; set; }
-        public string RoomNumber { get; set; }
+        public string RNumber { get; set; }
+        public string CreatedBy { get; set; }
     }
 }

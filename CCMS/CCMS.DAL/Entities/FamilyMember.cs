@@ -25,21 +25,21 @@ namespace CCMS.DAL.Entities
         public List<PatientFamily> PatientFamilyMembers { get; private set; } = new List<PatientFamily>();
         
         //public FamilyMember() : base() { }
-        public FamilyMember(string name, Gender gender, string ssn, string number, string createdBy)
+        public FamilyMember(string name, Gender gender, string ssn, string phoneNumber, string createdBy)
             : base(createdBy)
-            => Set(name, gender, ssn, number);
+            => Set(name, gender, ssn, phoneNumber);
 
-        private void Set(string name, Gender gender, string ssn, string number)
+        private void Set(string name, Gender gender, string ssn, string phoneNumber)
         {
             Name = name;
             Gender = gender;
             Ssn = ssn;
-            PhoneNumber = number;
+            PhoneNumber = phoneNumber;
         }
 
-        public void Edit(string name, Gender gender, string ssn, string number, string modifiedBy)
+        public void Edit(string name, Gender gender, string ssn, string phoneNumber, string modifiedBy)
         {
-            Set(name, gender, ssn, number);
+            Set(name, gender, ssn, phoneNumber);
             SaveModification(modifiedBy);
         }
     }

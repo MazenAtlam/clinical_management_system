@@ -38,12 +38,6 @@ namespace CCMS.BLL.Services.Implementation
                     "admin"
                 );
                 
-                // Set the UserId if provided
-                if (!string.IsNullOrEmpty(patient.UserId))
-                {
-                    //newPatient.UserId = patient.UserId;
-                }
-                
                 return patientRepo.CreateAsync(newPatient).Result;
             }
             catch
@@ -70,12 +64,6 @@ namespace CCMS.BLL.Services.Implementation
                     patient.BloodType,
                     "admin"
                 );
-
-                // Update UserId if provided
-                if (!string.IsNullOrEmpty(patient.UserId))
-                {
-                    //existingPatient.UserId = patient.UserId;
-                }
 
                 return patientRepo.UpdateAsync(existingPatient).Result;
             }

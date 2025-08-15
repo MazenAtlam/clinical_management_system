@@ -26,17 +26,17 @@ namespace CCMS.DAL.Entities
         public List<BiomedicalEngineer> BiomedicalEngineers { get; private set; } = new List<BiomedicalEngineer>();
 
         //public MedicalDevice() : base() { }
-        public MedicalDevice(string serialNumber, string mdName, string company, long expirationHours, MedicalDeviceStatus mdStatus, string? rNumber, string createdBy)
+        public MedicalDevice(string serialNumber, string mDName, string company, long expirationHours, MedicalDeviceStatus mDStatus, string? rNumber, string createdBy)
             : base (createdBy)
-            => SetAll(serialNumber, mdName, company, expirationHours, mdStatus, rNumber);
+            => SetAll(serialNumber, mDName, company, expirationHours, mDStatus, rNumber);
 
-        private void SetAll(string serialNumber, string mdName, string company, long expirationHours, MedicalDeviceStatus mdStatus, string? rNumber)
+        private void SetAll(string serialNumber, string mDName, string company, long expirationHours, MedicalDeviceStatus mDStatus, string? rNumber)
         {
             SerialNumber = serialNumber;
-            MDName = mdName;
+            MDName = mDName;
             Company = company;
             ExpirationHours = expirationHours;
-            MDStatus = mdStatus;
+            MDStatus = mDStatus;
         }
 
         public void UpdateStatus(MedicalDeviceStatus newStatus, string modifiedBy)
@@ -45,9 +45,9 @@ namespace CCMS.DAL.Entities
             SaveModification(modifiedBy);
         }
 
-        public void UpdateAll(string serialNumber, string mdName, string company, long expirationHours, MedicalDeviceStatus mdStatus, string? rNumber, string modifiedBy)
+        public void UpdateAll(string serialNumber, string mDName, string company, long expirationHours, MedicalDeviceStatus mDStatus, string? rNumber, string modifiedBy)
         {
-            SetAll(serialNumber, mdName, company, expirationHours, mdStatus, rNumber);
+            SetAll(serialNumber, mDName, company, expirationHours, mDStatus, rNumber);
             SaveModification(modifiedBy);
         }
     }

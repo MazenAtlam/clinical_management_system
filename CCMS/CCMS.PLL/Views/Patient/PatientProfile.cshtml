@@ -1,10 +1,12 @@
 ﻿@{
     ViewData["Title"] = "Profile";
 }
+@using CCMS.BLL.ModelVM.Patient;
+@using CCMS.DAL.Entities
+@model PatientDTO
 <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.css" />
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.2/css/responsive.dataTables.css" />
 @section HeaderButtons {
-    <li><a class="active" asp-controller="Patient" asp-action="PatientDashboard">DashBoard</a></li>
     <!-- HOT HENA ENO YEGEB KOL EL DOCTORS WE YE5TAR BE EL DEPARTMENT WE KEDA -->
     <li><a href="@Url.Action("Index", "Home")#departments">Departments</a></li>
     <li><a href="#doctors">Doctors</a></li>
@@ -24,10 +26,11 @@
                             <div class="card-header text-bg-primary">Welcome, Ethan Leo</div>
                             <div class="card-body">
                                 <div class="text-center mb-3">
+                                    <!-- PUT PATIENT PICTURE -->
                                     <img src="./assets/img/profile-img-1.jpg" class="img-fluid rounded-circle" alt="Luna John">
                                 </div>
-                                @* change to the name of tthe patient *@
-                                <h5 class="text-center mb-1">Ethan Leo</h5>
+                                @* change to the name of the patient *@
+                                <h5 class="text-center mb-1">@Model.GetFullName()</h5>
 
                                 <p class="text-center text-secondary mb-4">patient</p>
 
@@ -68,6 +71,7 @@
                                         <div class="row gy-2">
                                             <label class="col-12 form-label m-0">Profile Image</label>
                                             <div class="col-12">
+                                                <!-- ADD PATIENT PICTURE -->
                                                 <img src="./assets/img/profile-img-1.jpg" class="img-fluid" alt="Luna John">
                                             </div>
                                             <div class="col-12">
@@ -81,17 +85,18 @@
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6">
+                                        <input asp-for="UID" type="hidden" class="form-control" id="UID" value="@Model.UID">
                                         <label for="inputFirstName" class="form-label">First Name</label>
-                                        <input type="text" class="form-control" id="inputFirstName" value="Ethan">
+                                        <input asp-for="FName" type="text" class="form-control" id="inputFirstName" value="@Model.FName">
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <label for="inputLastName" class="form-label">Last Name</label>
-                                        <input type="text" class="form-control" id="inputLastName" value="Leo">
+                                        <input asp-for="LName" type="text" class="form-control" id="inputLastName" value="@Model.LName">
                                     </div>
                                     <div class="col-12 col-md-6">
                                         
                                         <label for="inputbloodtype" class="form-label">Blood Type</label>
-                                        <select class="form-select" id="inputbloodtype" name="bloodtype">
+                                        <select asp-for="BloodType" class="form-select" id="inputbloodtype" name="bloodtype" value="@Model.BloodType">
                                             <option value="A_NEG">A-</option>
                                             <option value="A_POS">A+</option>
                                             <option value="B_NEG">B-</option>
@@ -102,35 +107,36 @@
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <label for="inputSSN" class="form-label">SSN</label>
-                                        <input type="text" class="form-control" id="inputSkills" value="3036455859858785">
+                                        <input asp-for="Ssn" type="text" class="form-control" id="inputSkills" value="@Model.Ssn">
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <label for="inputGender" class="form-label">Gender</label>
-                                        <select class="form-select" id="inputGender" name="gender">
+                                        <select asp-for="Gender" class="form-select" id="inputGender" name="gender" value="@Model.Gender">
                                             <option value="Male">Male</option>
                                             <option value="Female">Female</option>
                                         </select>
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <label for="inputBirthdate" class="form-label">Birthdate</label>
-                                        <input type="date" class="form-control" id="inputBirthdate" name="birthdate">
+                                        <input asp-for="BirthDate" type="date" class="form-control" id="inputBirthdate" name="birthdate" value="@Model.BirthDate">
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <label for="inputPhone" class="form-label">Phone</label>
-                                        <input type="tel" class="form-control" id="inputPhone" value="+12486798745">
+                                        <input asp-for="PhoneNumbers" type="tel" class="form-control" id="inputPhone" value="@Model.PhoneNumbers.FirstOrDefault()">
                                     </div>
                                     <div class="col-12 col-md-6">
+                                        <!-- NO EMAIL LESA -->
                                         <label for="inputEmail" class="form-label">Email</label>
                                         <input type="email" class="form-control" id="inputEmail" value="leo@example.com">
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <label for="inputAddress" class="form-label">Address</label>
-                                        <input type="text" class="form-control" id="inputAddress" value="Mountain View, California">
+                                        <input asp-for="Addresses" type="text" class="form-control" id="inputAddress" value="@Model.Addresses.FirstOrDefault()">
                                     </div>
                                     
                                     
                                     <div class="col-12">
-                                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                                        <button type="submit" class="btn btn-primary" asp-controller="Patient" asp-action="EditPatientProfile" asp-route="@Model">Save Changes</button>
                                     </div>
                                 </form>
                             </div>
@@ -191,18 +197,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>$100</td>
-                                            <td>2024-06-01</td>
-                                            <td><a href="#" class="btn btn-success btn-sm">Download</a></td>
-                                            <td>Dr. Smith</td>
-                                        </tr>
-                                        <tr>
-                                            <td>$80</td>
-                                            <td>2024-05-15</td>
-                                            <td>Not done yet</td>
-                                            <td>Dr. Jones</td>
-                                        </tr>
+                                            @foreach(var item in ViewBag.Appointment as List<Book>)
+                                            {
+                                                <tr>
+                                                    <td>@item.Price</td>
+                                                    <td>@item.BookDate</td>
+                                                    <td>@item.Prescription</td>
+                                                    <td>@item.Doctor.GetFullName()</td>
+                                                </tr>
+                                            }
                                     </tbody>
                                 </table>
                             </div>
@@ -220,8 +223,17 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr><td>John Doe</td><td>123456789</td><td>+1234567890</td><td>Male</td><td>Father</td></tr>
-                                        <tr><td>Jane Doe</td><td>987654321</td><td>+0987654321</td><td>Female</td><td>Mother</td></tr>
+                                        @foreach (var item in ViewBag.FamilyMembers as List<FamilyMember>)
+                                        {
+                                            <tr>
+                                                <td>@item.Name</td>
+                                                <td>@item.Ssn</td>
+                                                <td>@item.PhoneNumber</td>
+                                                <td>@item.Gender</td>
+                                                <!-- ZABAT EL RELATION SHIPS HENA MESH NAME-->
+                                                <td>@item.Name</td>
+                                            </tr>
+                                        }
                                     </tbody>
                                 </table>
                                 <button class="btn btn-primary mb-2">Add a Family Member</button>

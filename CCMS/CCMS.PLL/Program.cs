@@ -38,6 +38,8 @@ namespace CCMS.PLL
             builder.Services.AddScoped<IEmployeeRepo, EmployeeRepo>();
             builder.Services.AddScoped<IFamilyMemberRepo, FamilyMemberRepo>();
             builder.Services.AddScoped<ILabDoctorRepo, LabDoctorRepo>();
+
+
             builder.Services.AddScoped<IMedicalDeviceRepo, MedicalDeviceRepo>();
             builder.Services.AddScoped<IMedicalDevicesRoomsRepo, MedicalDevicesRoomsRepo>();
             builder.Services.AddScoped<IMedicalHistoryRepo, MedicalHistoryRepo>();
@@ -51,6 +53,7 @@ namespace CCMS.PLL
             // Add Scoped for Services
             builder.Services.AddScoped<IEmployeeService, EmployeeService>();
             builder.Services.AddScoped<IPatientService, PatientService>();
+
 
             var app = builder.Build();
 

@@ -1,0 +1,147 @@
+@{
+    ViewData["Title"] = "Lab Doctor Profile";
+}
+<link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.2/css/responsive.dataTables.css" />
+@section HeaderButtons {
+    <li><a class="active" asp-controller="LabDoctor" asp-action="LabDoctorProfile">Profile</a></li>
+    <li><a href="@Url.Action("Index", "Home")#departments">Departments</a></li>
+    <li><a href="#scans">Scans</a></li>
+    <li><a href="#footer">Contact</a></li>
+    <li><a href="@Url.Action("Index", "Home")">Logout</a></li>
+}
+<!-- Lab Doctor Profile - Bootstrap Brain Component -->
+<section class="bg-light py-3 py-md-5 py-xl-8">
+    <div class="container">
+        <div class="row gy-4 gy-lg-0">
+            <div class="col-12 col-lg-4 col-xl-3">
+                <div class="row gy-4">
+                    <div class="col-12">
+                        <div class="card widget-card border-light shadow-sm">
+                            <div class="card-header text-bg-primary">Welcome, Dr. Lab Ethan Leo</div>
+                            <div class="card-body">
+                                <div class="text-center mb-3">
+                                    <img src="./assets/img/profile-img-1.jpg" class="img-fluid rounded-circle" alt="Dr. Lab Ethan Leo">
+                                </div>
+                                <h5 class="text-center mb-1">Dr. Lab Ethan Leo</h5>
+                                <p class="text-center text-secondary mb-4">lab doctor</p>
+                                <div class="d-grid m-0"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-8 col-xl-9">
+                <div class="card widget-card border-light shadow-sm">
+                    <div class="card-body p-4">
+                        <ul class="nav nav-tabs" id="profileTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="true">Profile</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="scans-tab" data-bs-toggle="tab" data-bs-target="#scans-tab-pane" type="button" role="tab" aria-controls="scans-tab-pane" aria-selected="false">Scans</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="password-tab" data-bs-toggle="tab" data-bs-target="#password-tab-pane" type="button" role="tab" aria-controls="password-tab-pane" aria-selected="false">Change Password</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content pt-4" id="profileTabContent">
+                            <div class="tab-pane fade show active" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+                                <form action="#" class="row gy-3 gy-xxl-4">
+                                    <div class="col-12 col-md-6">
+                                        <label for="inputFirstName" class="form-label">First Name</label>
+                                        <input type="text" class="form-control" id="inputFirstName" value="Ethan">
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="inputLastName" class="form-label">Last Name</label>
+                                        <input type="text" class="form-control" id="inputLastName" value="Leo">
+                                    </div>
+
+                                    <div class="col-12 col-md-6">
+                                        <label for="inputPhone" class="form-label">Phone</label>
+                                        <input type="tel" class="form-control" id="inputPhone" value="+12486798745">
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="inputEmail" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="inputEmail" value="lab.leo@example.com">
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="inputAddress" class="form-label">Address</label>
+                                        <input type="text" class="form-control" id="inputAddress" value="Mountain View, California">
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade" id="scans-tab-pane" role="tabpanel" aria-labelledby="scans-tab" tabindex="0">
+                                <h5>Scans</h5>
+                                <table id="scansTable" class="display" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Scan Type</th>
+                                            <th>Scan Tech</th>
+                                            <th>Results</th>
+                                            <th>Date</th>
+                                            <th>Patient</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>X-Ray</td>
+                                            <td>Dr. Lab Leo</td>
+                                            <td>
+                                                <a href="#" class="btn btn-success btn-sm">Download</a>
+                                                <a href="#" class="btn btn-warning btn-sm">Edit</a>
+                                            </td>
+                                            <td>2024-06-01</td>
+                                            <td>Jane Doe</td>
+                                        </tr>
+                                        <tr>
+                                            <td>MRI</td>
+                                            <td>Dr. Lab Leo</td>
+                                            <td>
+                                                <button class="btn btn-primary btn-sm">Upload</button>
+                                                
+                                            </td>
+                                            <td>2024-05-15</td>
+                                            <td>John Smith</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane fade" id="password-tab-pane" role="tabpanel" aria-labelledby="password-tab" tabindex="0">
+                                <form action="#">
+                                    <div class="row gy-3 gy-xxl-4">
+                                        <div class="col-12">
+                                            <label for="currentPassword" class="form-label">Current Password</label>
+                                            <input type="password" class="form-control" id="currentPassword">
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="newPassword" class="form-label">New Password</label>
+                                            <input type="password" class="form-control" id="newPassword">
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                            <input type="password" class="form-control" id="confirmPassword">
+                                        </div>
+                                        <div class="col-12">
+                                            <button type="submit" class="btn btn-primary">Change Password</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/responsive/3.0.2/js/dataTables.responsive.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let scansTable = new DataTable('#scansTable', { responsive: true });
+    });
+</script>

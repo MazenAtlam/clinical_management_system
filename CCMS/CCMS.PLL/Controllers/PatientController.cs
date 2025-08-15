@@ -27,6 +27,7 @@ namespace CCMS.PLL.Controllers
         //show photo and details and give permission to edit
         public ActionResult PatientProfile(int id)
         {
+            //HENA EL MAFROOD TERAGA3 PATIENT MEN EL SERVICE BAS FE ERROR BESABAB EL MULTITHREADING (EL HETA DEH)
             //Patient patient = _patientService.GetById(id);
             //PatientDTO patientDTO = new PatientDTO(patient.UID, patient.FName, patient.MidName, patient.LName, patient.Ssn, patient.Gender, patient.BirthDate, patient.BloodType,patient.PhoneNumbers,patient.Addresses);
             ViewBag.Appointment = _patientService.GetPatientAppointments(id);

@@ -16,7 +16,7 @@ namespace CCMS.DAL.Entities
         [Required]
         // File location or Use file uploader
         [MaxLength(500)] // if file location
-        public string Results { get; private set; }
+        public string? Results { get; private set; }
         [Required]
         public DateTime SDate { get; private set; }
         // Navigation

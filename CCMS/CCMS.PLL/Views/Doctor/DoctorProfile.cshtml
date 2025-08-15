@@ -1,0 +1,203 @@
+@{
+    ViewData["Title"] = "Doctor Profile";
+}
+<link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.2/css/responsive.dataTables.css" />
+@section HeaderButtons {
+    <li><a class="active" asp-controller="Doctor" asp-action="DoctorProfile">Profile</a></li>
+    <li><a href="@Url.Action("Index", "Home")#departments">Departments</a></li>
+    <li><a href="#patients">Patients</a></li>
+    <li><a href="#footer">Contact</a></li>
+    <li><a href="@Url.Action("Index", "Home")">Logout</a></li>
+}
+<!-- Doctor Profile - Bootstrap Brain Component -->
+<section class="bg-light py-3 py-md-5 py-xl-8">
+    <div class="container">
+        <div class="row gy-4 gy-lg-0">
+            <div class="col-12 col-lg-4 col-xl-3">
+                <div class="row gy-4">
+                    <div class="col-12">
+                        <div class="card widget-card border-light shadow-sm">
+                            <div class="card-header text-bg-primary">Welcome, Dr. Ethan Leo</div>
+                            <div class="card-body">
+                                <div class="text-center mb-3">
+                                    <img src="./assets/img/profile-img-1.jpg" class="img-fluid rounded-circle" alt="Dr. Ethan Leo">
+                                </div>
+                                <h5 class="text-center mb-1">Dr. Ethan Leo</h5>
+                                <p class="text-center text-secondary mb-4">doctor</p>
+                                <div class="d-grid m-0"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-8 col-xl-9">
+                <div class="card widget-card border-light shadow-sm">
+                    <div class="card-body p-4">
+                        <ul class="nav nav-tabs" id="profileTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="true">Profile</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="appointments-tab" data-bs-toggle="tab" data-bs-target="#appointments-tab-pane" type="button" role="tab" aria-controls="appointments-tab-pane" aria-selected="false">Appointments</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="schedule-tab" data-bs-toggle="tab" data-bs-target="#schedule-tab-pane" type="button" role="tab" aria-controls="schedule-tab-pane" aria-selected="false">Schedule</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="password-tab" data-bs-toggle="tab" data-bs-target="#password-tab-pane" type="button" role="tab" aria-controls="password-tab-pane" aria-selected="false">Change Password</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content pt-4" id="profileTabContent">
+                            <div class="tab-pane fade show active" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+                                <form action="#" class="row gy-3 gy-xxl-4">
+                                    <div class="col-12 col-md-6">
+                                        <label for="inputFirstName" class="form-label">First Name</label>
+                                        <input type="text" class="form-control" id="inputFirstName" value="Ethan">
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="inputLastName" class="form-label">Last Name</label>
+                                        <input type="text" class="form-control" id="inputLastName" value="Leo">
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="inputSpecialty" class="form-label">Specialty</label>
+                                        <input type="text" class="form-control" id="inputSpecialty" value="Cardiology">
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="inputPhone" class="form-label">Phone</label>
+                                        <input type="tel" class="form-control" id="inputPhone" value="+12486798745">
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="inputEmail" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="inputEmail" value="dr.leo@example.com">
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="inputAddress" class="form-label">Address</label>
+                                        <input type="text" class="form-control" id="inputAddress" value="Mountain View, California">
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade" id="appointments-tab-pane" role="tabpanel" aria-labelledby="appointments-tab" tabindex="0">
+                                <h5>Appointments</h5>
+                                <table id="appointmentsTable" class="display" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Patient Name</th>
+                                            <th>Price</th>
+                                            <th>Date</th>
+                                            <th>Prescription</th>
+                                            <th>Doctor</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Jane Doe</td>
+                                            <td>$100</td>
+                                            <td>2024-06-01</td>
+                                            <td>
+                                                <a href="#" class="btn btn-success btn-sm">Download</a>
+                                                <a href="#" class="btn btn-warning btn-sm">Edit</a>
+                                            </td>
+                                            <td>Dr. Smith</td>
+                                        </tr>
+                                        <tr>
+                                            <td>John Smith</td>
+                                            <td>$80</td>
+                                            <td>2024-05-15</td>
+                                            <td>
+                                                <button class="btn btn-primary btn-sm">Upload</button>
+                                                <span class="text-muted ms-2">Not yet</span>
+                                            </td>
+                                            <td>Dr. Jones</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane fade" id="schedule-tab-pane" role="tabpanel" aria-labelledby="schedule-tab" tabindex="0">
+                                <h5>Doctor Schedule</h5>
+                                <form id="scheduleForm" class="row gy-3 align-items-end mb-4">
+                                    <div class="col-12 col-md-4">
+                                        <label for="scheduleDate" class="form-label">Date</label>
+                                        <input type="date" class="form-control" id="scheduleDate">
+                                    </div>
+                                    <div class="col-12 col-md-3">
+                                        <label for="startTime" class="form-label">Start Time</label>
+                                        <input type="time" class="form-control" id="startTime">
+                                    </div>
+                                    <div class="col-12 col-md-3">
+                                        <label for="endTime" class="form-label">End Time</label>
+                                        <input type="time" class="form-control" id="endTime">
+                                    </div>
+                                    <div class="col-12 col-md-2">
+                                        <button type="button" class="btn btn-primary w-100" id="addScheduleBtn">Add Slot</button>
+                                    </div>
+                                </form>
+                                <table id="scheduleTable" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Start Time</th>
+                                            <th>End Time</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Example slots -->
+                                        <tr><td>2024-06-10</td><td>09:00</td><td>12:00</td></tr>
+                                        <tr><td>2024-06-11</td><td>13:00</td><td>16:00</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane fade" id="password-tab-pane" role="tabpanel" aria-labelledby="password-tab" tabindex="0">
+                                <form action="#">
+                                    <div class="row gy-3 gy-xxl-4">
+                                        <div class="col-12">
+                                            <label for="currentPassword" class="form-label">Current Password</label>
+                                            <input type="password" class="form-control" id="currentPassword">
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="newPassword" class="form-label">New Password</label>
+                                            <input type="password" class="form-control" id="newPassword">
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                            <input type="password" class="form-control" id="confirmPassword">
+                                        </div>
+                                        <div class="col-12">
+                                            <button type="submit" class="btn btn-primary">Change Password</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/responsive/3.0.2/js/dataTables.responsive.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let appointmentsTable = new DataTable('#appointmentsTable', { responsive: true });
+        // Simple JS for adding schedule slots (demo only)
+        document.getElementById('addScheduleBtn').onclick = function() {
+            var date = document.getElementById('scheduleDate').value;
+            var start = document.getElementById('startTime').value;
+            var end = document.getElementById('endTime').value;
+            if(date && start && end) {
+                var table = document.getElementById('scheduleTable').getElementsByTagName('tbody')[0];
+                var row = table.insertRow();
+                row.insertCell(0).innerText = date;
+                row.insertCell(1).innerText = start;
+                row.insertCell(2).innerText = end;
+                document.getElementById('scheduleDate').value = '';
+                document.getElementById('startTime').value = '';
+                document.getElementById('endTime').value = '';
+            }
+        };
+    });
+</script>

@@ -5,31 +5,31 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace CCMS.DAL.Entities
 {
     [Table("Person_Address", Schema = "ccms")]
-    [PrimaryKey("UID", "address")]
+    [PrimaryKey("PersonId", "address")]
     public class Address : Base
     {
         [Required]
         [ForeignKey("Person")]
-        public int UID { get; private set; }
+        public int PersonId { get; private set; }
         public Person Person { get; private set; }
         [Required]
         [MaxLength(200)]
         public string address { get; private set; }
 
         //public Address() : base() { }
-        public Address(int id, string address, string createdBy)
+        public Address(int personId, string address, string createdBy)
             : base(createdBy)
-            => Set(id, address);
+            => Set(personId, address);
 
-        private void Set(int id, string address)
+        private void Set(int personId, string address)
         {
-            UID = id;
+            PersonId = personId;
             this.address = address;
         }
 
-        public void Edit(int id, string address, string modifiedBy)
+        public void Edit(int personId, string address, string modifiedBy)
         {
-            Set(id, address);
+            Set(personId, address);
             SaveModification(modifiedBy);
         }
     }

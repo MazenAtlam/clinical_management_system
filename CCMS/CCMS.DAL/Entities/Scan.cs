@@ -20,9 +20,10 @@ namespace CCMS.DAL.Entities
         [Required]
         public DateTime SDate { get; private set; }
         // Navigation
+        [DeleteBehavior(DeleteBehavior.Restrict)]
         public LabDoctor LabDoctor { get; private set; }
         [Required]
-        [ForeignKey("Doctor")]
+        [ForeignKey("LabDoctor")]
         public int LDID { get; private set; }
         [DeleteBehavior(DeleteBehavior.Restrict)]
         public Patient Patient { get; private set; }

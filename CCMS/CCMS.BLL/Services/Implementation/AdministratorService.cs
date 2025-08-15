@@ -72,14 +72,14 @@ namespace CCMS.BLL.Services.Implementation
 
         public List<Patient> GetAllPatients() => new List<Patient>();
 
-        public List<Doctor> GetAllDoctors()
+        public async Task<List<Doctor>> GetAllDoctors()
         {
-            return _doctorRepo.GetAll();
+            return await _doctorRepo.GetAll();
         }
 
-        public List<LabDoctor> GetAllLabDoctors()
+        public async Task<List<LabDoctor>> GetAllLabDoctors()
         {
-            return _labDoctorRepo.GetAll();
+            return await _labDoctorRepo.GetAll();
         }
 
         public List<Employee> GetAllEmployees() => new List<Employee>();

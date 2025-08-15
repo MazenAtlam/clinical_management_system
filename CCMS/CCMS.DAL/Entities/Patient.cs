@@ -1,5 +1,4 @@
-﻿using Azure;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using CCMS.DAL.Enums;
 using System.ComponentModel.DataAnnotations;
 

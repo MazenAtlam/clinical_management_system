@@ -9,10 +9,9 @@ namespace CCMS.DAL.Repository.Abstraction
 {
     public interface IRoomRepo
     {
-        bool Create(Room room);
-        Room GetById(string rNumber);
-        List<Room> GetAll();
-        bool Delete(string rNumber);
-        public bool Update(Room room, string modifiedBy);
+        public Task Add(Room room);
+        public Task<Room> GetById(string rNumber);
+        public Task<List<Room>> GetAll();
+        public Task Save();
     }
 }

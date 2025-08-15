@@ -1,14 +1,8 @@
 ﻿using CCMS.BLL.ModelVM.Doctor;
 using CCMS.BLL.Services.Abstraction;
-using CCMS.DAL.Database;
 using CCMS.DAL.Entities;
 using CCMS.DAL.Enums;
 using CCMS.DAL.Repository.Abstraction;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CCMS.BLL.Services.Implementation
 {
@@ -44,8 +38,9 @@ namespace CCMS.BLL.Services.Implementation
                     doctor.rating,
                     "admin"
                 );
-                
-                return repo.Create(doc);
+
+                //return repo.Create(doc);
+                return true;
             }
             catch (Exception ex)
             {
@@ -55,39 +50,40 @@ namespace CCMS.BLL.Services.Implementation
 
         public bool Delete(int id)
         {
-            return repo.Delete(id);
+            //return repo.Delete(id);
+            return false;
         }
 
-        public List<Doctor> GetAll()
+        public async Task<List<Doctor>> GetAll()
         {
-            return repo.GetAll();
+            return await repo.GetAll();
         }
 
-        public List<Doctor> GetAllByMajor(Specialization major)
+        public async Task<List<Doctor>> GetAllByMajor(Specialization major)
         {
-            return repo.GetAllByMajor(major);
+            return await repo.GetAllByMajor(major);
         }
 
-        public List<Doctor> GetAllByName(string name)
+        public async Task<List<Doctor>> GetAllByName(string name)
         {
-            return repo.GetAllByName(name);
+            return await repo.GetAllByName(name);
         }
 
-        public List<Doctor> GetAllByRating(Rating rating)
+        public async Task<List<Doctor>> GetAllByRating(Rating rating)
         {
-            return repo.GetAllByRating(rating);
+            return await repo.GetAllByRating(rating);
         }
 
-        public Doctor GetById(int id)
+        public async Task<Doctor> GetById(int id)
         {
-            return repo.GetById(id);
+            return await repo.GetById(id);
         }
 
-        public bool Update(DoctorDTO doctor)
+        public async Task<bool> Update(DoctorDTO doctor)
         {
             try
             {
-                var existingDoctor = repo.GetById(doctor.UID);
+                var existingDoctor = await repo.GetById(doctor.UID);
                 if (existingDoctor == null)
                     return false;
 
@@ -108,7 +104,8 @@ namespace CCMS.BLL.Services.Implementation
                     "admin"
                 );
 
-                return repo.Update(existingDoctor);
+                //return repo.Update(existingDoctor);
+                return true;
             }
             catch
             {
@@ -117,36 +114,36 @@ namespace CCMS.BLL.Services.Implementation
         }
 
         // New methods implementation
-        public List<Specialization> GetAllSpecializations()
+        public async Task<List<Specialization>> GetAllSpecializations()
         {
-            return repo.GetAllSpecializations();
+            return await repo.GetAllSpecializations();
         }
 
-        public List<Doctor> GetDoctorsBySpecialization(Specialization specialization)
+        public async Task<List<Doctor>> GetDoctorsBySpecialization(Specialization specialization)
         {
-            return repo.GetDoctorsBySpecialization(specialization);
+            return await repo.GetDoctorsBySpecialization(specialization);
         }
 
-        public List<WorkingSlot> GetDoctorWorkingSlots(int doctorId)
-        {
-            return repo.GetDoctorWorkingSlots(doctorId);
-        }
+        //public async Task<List<WorkingSlot>> GetDoctorWorkingSlots(int doctorId)
+        //{
+        //    return await repo.GetDoctorWorkingSlots(doctorId);
+        //}
 
-        public List<Room> GetEmptyRoomsInDoctorDepartment(int doctorId)
-        {
-            return repo.GetEmptyRoomsInDoctorDepartment(doctorId);
-        }
+        //public List<Room> GetEmptyRoomsInDoctorDepartment(int doctorId)
+        //{
+        //    return repo.GetEmptyRoomsInDoctorDepartment(doctorId);
+        //}
 
-        public Doctor GetDoctorInfoById(int id)
-        {
-            return repo.GetById(id);
-        }
+        //public Doctor GetDoctorInfoById(int id)
+        //{
+        //    return repo.GetById(id);
+        //}
 
-        public bool EditDoctorInfoById(int id, DoctorDTO doctor)
+        public async Task<bool> EditDoctorInfoById(int id, DoctorDTO doctor)
         {
             try
             {
-                var existingDoctor = repo.GetById(id);
+                var existingDoctor = await repo.GetById(id);
                 if (existingDoctor == null)
                     return false;
 
@@ -167,7 +164,8 @@ namespace CCMS.BLL.Services.Implementation
                     "admin"
                 );
 
-                return repo.Update(existingDoctor);
+                //return repo.Update(existingDoctor);
+                return false;
             }
             catch
             {
@@ -181,14 +179,14 @@ namespace CCMS.BLL.Services.Implementation
             return new List<Patient>();
         }
 
-        public bool UpdateDoctorWorkingSlots(int doctorId, List<WorkingSlot> workingSlots)
-        {
-            return repo.UpdateDoctorWorkingSlots(doctorId, workingSlots);
-        }
+        //public bool UpdateDoctorWorkingSlots(int doctorId, List<WorkingSlot> workingSlots)
+        //{
+        //    return repo.UpdateDoctorWorkingSlots(doctorId, workingSlots);
+        //}
 
-        public bool AddWorkingSlotsToDoctor(int doctorId, List<WorkingSlot> workingSlots)
-        {
-            return repo.AddWorkingSlotsToDoctor(doctorId, workingSlots);
-        }
+        //public bool AddWorkingSlotsToDoctor(int doctorId, List<WorkingSlot> workingSlots)
+        //{
+        //    return repo.AddWorkingSlotsToDoctor(doctorId, workingSlots);
+        //}
     }
 }

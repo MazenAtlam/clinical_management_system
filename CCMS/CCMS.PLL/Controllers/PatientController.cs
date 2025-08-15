@@ -27,11 +27,12 @@ namespace CCMS.PLL.Controllers
         //show photo and details and give permission to edit
         public ActionResult PatientProfile(int id)
         {
-            Patient patient = _patientService.GetById(id);
-            PatientDTO patientDTO = new PatientDTO(patient.UID, patient.FName, patient.MidName, patient.LName, patient.Ssn, patient.Gender, patient.BirthDate, patient.BloodType,patient.PhoneNumbers,patient.Addresses);
+            //Patient patient = _patientService.GetById(id);
+            //PatientDTO patientDTO = new PatientDTO(patient.UID, patient.FName, patient.MidName, patient.LName, patient.Ssn, patient.Gender, patient.BirthDate, patient.BloodType,patient.PhoneNumbers,patient.Addresses);
             ViewBag.Appointment = _patientService.GetPatientAppointments(id);
-            ViewBag.Scans = _patientService.GetScansOfPatient(id);
-            ViewBag.FamilyMembers = _patientService.GetFamilyMembersOfPatient(id);
+            //ViewBag.Scans = _patientService.GetScansOfPatient(id);
+            //ViewBag.FamilyMembers = _patientService.GetFamilyMembersOfPatient(id);
+            PatientDTO patientDTO = new PatientDTO();
             return View(patientDTO);
         }
         public ActionResult EditPatientProfile(PatientDTO patientDTO)

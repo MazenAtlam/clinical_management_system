@@ -12,7 +12,7 @@ namespace CCMS.DAL.Entities
         public double Price { get; private set; }
         // File location, Use file uploader, or Use image uploader
         [MaxLength(500)] // if file location
-        public string? Perscription{ get; private set;}
+        public string? Prescription{ get; private set;}
         [Required]
         public DateTime BookDate { get; private set; }
         // Navigation
@@ -34,15 +34,15 @@ namespace CCMS.DAL.Entities
         [ForeignKey("Room")]
         public string RNumber { get; private set; } // bbfrrr
 
-        public Book() : base() { }
-        public Book(double price, string? perscription, DateTime bookDate, int patientId, int doctorId, string rNumber, string createdBy)
+        //public Book() : base() { }
+        public Book(double price, string? prescription, DateTime bookDate, int patientId, int doctorId, string rNumber, string createdBy)
             : base(createdBy)
-            => Set(price, perscription, bookDate, patientId, doctorId, rNumber);
+            => Set(price, prescription, bookDate, patientId, doctorId, rNumber);
 
-        private void Set(double price, string? perscription, DateTime bookDate, int patientId, int doctorId, string rNumber)
+        private void Set(double price, string? prescription, DateTime bookDate, int patientId, int doctorId, string rNumber)
         {
             Price = price;
-            Perscription = perscription;
+            Prescription = prescription;
             BookDate = bookDate;
             PatientId = patientId;
             DoctorId = doctorId;

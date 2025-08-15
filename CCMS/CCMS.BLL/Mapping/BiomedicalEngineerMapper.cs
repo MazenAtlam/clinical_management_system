@@ -1,17 +1,18 @@
-﻿using CCMS.BLL.ModelVM.Employee;
+﻿using CCMS.BLL.ModelVM.BiomedicalEngineer;
+using CCMS.BLL.ModelVM.Employee;
 using CCMS.DAL.Entities;
 using Riok.Mapperly.Abstractions;
 
 namespace CCMS.BLL.Mapping
 {
     [Mapper]
-    public static partial class BiomedicalEngineerMapper
+    public partial class BiomedicalEngineerMapper
     {
-        // Map BiomedicalEngineer -> EmployeeDTO
-        public static partial EmployeeDTO ToResponseDto(BiomedicalEngineer biomedicalEngineer);
-        public static partial List<EmployeeDTO> ToListResponseDto(List<BiomedicalEngineer> biomedicalEngineers);
+        // Map BiomedicalEngineer -> BiomedicalEngineerDTO
+        public partial BiomedicalEngineerDTO ToResponseDto(BiomedicalEngineer biomedicalEngineer);
+        public partial List<BiomedicalEngineerDTO> ToListResponseDto(List<BiomedicalEngineer> biomedicalEngineers);
 
-        // Map EmployeeDTO -> BiomedicalEngineer
-        public static partial BiomedicalEngineer ToEntity(EmployeeDTO mdDeviceDTO);
+        // Map BiomedicalEngineerDTO -> BiomedicalEngineer
+        public partial BiomedicalEngineer ToEntity(BiomedicalEngineerDTO bioEngDTO);
     }
 }

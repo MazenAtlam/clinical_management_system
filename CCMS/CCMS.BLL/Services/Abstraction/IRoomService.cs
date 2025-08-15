@@ -1,4 +1,6 @@
-﻿using CCMS.BLL.ModelVM.MedicalDevice;
+﻿using CCMS.BLL.ModelVM.Book;
+using CCMS.BLL.ModelVM.MedicalDevice;
+using CCMS.DAL.Entities;
 using CCMS.DAL.Enums;
 
 namespace CCMS.BLL.Services.Abstraction
@@ -14,6 +16,8 @@ namespace CCMS.BLL.Services.Abstraction
         public Task</*(List<RoomDTO>?, */string?/*)*/> GetAllRoomsByBuildingAndFloorNumber(string buildingNum, int floorNum);
 
         public Task</*(RoomDTO?, */string?/*)*/> GetRoomByNumber(string roomNum);
+        public Task</*(List<RoomDTO>?, */string?/*)*/> GetAvailableRooms();
+        public Task</*(List<RoomDTO>?, */string?/*)*/> GetByType(string roomType);
 
         public Task<string?> UpdateStatus (string roomNum, Rstatus newStatus, string modifiedBy);
 

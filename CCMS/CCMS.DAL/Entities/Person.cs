@@ -24,7 +24,7 @@ namespace CCMS.DAL.Entities
         [Required]
         [MinLength(14)]
         [MaxLength(14)]
-        public string SSN { get; private set; }
+        public string Ssn { get; private set; }
 
         [Required]
         public Gender Gender { get; private set; }
@@ -38,7 +38,7 @@ namespace CCMS.DAL.Entities
         public List<PhoneNumber> PhoneNumbers { get; private set; } = new List<PhoneNumber>();
         public List<Address> Addresses { get; private set; } = new List<Address>();
 
-        protected Person() : base() { }
+        //protected Person() : base() { }
         protected Person(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate, string createdBy)
             : base(createdBy)
             => Set(fName, midName, lName, ssn, gender, birthDate);
@@ -50,7 +50,7 @@ namespace CCMS.DAL.Entities
             FName = fName;
             MidName = midName;
             LName = lName;
-            SSN = SSN;
+            Ssn = ssn;
             Gender = gender;
             BirthDate = birthDate;
         }

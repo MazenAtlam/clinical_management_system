@@ -65,7 +65,7 @@ namespace CCMS.DAL.Repository.Implementation
                 var member = await db.familyMembers.FirstOrDefaultAsync(a => a.Id == familyMember.Id);
                 if (member == null)
                     return false;
-                member.Edit(familyMember.Name, familyMember.Gender, familyMember.SSN, familyMember.PhoneNumber, modifiedBy);
+                member.Edit(familyMember.Name, familyMember.Gender, familyMember.Ssn, familyMember.PhoneNumber, modifiedBy);
                 await db.SaveChangesAsync();
                 return true;
             }

@@ -1,26 +1,45 @@
 using CCMS.BLL.ModelVM.FamilyMember;
+using CCMS.BLL.Services.Abstraction;
+using CCMS.DAL.Entities;
 using CCMS.DAL.Repository.Abstraction;
-using CCMS.BLL.Mapping;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace CCMS.BLL.Services.Implementation
 {
-    public class FamilyMemberService
+    public class FamilyMemberService : IFamilyMemberService
     {
         private readonly IFamilyMemberRepo _familyMemberRepo;
-        private readonly FamilyMemberMapper _familyMemberMapper;
 
-        public FamilyMemberService(IFamilyMemberRepo familyMemberRepo, FamilyMemberMapper familyMemberMapper)
+        public FamilyMemberService(IFamilyMemberRepo familyMemberRepo)
         {
             _familyMemberRepo = familyMemberRepo;
-            _familyMemberMapper = familyMemberMapper;
         }
 
-        public async Task<List<FamilyMemberDTO>> GetAllFamilyMembersAsync()
+        public bool Create(CreateFamilyMemberDTO familyMember) => false;
+
+        public bool Update(FamilyMemberDTO familyMember)
         {
-            var members = await _familyMemberRepo.GetAllAsync();
-            return _familyMemberMapper.ToDTOList(members);
+            return false;
+        }
+
+        public bool Delete(int id)
+        {
+            return false;
+        }
+
+        public FamilyMember GetById(int id)
+        {
+            return null;
+        }
+
+        public List<FamilyMember> GetAll()
+        {
+            return new List<FamilyMember>();
+        }
+
+        public List<FamilyMember> GetByPatient(int patientId)
+        {
+            return new List<FamilyMember>();
         }
     }
 }

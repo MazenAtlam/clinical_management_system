@@ -9,42 +9,43 @@ namespace CCMS.BLL.Services.Implementation
     public class EmployeeService : IEmployeeService
     {
         private readonly IEmployeeRepo _employeeRepo;
+        private readonly EmployeeMapper mapper = new EmployeeMapper();
 
         public EmployeeService(IEmployeeRepo employeeRepo)
         {
             _employeeRepo = employeeRepo;
         }
 
-        public async Task<List<EmployeeDTO>> GetAllEmployeesAsync()
+        public async Task<List<EmployeeDTO>> GetAllEmployees()
         {
             var employees = await _employeeRepo.GetAllEmployees();
-            return EmployeeMapper.ToListResponseDto(employees.ToList());
+            return mapper.ToListResponseDto(employees);
         }
 
-        public async Task<EmployeeDTO?> GetEmployeeByIdAsync(int id)
+        public async Task<EmployeeDTO?> GetEmployeeById(int id)
         {
             var employee = await _employeeRepo.GetEmployeeById(id);
-            return employee == null ? null : EmployeeMapper.ToResponseDto(employee);
+            return employee == null ? null : mapper.ToResponseDto(employee);
         }
 
-        public async Task<EmployeeDTO> CreateEmployeeAsync(EmployeeDTO dto)
+        public async Task CreateEmployee(EmployeeDTO dto)
         {
-            var employee = EmployeeMapper.ToEntity(dto);
-            var createdEmployee = await _employeeRepo.CreateEmployee(employee);
-            return EmployeeMapper.ToResponseDto(createdEmployee);
+            var employee = mapper.ToEntity(dto);
+            await _employeeRepo.Add(employee);
+            await _employeeRepo.Save();
         }
 
-        public async Task<bool> UpdateEmployeeAsync(int id, EmployeeDTO dto)
+        public async Task<bool> UpdateEmployee(EmployeeDTO dto)
         {
-            var existingEmployee = await _employeeRepo.GetEmployeeById(id);
-            if (existingEmployee == null) return false;
+            var existingEmployee = await _employeeRepo.GetEmployeeById(dto.UID);
+            //if (existingEmployee == null) return false;
 
 
             existingEmployee.Edit(
        dto.FName,
        dto.MidName,
        dto.LName,
-       dto.SSN,
+       dto.Ssn,
        dto.Gender, 
        dto.BirthDate,
        dto.Salary,
@@ -57,13 +58,20 @@ namespace CCMS.BLL.Services.Implementation
 
 
 
-            await _employeeRepo.UpdateEmployee(existingEmployee);
+            await _employeeRepo.Save();
             return true;
         }
 
-        public async Task<bool> DeleteEmployeeAsync(int id)
+        public async Task DeleteEmployee(int id)
         {
-            return await _employeeRepo.DeleteEmployee(id);
+            var existingEmployee = await _employeeRepo.GetEmployeeById(id);
+            existingEmployee.Delete("Admin");
+            await _employeeRepo.Save();
+        }
+
+        public Task<bool> UpdateEmployee(int id, EmployeeDTO dto)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace CCMS.DAL.Entities
         [MaxLength(200)]
         public string address { get; private set; }
 
-        public Address() : base() { }
+        //public Address() : base() { }
         public Address(int id, string address, string createdBy)
             : base(createdBy)
             => Set(id, address);

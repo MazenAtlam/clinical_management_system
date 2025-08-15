@@ -9,6 +9,8 @@ namespace CCMS.BLL.ModelVM.Scan
         public string ScanTech { get; set; }
         public string? Results { get; set; }
         public DateTime SDate { get; set; }
+        public int LDID { get; set; }
         public int PatientId { get; set; }
+        public string CreatedBy { get; set; }
     }
 }

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CCMS.DAL.Migrations
 {
     [DbContext(typeof(CcmsDbContext))]
-    [Migration("20250807045458_InitDb")]
+    [Migration("20250814132831_InitDb")]
     partial class InitDb
     {
         /// <inheritdoc />
@@ -217,7 +217,7 @@ namespace CCMS.DAL.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("SSN")
+                    b.Property<string>("Ssn")
                         .IsRequired()
                         .HasMaxLength(14)
                         .HasColumnType("nvarchar(14)");
@@ -459,7 +459,7 @@ namespace CCMS.DAL.Migrations
                     b.Property<int>("PType")
                         .HasColumnType("int");
 
-                    b.Property<string>("SSN")
+                    b.Property<string>("Ssn")
                         .IsRequired()
                         .HasMaxLength(14)
                         .HasColumnType("nvarchar(14)");

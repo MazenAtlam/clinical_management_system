@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CCMS.BLL.Services.Abstraction
 {
-    internal interface IWorkingSlotService
+    public interface IWorkingSlotService
     {
     }
 }

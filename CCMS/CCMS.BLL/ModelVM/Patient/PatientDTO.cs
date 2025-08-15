@@ -8,9 +8,9 @@ namespace CCMS.BLL.ModelVM.Patient
         public string FName { get; set; }
         public string? MidName { get; set; }
         public string LName { get; set; }
-        public string SSN { get; set; }
-        public string BloodType { get; set; }
-        public DateOnly BirthDate { get; set; }
+        public string Ssn { get; set; }
         public Gender Gender { get; set; }
+        public DateOnly BirthDate { get; set; }
+        public BloodType BloodType { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using CCMS.BLL.ModelVM.MedicalDevice;
+﻿using CCMS.BLL.Mapping;
+using CCMS.BLL.ModelVM.MedicalDevice;
 using CCMS.BLL.Services.Abstraction;
 using CCMS.DAL.Repository.Abstraction;
 using CCMS.DAL.Repository.Implementation;
@@ -8,6 +9,7 @@ namespace CCMS.BLL.Services.Implementation
     public class BiomedicalEngineerService : IBiomedicalEngineerService
     {
         //private readonly IBiomedicalEngineerRepo biomedicalEngineerRepo = new BiomedicalEngineerRepo();
+        private readonly BiomedicalEngineerMapper mapper = new BiomedicalEngineerMapper();
 
         public async Task<string?> Create(/*EmployeeDTO emp, */string createdBy)
         {

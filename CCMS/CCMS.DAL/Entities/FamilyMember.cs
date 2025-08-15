@@ -16,7 +16,7 @@ namespace CCMS.DAL.Entities
         [Required]
         [MinLength(14)]
         [MaxLength(14)]
-        public string SSN { get; private set; }
+        public string Ssn { get; private set; }
         [Required]
         [MinLength(11)]
         [MaxLength(20)]
@@ -24,22 +24,22 @@ namespace CCMS.DAL.Entities
         // Navigation
         public List<PatientFamily> PatientFamilyMembers { get; private set; } = new List<PatientFamily>();
         
-        public FamilyMember() : base() { }
-        public FamilyMember(string name, Gender gender, string ssn, string number, string createdBy)
+        //public FamilyMember() : base() { }
+        public FamilyMember(string name, Gender gender, string ssn, string phoneNumber, string createdBy)
             : base(createdBy)
-            => Set(name, gender, ssn, number);
+            => Set(name, gender, ssn, phoneNumber);
 
-        private void Set(string name, Gender gender, string ssn, string number)
+        private void Set(string name, Gender gender, string ssn, string phoneNumber)
         {
             Name = name;
             Gender = gender;
-            SSN = ssn;
-            PhoneNumber = number;
+            Ssn = ssn;
+            PhoneNumber = phoneNumber;
         }
 
-        public void Edit(string name, Gender gender, string ssn, string number, string modifiedBy)
+        public void Edit(string name, Gender gender, string ssn, string phoneNumber, string modifiedBy)
         {
-            Set(name, gender, ssn, number);
+            Set(name, gender, ssn, phoneNumber);
             SaveModification(modifiedBy);
         }
     }

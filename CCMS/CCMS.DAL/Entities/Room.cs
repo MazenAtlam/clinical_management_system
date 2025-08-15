@@ -22,23 +22,23 @@ namespace CCMS.DAL.Entities
         //ternary relationship book
         public List<Book> Books { get; private set; } = new List<Book>();
 
-        public Room() : base() { }
-        public Room(string rNumber, int capacity, Rtype rtype, Rstatus rstatus, int? deptID, string createdBy)
+        //public Room() : base() { }
+        public Room(string rNumber, int capacity, Rtype rtype, Rstatus rstatus, int? deptId, string createdBy)
             : base(createdBy)
-            => Set(rNumber, capacity, rtype, rstatus, deptID);
+            => Set(rNumber, capacity, rtype, rstatus, deptId);
 
-        private void Set(string rNumber, int capacity, Rtype rtype, Rstatus rstatus, int? deptID)
+        private void Set(string rNumber, int capacity, Rtype rtype, Rstatus rstatus, int? deptId)
         {
             RNumber = rNumber;
             this.capacity = capacity;
             this.rtype = rtype;
             this.rstatus = rstatus;
-            DeptId = deptID;
+            DeptId = deptId;
         }
 
-        public void Edit(string rNumber, int capacity, Rtype rtype, Rstatus rstatus, int? deptID, string modifiedBy)
+        public void Edit(string rNumber, int capacity, Rtype rtype, Rstatus rstatus, int? deptId, string modifiedBy)
         {
-            Set(rNumber, capacity, rtype, rstatus, deptID);
+            Set(rNumber, capacity, rtype, rstatus, deptId);
             SaveModification(modifiedBy);
         }
         

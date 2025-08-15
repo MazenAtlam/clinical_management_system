@@ -4,10 +4,10 @@ namespace CCMS.BLL.Services.Abstraction
 {
     public interface IEmployeeService
     {
-        Task<List<EmployeeDTO>> GetAllEmployeesAsync();
-        Task<EmployeeDTO?> GetEmployeeByIdAsync(int id);
-        Task<EmployeeDTO> CreateEmployeeAsync(EmployeeDTO dto);
-        Task<bool> UpdateEmployeeAsync(int id, EmployeeDTO dto);
-        Task<bool> DeleteEmployeeAsync(int id);
+        public Task<List<EmployeeDTO>> GetAllEmployees();
+        public Task<EmployeeDTO?> GetEmployeeById(int id);
+        public Task CreateEmployee(EmployeeDTO dto);
+        public Task<bool> UpdateEmployee(int id, EmployeeDTO dto);
+        public Task DeleteEmployee(int id);
     }
 }

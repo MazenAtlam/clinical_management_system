@@ -26,6 +26,7 @@ namespace CCMS.DAL.Repository.Implementation
         public async Task Save(int id) => db.SaveChanges();
 
         // New methods implementation
+        // In BookService
         //public async Task<bool> CreateBookWithFixedPriceAsync(int patientId, int doctorId, string roomNumber, DateTime bookDate, string prescription, string createdBy)
         //{
         //    try
@@ -42,6 +43,7 @@ namespace CCMS.DAL.Repository.Implementation
         //    }
         //}
 
+        // In BookService
         //public async Task<List<Patient>> GetPatientsWithBooksByDoctorAsync(int doctorId)
         //{
         //    return await db.patients
@@ -54,6 +56,7 @@ namespace CCMS.DAL.Repository.Implementation
         //        .ToListAsync();
         //}
 
+        // In BookService
         //public async Task<bool> AddPrescriptionToPatientBookAsync(int bookId, string prescription, string modifiedBy)
         //{
         //    try

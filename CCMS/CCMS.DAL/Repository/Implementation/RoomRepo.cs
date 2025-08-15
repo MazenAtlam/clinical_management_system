@@ -1,83 +1,66 @@
 ﻿using CCMS.DAL.Database;
 using CCMS.DAL.Entities;
 using CCMS.DAL.Repository.Abstraction;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CCMS.DAL.Repository.Implementation
 {
-    public class RoomRepo:IRoomRepo
+    public class RoomRepo : IRoomRepo
     {
         private readonly CcmsDbContext db;
 
-        public RoomRepo(CcmsDbContext db)
+        public RoomRepo(CcmsDbContext db) => this.db = db;
+
+        public async Task Add(Room room) => db.rooms.Add(room);
+
+        // In RoomService
+        //public bool Delete(string rNumber)
+        //{
+        //    try
+        //    {
+        //        var room = db.rooms.Where(a => a.RNumber == rNumber).FirstOrDefault();
+        //        if (room == null)
+        //            return false;
+        //        //add modifiing user
+        //        room.Delete("admin");
+        //        db.SaveChanges();
+        //        return true;
+        //    }
+        //    catch
+        //    {
+        //        return false;
+        //    }
+        //}
+
+        public async Task<List<Room>> GetAll() => db.rooms.Where(a => !a.IsDeleted).ToList();
+
+        public async Task<Room> GetById(string rNumber)
         {
-            this.db = db;
+            Room? room = db.rooms.Where(a => a.RNumber == rNumber && !a.IsDeleted).FirstOrDefault();
+
+            return room == null
+                ? throw new ArgumentException($"There is no room with the number {rNumber}", nameof(rNumber))
+                : room;
         }
 
-        public bool Create(Room room)
-        {
-            try
-            {
-                db.rooms.Add(room);
-                db.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
+        public async Task Save() => db.SaveChanges();
 
-        public bool Delete(string rNumber)
-        {
-            try
-            {
-                var room = db.rooms.Where(a => a.RNumber == rNumber).FirstOrDefault();
-                if (room == null)
-                    return false;
-                //add modifiing user
-                room.Delete("admin");
-                db.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
+        // In RoomService
+        //public bool Update(Room room, string modifiedBy)
+        //{
+        //    try
+        //    {
+        //        var rom = db.rooms.Where(a => a.RNumber == room.RNumber).FirstOrDefault();
+        //        if (rom == null)
+        //            return false;
 
-        public List<Room> GetAll()
-        {
-            var result = db.rooms.Where(a => a.IsDeleted == false).ToList();
-            return result;
-        }
-
-        public Room GetById(string rNumber)
-        {
-            var room = db.rooms.Where(a => a.RNumber == rNumber).FirstOrDefault();
-            return room;
-        }
-
-        public bool Update(Room room, string modifiedBy)
-        {
-            try
-            {
-                var rom = db.rooms.Where(a => a.RNumber == room.RNumber).FirstOrDefault();
-                if (rom == null)
-                    return false;
-                
-                rom.Edit(room.RNumber, room.capacity,room.rtype,room.rstatus, room.DeptId, modifiedBy);
-                db.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
+        //        rom.Edit(room.RNumber, room.capacity,room.rtype,room.rstatus, room.DeptId, modifiedBy);
+        //        db.SaveChanges();
+        //        return true;
+        //    }
+        //    catch
+        //    {
+        //        return false;
+        //    }
+        //}
     }
 }

@@ -10,6 +10,5 @@ namespace CCMS.BLL.ModelVM.Person
         public string Ssn { get; set; }
         public Gender Gender { get; set; }
         public DateOnly BirthDate { get; set; }
-        public PersonType PType { get; set; }
     }
 }

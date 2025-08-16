@@ -15,6 +15,5 @@ namespace CCMS.DAL.Repository.Abstraction
         
         // New methods
         public Task<List<Specialization>> GetAllSpecializations();
-        public Task<List<Doctor>> GetDoctorsBySpecialization(Specialization specialization);
     }
 }

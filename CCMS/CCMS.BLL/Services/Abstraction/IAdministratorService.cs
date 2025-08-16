@@ -3,7 +3,9 @@ using CCMS.BLL.ModelVM.Book;
 using CCMS.BLL.ModelVM.Doctor;
 using CCMS.BLL.ModelVM.Employee;
 using CCMS.BLL.ModelVM.LabDoctor;
+using CCMS.BLL.ModelVM.MedicalHistory;
 using CCMS.BLL.ModelVM.Patient;
+using CCMS.BLL.ModelVM.Scan;
 
 namespace CCMS.BLL.Services.Abstraction
 {
@@ -25,5 +27,10 @@ namespace CCMS.BLL.Services.Abstraction
         public Task<(List<LabDoctorDTO>?, string?)> GetAllLabDoctors();
         public Task<(List<EmployeeDTO>?, string?)> GetAllEmployees();
         public Task<(List<BookDTO>?, string?)> GetAllAppointments();
+        public Task<(List<ScanDTO>?, string?)> GetAllScans();
+        public Task<(List<MedicalHistoryDTO>?, string?)> GetAllMedicalHistories();
+        public Task<string?> DeletePatient(int patientId, string modifiedBy);
+        public Task<string?> DeleteDoctor(int doctorId, string modifiedBy);
+        public Task<string?> DeleteLabDoctor(int labDoctorId, string modifiedBy);
     }
 }

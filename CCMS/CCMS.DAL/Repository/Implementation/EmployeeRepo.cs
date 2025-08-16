@@ -1,5 +1,6 @@
 ﻿using CCMS.DAL.Database;
 using CCMS.DAL.Entities;
+using CCMS.DAL.Enums;
 using CCMS.DAL.Repository.Abstraction;
 
 namespace CCMS.DAL.Repository.Implementation
@@ -12,7 +13,12 @@ namespace CCMS.DAL.Repository.Implementation
 
         public async Task Add(Employee employee) => _context.Employees.Add(employee);
 
-        public async Task<List<Employee>> GetAllEmployees() => _context.Employees.Where(a => !a.IsDeleted).ToList();
+        public async Task<List<Employee>> GetAllEmployees()
+            => _context.Employees.Where(a => !a.IsDeleted).ToList();
+        public async Task<List<Employee>> GetAllAdmins()
+            => _context.Employees.Where(a => !a.IsDeleted && a.EType == EmployeeType.Admin).ToList();
+        public async Task<List<Employee>> GetAllManagers()
+            => _context.Employees.Where(a => !a.IsDeleted && a.EType == EmployeeType.Manager).ToList();
 
         public async Task<Employee> GetEmployeeById(int id)
         {
@@ -22,6 +28,9 @@ namespace CCMS.DAL.Repository.Implementation
                 ? throw new ArgumentException($"There is no Employee with the ID = {id}", "id")
                 : employee;
         }
+
+        public async Task<List<Employee>> GetAllEmployeesCrearedByAdmin(int admId)
+            =>_context.Employees.Where(a => !a.IsDeleted && a.AdmId == admId).ToList();
 
         public async Task Save() => _context.SaveChanges();
     }

@@ -39,9 +39,12 @@ namespace CCMS.DAL.Entities
         public virtual List<Address> Addresses { get; private set; } = new List<Address>();
 
         //protected Person() : base() { }
-        protected Person(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate, string createdBy)
+        protected Person(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate, PersonType pType, string createdBy)
             : base(createdBy)
-            => Set(fName, midName, lName, ssn, gender, birthDate);
+        {
+            Set(fName, midName, lName, ssn, gender, birthDate);
+            PType = pType;
+        }
 
         public string GetFullName() => $"{FName} {MidName} {LName}";
 

@@ -11,8 +11,8 @@ namespace CCMS.DAL.Entities
         public BloodType BloodType { get; private set; }
 
         //public Patient() : base() { }
-        public Patient(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate, BloodType bloodType, string createdBy)
-            : base(fName, midName, lName, ssn, gender, birthDate, createdBy)
+        public Patient(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate, PersonType pType, BloodType bloodType, string createdBy)
+            : base(fName, midName, lName, ssn, gender, birthDate, pType, createdBy)
             => BloodType = bloodType;
 
         public void Edit(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate, BloodType bloodType, string modifiedBy)

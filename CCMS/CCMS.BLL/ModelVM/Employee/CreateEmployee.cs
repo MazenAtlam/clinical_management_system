@@ -3,7 +3,7 @@ using CCMS.DAL.Enums;
 
 namespace CCMS.BLL.ModelVM.Employee
 {
-    public class EmployeeDTO : PersonDTO
+    public class CreateEmployee : CreatePerson
     {
         public decimal Salary { get; set; }
         public EmployeeType EType { get; set; }

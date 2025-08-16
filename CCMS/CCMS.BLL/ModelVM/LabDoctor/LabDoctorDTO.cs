@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CCMS.BLL.ModelVM.Employee;
 
 namespace CCMS.BLL.ModelVM.LabDoctor
 {
-    internal class LabDoctorDTO
+    public class LabDoctorDTO : EmployeeDTO
     {
     }
 }

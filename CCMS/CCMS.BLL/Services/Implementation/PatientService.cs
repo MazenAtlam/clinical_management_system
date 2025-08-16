@@ -32,6 +32,7 @@ namespace CCMS.BLL.Services.Implementation
                     patient.Ssn,
                     patient.Gender,
                     patient.BirthDate,
+                    PersonType.Patient,
                     patient.BloodType,
                     "admin"
                 );

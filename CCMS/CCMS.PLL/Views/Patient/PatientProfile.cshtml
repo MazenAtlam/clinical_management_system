@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewData["Title"] = "Profile";
 }
 @using CCMS.BLL.ModelVM.Patient;
@@ -23,7 +23,7 @@
                 <div class="row gy-4">
                     <div class="col-12">
                         <div class="card widget-card border-light shadow-sm">
-                            <div class="card-header text-bg-primary">Welcome, Ethan Leo</div>
+                            <div class="card-header text-bg-primary">Welcome, @Model.GetFullName()</div>
                             <div class="card-body">
                                 <div class="text-center mb-3">
                                     <!-- PUT PATIENT PICTURE -->
@@ -147,41 +147,33 @@
                                         <label for="selectSpecialty" class="form-label">Select Specialty</label>
                                         <select class="form-select" id="selectSpecialty">
                                             <option value="">Choose...</option>
-                                            <option value="Cardiology">Cardiology</option>
-                                            <option value="Dermatology">Dermatology</option>
-                                            <option value="Neurology">Neurology</option>
+                                            @foreach (var specialty in ViewBag.Specializations as List<string>)
+                                            {
+                                                <option value="@specialty">@specialty</option>
+                                            }
                                         </select>
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <label for="selectDoctor" class="form-label">Select Doctor</label>
-                                        <select class="form-select" id="selectDoctor">
-                                            <option value="">Choose...</option>
-                                            <option value="Dr. Smith">Dr. Smith</option>
-                                            <option value="Dr. Jones">Dr. Jones</option>
-                                            <option value="Dr. Lee">Dr. Lee</option>
+                                        <select class="form-select" id="selectDoctor" disabled>
+                                            <option value="">Choose a specialty first...</option>
                                         </select>
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <label for="selectTime" class="form-label">Select Time</label>
-                                        <select class="form-select" id="selectTime">
-                                            <option value="">Choose...</option>
-                                            <option value="09:00">09:00</option>
-                                            <option value="11:00">11:00</option>
-                                            <option value="14:00">14:00</option>
+                                        <select class="form-select" id="selectTime" disabled>
+                                            <option value="">Choose a doctor first...</option>
                                         </select>
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <label for="selectRoom" class="form-label">Select Room</label>
-                                        <select class="form-select" id="selectRoom">
-                                            <option value="">Choose...</option>
-                                            <option value="101">101</option>
-                                            <option value="202">202</option>
-                                            <option value="303">303</option>
+                                        <select class="form-select" id="selectRoom" disabled>
+                                            <option value="">Choose a time first...</option>
                                         </select>
                                     </div>
-                                    <div class="col-12" id="priceSection" @* style="display:none;" *@>
+                                    <div class="col-12" id="priceSection" style="display:none;">
                                         <p class="fw-bold">Price: $80</p>
-                                        <button type="submit" class="btn btn-primary">Book</button>
+                                        <button type="submit" class="btn btn-primary" id="bookButton">Book</button>
                                     </div>
                                 </form>
                             </div>
@@ -223,47 +215,70 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (var item in ViewBag.FamilyMembers as List<FamilyMember>)
+                                        @foreach (var item in ViewBag.FamilyMembers as List<(FamilyMember FamilyMember, string Relationship)>)
                                         {
                                             <tr>
-                                                <td>@item.Name</td>
-                                                <td>@item.Ssn</td>
-                                                <td>@item.PhoneNumber</td>
-                                                <td>@item.Gender</td>
-                                                <!-- ZABAT EL RELATION SHIPS HENA MESH NAME-->
-                                                <td>@item.Name</td>
+                                                <td>@item.FamilyMember.Name</td>
+                                                <td>@item.FamilyMember.Ssn</td>
+                                                <td>@item.FamilyMember.PhoneNumber</td>
+                                                <td>@item.FamilyMember.Gender</td>
+                                                <td>@item.Relationship</td>
                                             </tr>
                                         }
                                     </tbody>
                                 </table>
-                                <button class="btn btn-primary mb-2">Add a Family Member</button>
+                                <button class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#addFamilyMemberModal">Add a Family Member</button>
                                 <h5 class="mt-4">Medical History</h5>
                                 
                                 <table id="medicalHistoryTable" class="display" style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th>Is Acceptable</th>
+                                            <th>Family History</th>
                                             <th>Disease Name</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr><td>Yes</td><td>Diabetes</td></tr>
-                                        <tr><td>No</td><td>Asthma</td></tr>
+                                        @foreach (var history in ViewBag.MedicalHistory as List<MedicalHistory>)
+                                        {
+                                            <tr>
+                                                <td>@(history.IsAcceptable ? "Yes" : "No")</td>
+                                                <td>@history.DiseaseName</td>
+                                            </tr>
+                                        }
                                     </tbody>
                                 </table>
-                                <button class="btn btn-primary mb-2">Add a Medical Record</button>
+                                <button class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#addMedicalRecordModal">Add a Medical Record</button>
                                 <h5 class="mt-4">Scans</h5>
                                 <table id="scansTable" class="display" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>Scan Type</th>
                                             <th>Scan Tech</th>
+                                            <th>Scan Date</th>
                                             <th>Results</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr><td>X-Ray</td><td>Dr. Smith</td><td><a href="#" class="btn btn-success btn-sm">Download</a></td></tr>
-                                        <tr><td>MRI</td><td>Dr. Jones</td><td>Not done yet</td></tr>
+                                        @foreach (var scan in ViewBag.Scans as List<Scan>)
+                                        {
+                                            <tr>
+                                                <td>@scan.ScanType</td>
+                                                <td>@scan.SDate.ToString("yyyy-MM-dd")</td>
+                                                @if(scan.Results == null)
+                                                {
+                                                    <td>No Results yet</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>
+                                                    <a href="@scan.Results" class="btn btn-success btn-sm">Download</a>
+                                                    </td>
+                                                }
+                                            </tr>
+
+                                     
+
+                                        }
                                     </tbody>
                                 </table>
                             </div>
@@ -297,6 +312,82 @@
 
 </section>
 
+<!-- Add Family Member Modal -->
+<div class="modal fade" id="addFamilyMemberModal" tabindex="-1" aria-labelledby="addFamilyMemberModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addFamilyMemberModalLabel">Add Family Member</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addFamilyMemberForm">
+                    <div class="mb-3">
+                        <label for="familyMemberName" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="familyMemberName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="familyMemberSSN" class="form-label">SSN</label>
+                        <input type="text" class="form-control" id="familyMemberSSN" maxlength="14" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="familyMemberPhone" class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" id="familyMemberPhone" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="familyMemberGender" class="form-label">Gender</label>
+                        <select class="form-select" id="familyMemberGender" required>
+                            <option value="">Choose...</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="familyMemberRelationship" class="form-label">Relationship</label>
+                        <input type="text" class="form-control" id="familyMemberRelationship" placeholder="e.g., Father, Mother, Brother, Sister" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="saveFamilyMember">Add Family Member</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Medical Record Modal -->
+<div class="modal fade" id="addMedicalRecordModal" tabindex="-1" aria-labelledby="addMedicalRecordModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addMedicalRecordModalLabel">Add Medical Record</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addMedicalRecordForm">
+                    <div class="mb-3">
+                        <label for="diseaseName" class="form-label">Disease Name</label>
+                        <input type="text" class="form-control" id="diseaseName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="familyHistory" class="form-label">Family History</label>
+                        <select class="form-select" id="familyHistory" required>
+                            <option value="">Choose...</option>
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="saveMedicalRecord">Add Medical Record</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/responsive/3.0.2/js/dataTables.responsive.js"></script>
 <script>
@@ -318,9 +409,256 @@
                 priceSection.style.display = 'none';
             }
         }
-        document.getElementById('selectSpecialty').addEventListener('change', checkBookFields);
-        document.getElementById('selectDoctor').addEventListener('change', checkBookFields);
-        document.getElementById('selectTime').addEventListener('change', checkBookFields);
+        // Cascading dropdown functionality
+        document.getElementById('selectSpecialty').addEventListener('change', function() {
+            const specialty = this.value;
+            const doctorSelect = document.getElementById('selectDoctor');
+            const timeSelect = document.getElementById('selectTime');
+            const roomSelect = document.getElementById('selectRoom');
+            
+            // Reset dependent dropdowns
+            timeSelect.disabled = true;
+            timeSelect.innerHTML = '<option value="">Choose a doctor first...</option>';
+            roomSelect.disabled = true;
+            roomSelect.innerHTML = '<option value="">Choose a time first...</option>';
+            
+            if (specialty && specialty !== '') {
+                // Enable doctor dropdown and show loading
+                doctorSelect.disabled = false;
+                doctorSelect.innerHTML = '<option value="">Loading doctors...</option>';
+                
+                // Fetch doctors by specialization
+                fetch(`/Patient/GetDoctorsBySpecialization?specialization=${encodeURIComponent(specialty)}`)
+                    .then(response => response.json())
+                    .then(doctors => {
+                        doctorSelect.innerHTML = '<option value="">Choose a doctor...</option>';
+                        doctors.forEach(doctor => {
+                            const option = document.createElement('option');
+                            option.value = doctor.id;
+                            option.textContent = doctor.name;
+                            doctorSelect.appendChild(option);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error fetching doctors:', error);
+                        doctorSelect.innerHTML = '<option value="">Error loading doctors</option>';
+                    });
+            } else {
+                // Disable and reset doctor dropdown
+                doctorSelect.disabled = true;
+                doctorSelect.innerHTML = '<option value="">Choose a specialty first...</option>';
+            }
+            
+            checkBookFields();
+        });
+
+        document.getElementById('selectDoctor').addEventListener('change', function() {
+            const doctorId = this.value;
+            const timeSelect = document.getElementById('selectTime');
+            const roomSelect = document.getElementById('selectRoom');
+            
+            // Reset dependent dropdowns
+            roomSelect.disabled = true;
+            roomSelect.innerHTML = '<option value="">Choose a time first...</option>';
+            
+            if (doctorId && doctorId !== '') {
+                // Enable time dropdown and show loading
+                timeSelect.disabled = false;
+                timeSelect.innerHTML = '<option value="">Loading time slots...</option>';
+                
+                // Fetch doctor working slots
+                fetch(`/Patient/GetDoctorWorkingSlots?doctorId=${doctorId}`)
+                    .then(response => response.json())
+                    .then(timeSlots => {
+                        timeSelect.innerHTML = '<option value="">Choose a time...</option>';
+                        timeSlots.forEach(slot => {
+                            const option = document.createElement('option');
+                            option.value = slot;
+                            option.textContent = slot;
+                            timeSelect.appendChild(option);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error fetching time slots:', error);
+                        timeSelect.innerHTML = '<option value="">Error loading time slots</option>';
+                    });
+            } else {
+                // Disable and reset time dropdown
+                timeSelect.disabled = true;
+                timeSelect.innerHTML = '<option value="">Choose a doctor first...</option>';
+            }
+            
+            checkBookFields();
+        });
+
+        document.getElementById('selectTime').addEventListener('change', function() {
+            const timeSlot = this.value;
+            const roomSelect = document.getElementById('selectRoom');
+            
+            if (timeSlot && timeSlot !== '') {
+                // Enable room dropdown and show loading
+                roomSelect.disabled = false;
+                roomSelect.innerHTML = '<option value="">Loading available rooms...</option>';
+                
+                // Fetch available rooms
+                fetch('/Patient/GetAvailableRooms')
+                    .then(response => response.json())
+                    .then(rooms => {
+                        roomSelect.innerHTML = '<option value="">Choose a room...</option>';
+                        rooms.forEach(room => {
+                            const option = document.createElement('option');
+                            option.value = room.id;
+                            option.textContent = `Room ${room.number}`;
+                            roomSelect.appendChild(option);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error fetching rooms:', error);
+                        roomSelect.innerHTML = '<option value="">Error loading rooms</option>';
+                    });
+            } else {
+                // Disable and reset room dropdown
+                roomSelect.disabled = true;
+                roomSelect.innerHTML = '<option value="">Choose a time first...</option>';
+            }
+            
+            checkBookFields();
+        });
+
         document.getElementById('selectRoom').addEventListener('change', checkBookFields);
+
+        // Book appointment form submission
+        document.getElementById('bookButton').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const specialty = document.getElementById('selectSpecialty').value;
+            const doctorId = document.getElementById('selectDoctor').value;
+            const timeSlot = document.getElementById('selectTime').value;
+            const roomId = document.getElementById('selectRoom').value;
+            const patientId = @Model.UID;
+            const price = 80;
+            
+            if (specialty && doctorId && timeSlot && roomId) {
+                // Disable button and show loading
+                this.disabled = true;
+                this.textContent = 'Booking...';
+                
+                // Create booking
+                fetch('/Patient/CreateBook', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `patientId=${patientId}&doctorId=${doctorId}&timeSlot=${encodeURIComponent(timeSlot)}&roomId=${roomId}&price=${price}`
+                })
+                .then(response => response.json())
+                .then(result => {
+                    if (result.success) {
+                        alert('Appointment booked successfully!');
+                        // Reset form
+                        document.getElementById('bookAppointmentForm').reset();
+                        document.getElementById('selectDoctor').disabled = true;
+                        document.getElementById('selectTime').disabled = true;
+                        document.getElementById('selectRoom').disabled = true;
+                        document.getElementById('priceSection').style.display = 'none';
+                        // Refresh appointments tab
+                        location.reload();
+                    } else {
+                        alert('Failed to book appointment. Please try again.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error booking appointment:', error);
+                    alert('Error booking appointment. Please try again.');
+                })
+                .finally(() => {
+                    this.disabled = false;
+                    this.textContent = 'Book';
+                });
+            }
+        });
+        
+        // Family Member Modal Form Submission
+        document.getElementById('saveFamilyMember').addEventListener('click', function() {
+            const form = document.getElementById('addFamilyMemberForm');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            const formData = {
+                PatientId: @Model.UID,
+                Name: document.getElementById('familyMemberName').value,
+                SSN: document.getElementById('familyMemberSSN').value,
+                PhoneNumber: document.getElementById('familyMemberPhone').value,
+                Gender: document.getElementById('familyMemberGender').value,
+                Relationship: document.getElementById('familyMemberRelationship').value
+            };
+
+            fetch('/Patient/AddFamilyMember', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Close modal and reset form
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('addFamilyMemberModal'));
+                    modal.hide();
+                    form.reset();
+                    // Refresh the page to show new family member
+                    location.reload();
+                } else {
+                    alert('Error adding family member: ' + (data.error || 'Unknown error'));
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error adding family member');
+            });
+        });
+
+        // Medical Record Modal Form Submission
+        document.getElementById('saveMedicalRecord').addEventListener('click', function() {
+            const form = document.getElementById('addMedicalRecordForm');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            const formData = {
+                PatientId: @Model.UID,
+                DiseaseName: document.getElementById('diseaseName').value,
+                FamilyHistory: document.getElementById('familyHistory').value === 'true'
+            };
+
+            fetch('/Patient/AddMedicalRecord', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Close modal and reset form
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('addMedicalRecordModal'));
+                    modal.hide();
+                    form.reset();
+                    // Refresh the page to show new medical record
+                    location.reload();
+                } else {
+                    alert('Error adding medical record: ' + (data.error || 'Unknown error'));
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error adding medical record');
+            });
+        });
     });
 </script>

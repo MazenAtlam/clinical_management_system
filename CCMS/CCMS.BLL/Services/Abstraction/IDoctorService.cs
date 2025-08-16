@@ -1,4 +1,4 @@
-﻿using CCMS.BLL.ModelVM.Doctor;
+using CCMS.BLL.ModelVM.Doctor;
 using CCMS.DAL.Entities;
 using CCMS.DAL.Enums;
 
@@ -18,8 +18,8 @@ namespace CCMS.BLL.Services.Abstraction
         // New methods
         Task<List<Specialization>> GetAllSpecializations();
         Task<List<Doctor>> GetDoctorsBySpecialization(Specialization specialization);
-        //Task<List<WorkingSlot>> GetDoctorWorkingSlots(int doctorId);
-        //Task<List<Room>> GetEmptyRoomsInDoctorDepartment(int doctorId);
+        Task<List<string>> GetDoctorWorkingSlots(int doctorId);
+        Task<List<Room>> GetAvailableRooms();
         //Task<Doctor> GetDoctorInfoById(int id);
         Task<bool> EditDoctorInfoById(int id, DoctorDTO doctor);
         //Task<List<Patient>> GetPatientsWithBooksByDoctor(int doctorId);

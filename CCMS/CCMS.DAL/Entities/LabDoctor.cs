@@ -6,7 +6,7 @@ namespace CCMS.DAL.Entities
     [Table("LabDoctor", Schema = "ccms")]
     public class LabDoctor : Employee
     {
-        public List<Scan> Scans { get; private set; } = new List<Scan>();
+        public virtual List<Scan> Scans { get; private set; } = new List<Scan>();
 
         //public LabDoctor() : base() { }
         public LabDoctor(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate,

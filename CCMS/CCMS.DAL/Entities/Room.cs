@@ -17,10 +17,10 @@ namespace CCMS.DAL.Entities
         // FOREIGN KEY DEP ID
         [ForeignKey("Department")]
         public int? DeptId { get; private set; }
-        public Department? Department { get; private set; }
-        public List<MedicalDevice> MedicalDevices { get; private set; } = new List<MedicalDevice>();
+        public virtual Department? Department { get; private set; }
+        public virtual List<MedicalDevice> MedicalDevices { get; private set; } = new List<MedicalDevice>();
         //ternary relationship book
-        public List<Book> Books { get; private set; } = new List<Book>();
+        public virtual List<Book> Books { get; private set; } = new List<Book>();
 
         //public Room() : base() { }
         public Room(string rNumber, int capacity, Rtype rtype, Rstatus rstatus, int? deptId, string createdBy)

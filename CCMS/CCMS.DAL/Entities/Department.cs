@@ -10,8 +10,8 @@ namespace CCMS.DAL.Entities
         [Required]
         [MaxLength(100)]
         public string DName { get; private set; }
-        public List<Room> Rooms { get; private set; } = new List<Room>();
-        public List<Employee> Employees { get; private set; } = new List<Employee>();
+        public virtual List<Room> Rooms { get; private set; } = new List<Room>();
+        public virtual List<Employee> Employees { get; private set; } = new List<Employee>();
 
         //public Department() : base() { }
         public Department(string dName, string createdBy)

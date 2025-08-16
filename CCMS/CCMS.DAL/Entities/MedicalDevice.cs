@@ -22,8 +22,8 @@ namespace CCMS.DAL.Entities
         public MedicalDeviceStatus MDStatus { get; private set; }
         [ForeignKey("Room")]
         public string? rNumber { get; private set; }
-        public Room? Room { get; private set; }
-        public List<BiomedicalEngineer> BiomedicalEngineers { get; private set; } = new List<BiomedicalEngineer>();
+        public virtual Room? Room { get; private set; }
+        public virtual List<BiomedicalEngineer> BiomedicalEngineers { get; private set; } = new List<BiomedicalEngineer>();
 
         //public MedicalDevice() : base() { }
         public MedicalDevice(string serialNumber, string mDName, string company, long expirationHours, MedicalDeviceStatus mDStatus, string? rNumber, string createdBy)

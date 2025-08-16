@@ -1,7 +1,6 @@
 using CCMS.BLL.Services.Abstraction;
 using CCMS.BLL.Services.Implementation;
 using CCMS.DAL.Database;
-using CCMS.DAL.Entities;
 using CCMS.DAL.Repository.Abstraction;
 using CCMS.DAL.Repository.Implementation;
 using DotNetEnv;
@@ -27,7 +26,11 @@ namespace CCMS.PLL
                 + $";Database={Environment.GetEnvironmentVariable("DATABASE")}";
             
             // Add DbContext
-            builder.Services.AddDbContext<CcmsDbContext>(options => options.UseSqlServer(connectionString));
+            builder.Services.AddDbContext<CcmsDbContext>(options
+                => options
+                .UseLazyLoadingProxies() // Use Lazy Loading
+                .UseSqlServer(connectionString)
+                );
             
             // Add Scoped for Repos
             builder.Services.AddScoped<IAddressRepo, AddressRepo>();

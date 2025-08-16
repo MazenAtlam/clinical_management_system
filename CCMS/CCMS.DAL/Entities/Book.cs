@@ -17,17 +17,17 @@ namespace CCMS.DAL.Entities
         public DateTime BookDate { get; private set; }
         // Navigation
         [DeleteBehavior(DeleteBehavior.Restrict)]
-        public Patient Patient { get; private set; }
+        public virtual Patient Patient { get; private set; }
         [Required]
         [ForeignKey("Patient")]
         public int PatientId { get; private set; }
         [DeleteBehavior(DeleteBehavior.Restrict)]
-        public Doctor Doctor { get; private set; }
+        public virtual Doctor Doctor { get; private set; }
         [Required]
         [ForeignKey("Doctor")]
         public int DoctorId { get; private set; }
         [DeleteBehavior(DeleteBehavior.Restrict)]
-        public Room Room { get; private set; }
+        public virtual Room Room { get; private set; }
         [Required]
         [MaxLength(6)]
         [MinLength(6)]

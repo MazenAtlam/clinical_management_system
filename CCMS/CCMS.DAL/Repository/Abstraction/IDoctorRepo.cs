@@ -5,7 +5,7 @@ namespace CCMS.DAL.Repository.Abstraction
 {
     public interface IDoctorRepo
     {
-        public Task Create(Doctor doctor);
+        public Task Add(Doctor doctor);
         public Task<Doctor> GetById(int id);
         public Task<List<Doctor>> GetAll();
         public Task<List<Doctor>> GetAllByMajor(Specialization major);

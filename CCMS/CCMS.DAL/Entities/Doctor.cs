@@ -12,10 +12,10 @@ namespace CCMS.DAL.Entities
         public virtual List<Book> Books { get; private set; }
 
         //public Doctor() : base() { }
-        public Doctor(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate,
-            decimal salary, int yearsOfExperience, DateTime hiringDate, int? mgrId, int? admId, int? deptId,
+        public Doctor(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate, PersonType pType,
+            decimal salary, EmployeeType eType, int yearsOfExperience, DateTime hiringDate, int? mgrId, int? admId, int? deptId,
             Specialization major, Rating rating, string createdBy)
-            : base(fName, midName, lName, ssn, gender, birthDate, salary, yearsOfExperience, hiringDate, mgrId, admId, deptId, createdBy)
+            : base(fName, midName, lName, ssn, gender, birthDate, pType, salary, eType, yearsOfExperience, hiringDate, mgrId, admId, deptId, createdBy)
             => Set(major, rating);
 
         private void Set(Specialization major, Rating rating)

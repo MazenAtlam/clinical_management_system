@@ -2,9 +2,8 @@
 
 namespace CCMS.BLL.ModelVM.Person
 {
-    public class PersonDTO
+    public class CreatePerson
     {
-        public int UID { get; set; }
         public string FName { get; set; }
         public string? MidName { get; set; }
         public string LName { get; set; }
@@ -12,6 +11,5 @@ namespace CCMS.BLL.ModelVM.Person
         public Gender Gender { get; set; }
         public DateOnly BirthDate { get; set; }
         public PersonType PType { get; set; }
-        public string CreatedBy { get; set; }
     }
 }

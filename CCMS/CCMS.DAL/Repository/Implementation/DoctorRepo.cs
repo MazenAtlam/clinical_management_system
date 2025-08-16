@@ -11,7 +11,7 @@ namespace CCMS.DAL.Repository.Implementation
         
         public DoctorRepo(CcmsDbContext db) => this.db = db;
 
-        public async Task Create(Doctor doctor) => db.doctors.Add(doctor);
+        public async Task Add(Doctor doctor) => db.doctors.Add(doctor);
 
         // In DoctorService
         //public bool Delete(int id)

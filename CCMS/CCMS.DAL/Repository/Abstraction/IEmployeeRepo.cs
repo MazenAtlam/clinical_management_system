@@ -7,7 +7,10 @@ namespace CCMS.DAL.Repository.Abstraction
     {
         public Task Add(Employee employee);
         public Task<List<Employee>> GetAllEmployees();
+        public Task<List<Employee>> GetAllAdmins();
+        public Task<List<Employee>> GetAllManagers();
         public Task<Employee> GetEmployeeById(int id);
+        public Task<List<Employee>> GetAllEmployeesCrearedByAdmin(int admId);
         public Task Save();
     }
 }

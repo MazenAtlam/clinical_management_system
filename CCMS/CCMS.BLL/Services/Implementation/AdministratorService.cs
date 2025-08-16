@@ -1,5 +1,13 @@
-﻿using CCMS.BLL.Services.Abstraction;
+﻿using CCMS.BLL.Mapping;
+using CCMS.BLL.ModelVM.BiomedicalEngineer;
+using CCMS.BLL.ModelVM.Book;
+using CCMS.BLL.ModelVM.Doctor;
+using CCMS.BLL.ModelVM.Employee;
+using CCMS.BLL.ModelVM.LabDoctor;
+using CCMS.BLL.ModelVM.Patient;
+using CCMS.BLL.Services.Abstraction;
 using CCMS.DAL.Entities;
+using CCMS.DAL.Enums;
 using CCMS.DAL.Repository.Abstraction;
 
 namespace CCMS.BLL.Services.Implementation
@@ -10,17 +18,25 @@ namespace CCMS.BLL.Services.Implementation
         private readonly IDoctorRepo _doctorRepo;
         private readonly ILabDoctorRepo _labDoctorRepo;
         private readonly IEmployeeRepo _employeeRepo;
+        private readonly IBiomedicalEngineerRepo _biomedicalEngineerRepo;
         private readonly IBookRepo _bookRepo;
         private readonly IScanRepo _scanRepo;
         private readonly IMedicalHistoryRepo _medicalHistoryRepo;
         //private readonly UserManager<ApplicationUser> _userManager;
         //private readonly RoleManager<IdentityRole> _roleManager;
 
+        private readonly EmployeeMapper employeeMapper = new EmployeeMapper();
+        private readonly PatientMapper patientMapper = new PatientMapper();
+        private readonly DoctorMapper doctorMapper = new DoctorMapper();
+        private readonly LabDoctorMapper labDoctorMapper = new LabDoctorMapper();
+        private readonly BookMapper bookMapper = new BookMapper();
+
         public AdministratorService(
             IPatientRepo patientRepo,
             IDoctorRepo doctorRepo,
             ILabDoctorRepo labDoctorRepo,
             IEmployeeRepo employeeRepo,
+            IBiomedicalEngineerRepo biomedicalEngineerRepo,
             IBookRepo bookRepo,
             IScanRepo scanRepo,
             IMedicalHistoryRepo medicalHistoryRepo/*,
@@ -31,6 +47,7 @@ namespace CCMS.BLL.Services.Implementation
             _doctorRepo = doctorRepo;
             _labDoctorRepo = labDoctorRepo;
             _employeeRepo = employeeRepo;
+            _biomedicalEngineerRepo = biomedicalEngineerRepo;
             _bookRepo = bookRepo;
             _scanRepo = scanRepo;
             _medicalHistoryRepo = medicalHistoryRepo;
@@ -40,51 +57,266 @@ namespace CCMS.BLL.Services.Implementation
 
         // The IAdministratorService interface in this project uses async Task<string?> signatures.
         // Provide minimal wrappers to satisfy interface while internally using repositories.
-        public async Task<string?> Create(CCMS.BLL.ModelVM.Employee.EmployeeDTO emp, string createdBy)
+        public async Task<string?> CreateAdmin(CreateEmployee adm, string createdBy) // Admin
         {
-            return await Task.FromResult<string?>("NotImplemented");
+            try
+            {
+                Employee admin = new Employee(adm.FName, adm.MidName, adm.LName, adm.Ssn,
+                            adm.Gender, adm.BirthDate, adm.PType, adm.Salary, EmployeeType.Admin,
+                            adm.YearsOfExperience, adm.HiringDate, adm.MgrId,
+                            adm.AdmId, adm.DeptId, createdBy
+                            );
+
+                await _employeeRepo.Add(admin);
+                await _employeeRepo.Save();
+
+                return null;
+            }
+            catch (Exception ex) { return ex.Message; }
         }
 
-        public async Task<(List<CCMS.BLL.ModelVM.Employee.EmployeeDTO>?, string?)> GetAllAdmins()
+        public async Task<string?> CreateEmployee(CreateEmployee mgr, string createdBy) // Manager
         {
-            return await Task.FromResult<(List<CCMS.BLL.ModelVM.Employee.EmployeeDTO>?, string?)>((null, "NotImplemented"));
+            try
+            {
+                Employee manager = new Employee(mgr.FName, mgr.MidName, mgr.LName, mgr.Ssn,
+                            mgr.Gender, mgr.BirthDate, PersonType.Employee, mgr.Salary,
+                            EmployeeType.Manager, mgr.YearsOfExperience, mgr.HiringDate,
+                            mgr.MgrId, mgr.AdmId, mgr.DeptId, createdBy
+                            );
+
+                await _employeeRepo.Add(manager);
+                await _employeeRepo.Save();
+
+                return null;
+            }
+            catch (Exception ex) { return ex.Message; }
         }
 
-        public async Task<(CCMS.BLL.ModelVM.Employee.EmployeeDTO?, string?)> GetAdminByID(int id)
+        public async Task<string?> CreateEmployee(CreateDoctor doc, string createdBy) // Doctor
         {
-            return await Task.FromResult<(CCMS.BLL.ModelVM.Employee.EmployeeDTO?, string?)>((null, "NotImplemented"));
+            try
+            {
+                Doctor doctor = new Doctor(doc.FName, doc.MidName, doc.LName, doc.Ssn,
+                            doc.Gender, doc.BirthDate, PersonType.Employee, doc.Salary,
+                            EmployeeType.Doctor, doc.YearsOfExperience, doc.HiringDate,
+                            doc.MgrId, doc.AdmId, doc.DeptId, doc.major, doc.rating, createdBy
+                            );
+
+                await _doctorRepo.Add(doctor);
+                await _doctorRepo.Save();
+
+                return null;
+            }
+            catch (Exception ex) { return ex.Message; }
         }
 
-        public async Task<(List<CCMS.BLL.ModelVM.Employee.EmployeeDTO>?, string?)> GetAllEmployeesCrearedBy(int id)
+        public async Task<string?> CreateEmployee(CreateLabDoctor lDoc, string createdBy) // LabDoctor
         {
-            return await Task.FromResult<(List<CCMS.BLL.ModelVM.Employee.EmployeeDTO>?, string?)>((null, "NotImplemented"));
+            try
+            {
+                LabDoctor labDoctor = new LabDoctor(lDoc.FName, lDoc.MidName, lDoc.LName, lDoc.Ssn,
+                            lDoc.Gender, lDoc.BirthDate, PersonType.Employee, lDoc.Salary,
+                            EmployeeType.LabDoctor, lDoc.YearsOfExperience, lDoc.HiringDate,
+                            lDoc.MgrId, lDoc.AdmId, lDoc.DeptId, createdBy
+                            );
+
+                await _labDoctorRepo.Add(labDoctor);
+                await _labDoctorRepo.Save();
+
+                return null;
+            }
+            catch (Exception ex) { return ex.Message; }
         }
 
-        public async Task<string?> Update(CCMS.BLL.ModelVM.Employee.EmployeeDTO emp, string modifiedBy)
+        public async Task<string?> CreateEmployee(CreateBiomedicalEngineer bioEng, string createdBy) // BiomedicalEngineer
         {
-            return await Task.FromResult<string?>("NotImplemented");
+            try
+            {
+                BiomedicalEngineer biomedicalEngineer = new BiomedicalEngineer(bioEng.FName, bioEng.MidName,
+                    bioEng.LName, bioEng.Ssn, bioEng.Gender, bioEng.BirthDate,
+                    PersonType.Employee, bioEng.Salary, EmployeeType.BiomedicalEngineer,
+                    bioEng.YearsOfExperience, bioEng.HiringDate, bioEng.MgrId,
+                    bioEng.AdmId, bioEng.DeptId, createdBy
+                    );
+
+                await _biomedicalEngineerRepo.Add(biomedicalEngineer);
+                await _biomedicalEngineerRepo.Save();
+
+                return null;
+            }
+            catch (Exception ex) { return ex.Message; }
+        }
+
+        public async Task<(List<EmployeeDTO>?, string?)> GetAllAdmins()
+        {
+            try
+            {
+                List<Employee> admins = await _employeeRepo.GetAllAdmins();
+
+                if (admins.Count == 0)
+                    return (null, "No data found.");
+
+                List<EmployeeDTO> adms = employeeMapper.ToListResponseDto(admins);
+
+                return (adms, null);
+            }
+            catch (Exception ex) { return (null, ex.Message); }
+        }
+
+        public async Task<(List<EmployeeDTO>?, string?)> GetAllManagers()
+        {
+            try
+            {
+                List<Employee> managers = await _employeeRepo.GetAllManagers();
+
+                if (managers.Count == 0)
+                    return (null, "No data found.");
+
+                List<EmployeeDTO> mgrs = employeeMapper.ToListResponseDto(managers);
+
+                return (mgrs, null);
+            }
+            catch (Exception ex) { return (null, ex.Message); }
+        }
+
+        public async Task<(EmployeeDTO?, string?)> GetAdminByID(int id)
+        {
+            try
+            {
+                Employee employee = await _employeeRepo.GetEmployeeById(id);
+
+                EmployeeDTO emp = employeeMapper.ToResponseDto(employee);
+
+                return (emp, null);
+            }
+            catch (Exception ex) { return (null, ex.Message); }
+        }
+
+        public async Task<(List<EmployeeDTO>?, string?)> GetAllEmployeesCrearedBy(int id)
+        {
+            try
+            {
+                List<Employee> employees = await _employeeRepo.GetAllEmployeesCrearedByAdmin(id);
+
+                if (employees.Count == 0)
+                    return (null, "No data found");
+
+                List<EmployeeDTO> emps = employeeMapper.ToListResponseDto(employees);
+
+                return (emps, null);
+            }
+            catch (Exception ex) { return (null, ex.Message); }
+        }
+
+        public async Task<string?> Update(EmployeeDTO emp, string modifiedBy)
+        {
+            try
+            {
+                Employee employee = await _employeeRepo.GetEmployeeById(emp.UID);
+
+                employee.Edit(emp.FName, emp.MidName, emp.LName, emp.Ssn, emp.Gender, emp.BirthDate,
+                    emp.Salary, emp.YearsOfExperience, emp.HiringDate, emp.MgrId, emp.DeptId, modifiedBy);
+                await _employeeRepo.Save();
+
+                return null;
+            }
+            catch (Exception ex) { return (ex.Message); }
         }
 
         public async Task<string?> Delete(int id, string modifiedBy)
         {
-            return await Task.FromResult<string?>("NotImplemented");
+            try
+            {
+                Employee employee = await _employeeRepo.GetEmployeeById(id);
+
+                employee.Delete(modifiedBy);
+                await _employeeRepo.Save();
+
+                return null;
+            }
+            catch (Exception ex) { return (ex.Message); }
         }
 
-        public List<Patient> GetAllPatients() => new List<Patient>();
-
-        public async Task<List<Doctor>> GetAllDoctors()
+        public async Task<(List<PatientDTO>?, string?)> GetAllPatients()
         {
-            return await _doctorRepo.GetAll();
+            try
+            {
+                List<Patient> patients = await _patientRepo.GetAll();
+
+                if (patients.Count == 0)
+                    return (null, "No data found");
+
+                List<PatientDTO> patientDTOs = patientMapper.ToDTOList(patients);
+
+                return (patientDTOs, null);
+            }
+            catch (Exception ex) { return (null, ex.Message); }
         }
 
-        public async Task<List<LabDoctor>> GetAllLabDoctors()
+        public async Task<(List<DoctorDTO>?, string?)> GetAllDoctors()
         {
-            return await _labDoctorRepo.GetAll();
+            try
+            {
+                List<Doctor> doctors = await _doctorRepo.GetAll();
+
+                if (doctors.Count == 0)
+                    return (null, "No data found");
+
+                List<DoctorDTO> docs = doctorMapper.ToListResponseDto(doctors);
+
+                return (docs, null);
+            }
+            catch (Exception ex) { return (null, ex.Message); }
         }
 
-        public List<Employee> GetAllEmployees() => new List<Employee>();
+        public async Task<(List<LabDoctorDTO>?, string?)> GetAllLabDoctors()
+        {
+            try
+            {
+                List<LabDoctor> labDoctors = await _labDoctorRepo.GetAll();
 
-        public List<Book> GetAllAppointments() => new List<Book>();
+                if (labDoctors.Count == 0)
+                    return (null, "No data found");
+
+                List<LabDoctorDTO> labDocs = labDoctorMapper.ToListResponseDto(labDoctors);
+
+                return (labDocs, null);
+            }
+            catch (Exception ex) { return (null, ex.Message); }
+        }
+
+        public async Task<(List<EmployeeDTO>?, string?)> GetAllEmployees()
+        {
+            try
+            {
+                List<Employee> employees = await _employeeRepo.GetAllEmployees();
+
+                if (employees.Count == 0)
+                    return (null, "No data found");
+
+                List<EmployeeDTO> emps = employeeMapper.ToListResponseDto(employees);
+
+                return (emps, null);
+            }
+            catch (Exception ex) { return (null, ex.Message); }
+        }
+
+        public async Task<(List<BookDTO>?, string?)> GetAllAppointments()
+        {
+            try
+            {
+                List<Book> books = await _bookRepo.GetAll();
+
+                if (books.Count == 0)
+                    return (null, "No data found");
+
+                List<BookDTO> bookDTOs = bookMapper.ToDTOList(books);
+
+                return (bookDTOs, null);
+            }
+            catch (Exception ex) { return (null, ex.Message); }
+        }
 
         public List<Scan> GetAllScans() => new List<Scan>();
 

@@ -51,8 +51,8 @@ namespace CCMS.BLL.Services.Implementation
        dto.Salary,
        dto.YearsOfExperience,
        dto.HiringDate,
-       dto.MgrID,
-       dto.DeptID,
+       dto.MgrId,
+       dto.DeptId,
        "System"
    );
 

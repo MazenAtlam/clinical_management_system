@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CCMS.DAL.Enums;
 
 namespace CCMS.BLL.ModelVM.WorkingSlot
 {
-    internal class CreateWorkingSlot
+    public class CreateWorkingSlot
     {
+        public WorkingSlotStatus status { get; set; }
+        public DayOfWeek day { get; set; }  // Enum: Sunday to Saturday
+        public TimeSpan startTime { get; set; }  // Only time (e.g., 09:00)
+        public TimeSpan endTime { get; set; }    // Only time (e.g., 17:00)
     }
 }

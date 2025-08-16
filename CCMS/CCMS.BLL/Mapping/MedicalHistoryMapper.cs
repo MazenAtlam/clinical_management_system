@@ -1,7 +1,6 @@
 using Riok.Mapperly.Abstractions;
 using CCMS.DAL.Entities;
 using CCMS.BLL.ModelVM.MedicalHistory;
-using System.Collections.Generic;
 
 namespace CCMS.BLL.Mapping
 {

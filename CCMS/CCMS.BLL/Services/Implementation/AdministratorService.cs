@@ -4,7 +4,9 @@ using CCMS.BLL.ModelVM.Book;
 using CCMS.BLL.ModelVM.Doctor;
 using CCMS.BLL.ModelVM.Employee;
 using CCMS.BLL.ModelVM.LabDoctor;
+using CCMS.BLL.ModelVM.MedicalHistory;
 using CCMS.BLL.ModelVM.Patient;
+using CCMS.BLL.ModelVM.Scan;
 using CCMS.BLL.Services.Abstraction;
 using CCMS.DAL.Entities;
 using CCMS.DAL.Enums;
@@ -22,14 +24,14 @@ namespace CCMS.BLL.Services.Implementation
         private readonly IBookRepo _bookRepo;
         private readonly IScanRepo _scanRepo;
         private readonly IMedicalHistoryRepo _medicalHistoryRepo;
-        //private readonly UserManager<ApplicationUser> _userManager;
-        //private readonly RoleManager<IdentityRole> _roleManager;
 
         private readonly EmployeeMapper employeeMapper = new EmployeeMapper();
         private readonly PatientMapper patientMapper = new PatientMapper();
         private readonly DoctorMapper doctorMapper = new DoctorMapper();
         private readonly LabDoctorMapper labDoctorMapper = new LabDoctorMapper();
         private readonly BookMapper bookMapper = new BookMapper();
+        private readonly ScanMapper scanMapper = new ScanMapper();
+        private readonly MedicalHistoryMapper medicalHistoryMapper = new MedicalHistoryMapper();
 
         public AdministratorService(
             IPatientRepo patientRepo,
@@ -39,9 +41,7 @@ namespace CCMS.BLL.Services.Implementation
             IBiomedicalEngineerRepo biomedicalEngineerRepo,
             IBookRepo bookRepo,
             IScanRepo scanRepo,
-            IMedicalHistoryRepo medicalHistoryRepo/*,
-            UserManager<ApplicationUser> userManager,
-            RoleManager<IdentityRole> roleManager*/)
+            IMedicalHistoryRepo medicalHistoryRepo)
         {
             _patientRepo = patientRepo;
             _doctorRepo = doctorRepo;
@@ -51,8 +51,6 @@ namespace CCMS.BLL.Services.Implementation
             _bookRepo = bookRepo;
             _scanRepo = scanRepo;
             _medicalHistoryRepo = medicalHistoryRepo;
-            //_userManager = userManager;
-            //_roleManager = roleManager;
         }
 
         // The IAdministratorService interface in this project uses async Task<string?> signatures.
@@ -62,7 +60,7 @@ namespace CCMS.BLL.Services.Implementation
             try
             {
                 Employee admin = new Employee(adm.FName, adm.MidName, adm.LName, adm.Ssn,
-                            adm.Gender, adm.BirthDate, adm.PType, adm.Salary, EmployeeType.Admin,
+                            adm.Gender, adm.BirthDate, PersonType.Employee, adm.Salary, EmployeeType.Admin,
                             adm.YearsOfExperience, adm.HiringDate, adm.MgrId,
                             adm.AdmId, adm.DeptId, createdBy
                             );
@@ -318,141 +316,78 @@ namespace CCMS.BLL.Services.Implementation
             catch (Exception ex) { return (null, ex.Message); }
         }
 
-        public List<Scan> GetAllScans() => new List<Scan>();
-
-        public List<MedicalHistory> GetAllMedicalHistories() => new List<MedicalHistory>();
-
-        public bool DeletePatient(int patientId)
+        public async Task<(List<ScanDTO>?, string?)> GetAllScans()
         {
             try
             {
-                return false;
+                List<Scan> scans = await _scanRepo.GetAll();
+
+                if (scans.Count == 0)
+                    return (null, "No data found");
+
+                List<ScanDTO> scanDTOs = scanMapper.ToDTOList(scans);
+
+                return (scanDTOs, null);
             }
-            catch
-            {
-                return false;
-            }
+            catch (Exception ex) { return (null, ex.Message); }
         }
 
-        public bool DeleteDoctor(int doctorId)
+        public async Task<(List<MedicalHistoryDTO>?, string?)> GetAllMedicalHistories()
         {
             try
             {
-                return false;
+                List<MedicalHistory> medicalHistories = await _medicalHistoryRepo.GetAll();
+
+                if (medicalHistories.Count == 0)
+                    return (null, "No data found");
+
+                List<MedicalHistoryDTO> mhDTOs = medicalHistoryMapper.ToDTOList(medicalHistories);
+
+                return (mhDTOs, null);
             }
-            catch
-            {
-                return false;
-            }
+            catch (Exception ex) { return (null, ex.Message); }
         }
 
-        public bool DeleteLabDoctor(int labDoctorId)
+        public async Task<string?> DeletePatient(int patientId, string modifiedBy)
         {
             try
             {
-                return false;
+                Patient patient = await _patientRepo.GetById(patientId);
+
+                patient.Delete(modifiedBy);
+                await _patientRepo.Save();
+
+                return null;
             }
-            catch
-            {
-                return false;
-            }
+            catch (Exception ex) { return ex.Message; }
         }
 
-        public async Task<bool> CreateRole(string roleName)
+        public async Task<string?> DeleteDoctor(int doctorId, string modifiedBy)
         {
             try
             {
-                //if (await _roleManager.RoleExistsAsync(roleName))
-                //    return false;
+                Doctor doctor = await _doctorRepo.GetById(doctorId);
 
-                //var result = await _roleManager.CreateAsync(new IdentityRole(roleName));
-                //return result.Succeeded;
-                return true;
+                doctor.Delete(modifiedBy);
+                await _doctorRepo.Save();
+
+                return null;
             }
-            catch
-            {
-                return false;
-            }
+            catch (Exception ex) { return ex.Message; }
         }
 
-        public async Task<bool> DeleteRole(string roleName)
+        public async Task<string?> DeleteLabDoctor(int labDoctorId, string modifiedBy)
         {
             try
             {
-                //var role = await _roleManager.FindByNameAsync(roleName);
-                //if (role == null) return false;
+                LabDoctor labDoctor = await _labDoctorRepo.GetById(labDoctorId);
 
-                //var result = await _roleManager.DeleteAsync(role);
-                //return result.Succeeded;
-                return true;
+                labDoctor.Delete(modifiedBy);
+                await _labDoctorRepo.Save();
+
+                return null;
             }
-            catch
-            {
-                return false;
-            }
+            catch (Exception ex) { return ex.Message; }
         }
-
-        public async Task<bool> AssignRoleToUser(string userId, string roleName)
-        {
-            try
-            {
-                //var user = await _userManager.FindByIdAsync(userId);
-                //if (user == null) return false;
-
-                //var result = await _userManager.AddToRoleAsync(user, roleName);
-                //return result.Succeeded;
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public async Task<bool> RemoveRoleFromUser(string userId, string roleName)
-        {
-            try
-            {
-                //var user = await _userManager.FindByIdAsync(userId);
-                //if (user == null) return false;
-
-                //var result = await _userManager.RemoveFromRoleAsync(user, roleName);
-                //return result.Succeeded;
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public async Task<List<string>> GetUserRoles(string userId)
-        {
-            try
-            {
-                //var user = await _userManager.FindByIdAsync(userId);
-                //if (user == null) return new List<string>();
-
-                //var roles = await _userManager.GetRolesAsync(user);
-                //return roles.ToList();
-                return new List<string>();
-            }
-            catch
-            {
-                return new List<string>();
-            }
-        }
-
-        //public async Task<List<ApplicationUser>> GetAllUsers()
-        //{
-        //    try
-        //    {
-        //        return _userManager.Users.ToList();
-        //    }
-        //    catch
-        //    {
-        //        return new List<ApplicationUser>();
-        //    }
-        //}
     }
 }

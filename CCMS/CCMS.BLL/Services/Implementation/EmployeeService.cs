@@ -1,15 +1,19 @@
-﻿using CCMS.BLL.ModelVM.Employee;
+﻿using CCMS.BLL.Mapping;
+using CCMS.BLL.ModelVM.Employee;
+using CCMS.BLL.ModelVM.WorkingSlot;
 using CCMS.BLL.Services.Abstraction;
-using CCMS.DAL.Repository.Abstraction;
-using CCMS.BLL.Mapping;
 using CCMS.DAL.Entities;
+using CCMS.DAL.Repository.Abstraction;
+using CCMS.DAL.Repository.Implementation;
 
 namespace CCMS.BLL.Services.Implementation
 {
     public class EmployeeService : IEmployeeService
     {
         private readonly IEmployeeRepo _employeeRepo;
+
         private readonly EmployeeMapper mapper = new EmployeeMapper();
+        private readonly WorkingSlotMapper workingSlotMapper = new WorkingSlotMapper();
 
         public EmployeeService(IEmployeeRepo employeeRepo)
         {
@@ -46,7 +50,7 @@ namespace CCMS.BLL.Services.Implementation
        dto.MidName,
        dto.LName,
        dto.Ssn,
-       dto.Gender, 
+       dto.Gender,
        dto.BirthDate,
        dto.Salary,
        dto.YearsOfExperience,
@@ -72,6 +76,24 @@ namespace CCMS.BLL.Services.Implementation
         public Task<bool> UpdateEmployee(int id, EmployeeDTO dto)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<(List<WorkingSlotDTO>?, string?)> GetEmployeeWorkingSlots(int id)
+        {
+            try
+            {
+                Employee employee = await _employeeRepo.GetEmployeeById(id);
+
+                List<WorkingSlot> workingSlots = employee.WorkingSlots;
+
+                if (workingSlots.Count == 0)
+                    return (null, "No data found");
+
+                List<WorkingSlotDTO> wSlots = workingSlotMapper.ToListResponseDto(workingSlots);
+
+                return (wSlots, null);
+            }
+            catch (Exception ex) { return (null, ex.Message); }
         }
     }
 }

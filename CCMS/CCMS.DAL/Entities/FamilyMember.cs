@@ -22,7 +22,7 @@ namespace CCMS.DAL.Entities
         [MaxLength(20)]
         public string PhoneNumber { get; private set; }
         // Navigation
-        public List<PatientFamily> PatientFamilyMembers { get; private set; } = new List<PatientFamily>();
+        public virtual List<PatientFamily> PatientFamilyMembers { get; private set; } = new List<PatientFamily>();
         
         //public FamilyMember() : base() { }
         public FamilyMember(string name, Gender gender, string ssn, string phoneNumber, string createdBy)

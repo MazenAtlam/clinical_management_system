@@ -23,20 +23,20 @@ namespace CCMS.DAL.Entities
         public DateTime HiringDate { get; private set; }
 
    
+        [ForeignKey("Manager")]
         public int? MgrId { get; private set; }
-        [ForeignKey("MgrId")]
-        public Employee Manager { get; private set; }
+        public virtual Employee Manager { get; private set; }
 
 
+        [ForeignKey("Admin")]
         public int? AdmId { get; private set; }
-        [ForeignKey("AdmId")]
-        public Employee Admin { get; private set; }
+        public virtual Employee Admin { get; private set; }
 
     
+        [ForeignKey("Department")]
         public int? DeptId { get; private set; }
-        [ForeignKey("DeptId")]
-        public Department? Department { get; private set; }
-        public List<WorkingSlot> WorkingSlots { get; private set; } = new List<WorkingSlot>();
+        public virtual Department? Department { get; private set; }
+        public virtual List<WorkingSlot> WorkingSlots { get; private set; } = new List<WorkingSlot>();
 
         //public Employee() : base() { }
         public Employee(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate,

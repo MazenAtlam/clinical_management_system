@@ -10,11 +10,11 @@ namespace CCMS.DAL.Entities
         [Required]
         [MaxLength(100)]
         public string Relationship { get; private set; }
-        public Patient Patient { get; private set; }
+        public virtual Patient Patient { get; private set; }
         [Required]
         [ForeignKey("Patient")]
         public int PatientId { get; private set; }
-        public FamilyMember FamilyMember { get; private set; }
+        public virtual FamilyMember FamilyMember { get; private set; }
         [Required]
         [ForeignKey("FamilyMember")]
         public int FamilyMemberId { get; private set; }

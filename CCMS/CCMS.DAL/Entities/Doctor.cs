@@ -9,7 +9,7 @@ namespace CCMS.DAL.Entities
         public Specialization major { get; private set; }
         public Rating rating { get; private set; }
         // Navigation
-        public List<Book> Books { get; private set; }
+        public virtual List<Book> Books { get; private set; }
 
         //public Doctor() : base() { }
         public Doctor(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate,

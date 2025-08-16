@@ -13,7 +13,7 @@ namespace CCMS.DAL.Entities
         [MaxLength(100)]
         public string DiseaseName { get; private set; }
         // Navigation
-        public Patient Patient { get; set; }
+        public virtual Patient Patient { get; set; }
         [Required]
         [ForeignKey("Patient")]
         public int PatientId { get; set; }

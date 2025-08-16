@@ -16,7 +16,7 @@ namespace CCMS.DAL.Entities
         public TimeSpan startTime { get; private set; }  // Only time (e.g., 09:00)
         [Required]
         public TimeSpan endTime { get; private set; }    // Only time (e.g., 17:00)
-        public List<Employee> Employees { get; private set; } = new List<Employee>();
+        public virtual List<Employee> Employees { get; private set; } = new List<Employee>();
 
         //public WorkingSlot() : base() { }
         public WorkingSlot(WorkingSlotStatus status, DayOfWeek day, TimeSpan startTime, TimeSpan endTime, string createdBy)

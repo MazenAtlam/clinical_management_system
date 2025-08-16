@@ -21,12 +21,12 @@ namespace CCMS.DAL.Entities
         public DateTime SDate { get; private set; }
         // Navigation
         [DeleteBehavior(DeleteBehavior.Restrict)]
-        public LabDoctor LabDoctor { get; private set; }
+        public virtual LabDoctor LabDoctor { get; private set; }
         [Required]
         [ForeignKey("LabDoctor")]
         public int LDID { get; private set; }
         [DeleteBehavior(DeleteBehavior.Restrict)]
-        public Patient Patient { get; private set; }
+        public virtual Patient Patient { get; private set; }
         [Required]
         [ForeignKey("Patient")]
         public int PatientId { get; private set; }

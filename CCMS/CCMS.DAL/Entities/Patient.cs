@@ -22,9 +22,9 @@ namespace CCMS.DAL.Entities
         }
 
         // Navigation
-        public List<PatientFamily> PatientFamilyMembers { get; private set; } = new List<PatientFamily>();
-        public List<MedicalHistory> MedicalHistories { get; private set; }= new List<MedicalHistory>();
-        public List<Scan> Scans { get; private set; } = new List<Scan>();
-        public List<Book> Books { get; private set; } = new List<Book>();
+        public virtual List<PatientFamily> PatientFamilyMembers { get; private set; } = new List<PatientFamily>();
+        public virtual List<MedicalHistory> MedicalHistories { get; private set; }= new List<MedicalHistory>();
+        public virtual List<Scan> Scans { get; private set; } = new List<Scan>();
+        public virtual List<Book> Books { get; private set; } = new List<Book>();
     }
 }

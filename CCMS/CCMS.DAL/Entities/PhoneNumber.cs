@@ -11,7 +11,7 @@ namespace CCMS.DAL.Entities
         [Required]
         [ForeignKey("Person")]
         public int PersonId { get; private set; }
-        public Person Person { get; private set; }
+        public virtual Person Person { get; private set; }
         [Required]
         [MinLength(11)]
         [MaxLength(20)]

@@ -35,8 +35,8 @@ namespace CCMS.DAL.Entities
 
         [Required]
         public PersonType PType { get; private set; }
-        public List<PhoneNumber> PhoneNumbers { get; private set; } = new List<PhoneNumber>();
-        public List<Address> Addresses { get; private set; } = new List<Address>();
+        public virtual List<PhoneNumber> PhoneNumbers { get; private set; } = new List<PhoneNumber>();
+        public virtual List<Address> Addresses { get; private set; } = new List<Address>();
 
         //protected Person() : base() { }
         protected Person(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate, string createdBy)

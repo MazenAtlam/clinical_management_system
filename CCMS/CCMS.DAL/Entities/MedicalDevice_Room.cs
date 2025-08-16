@@ -10,13 +10,13 @@ namespace CCMS.DAL.Entities
         [ForeignKey("MedicalDevice")]
         [MaxLength(100)]
         public string SerialNumber { get; private set; }
-        public MedicalDevice MedicalDevice { get; private set; }
+        public virtual MedicalDevice MedicalDevice { get; private set; }
         [Required]
         [MaxLength(6)]
         [MinLength(6)]
         [ForeignKey("Room")]
         public string RNumber { get; private set; } // bbfrrr
-        public Room Room { get; private set; }
+        public virtual Room Room { get; private set; }
 
         //public MedicalDevice_Room() : base() { }
         public MedicalDevice_Room(string serialNumber, string rNumber, string createdBy)

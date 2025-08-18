@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using CCMS.DAL.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 namespace CCMS.DAL.Database
 {
-    public class CcmsDbContext : DbContext
+    public class CcmsDbContext : IdentityDbContext<ApplicationUser>
     {
         public CcmsDbContext(DbContextOptions<CcmsDbContext> options) : base(options)
         {

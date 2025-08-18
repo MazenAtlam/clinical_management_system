@@ -4,7 +4,6 @@ using CCMS.BLL.ModelVM.WorkingSlot;
 using CCMS.BLL.Services.Abstraction;
 using CCMS.DAL.Entities;
 using CCMS.DAL.Repository.Abstraction;
-using CCMS.DAL.Repository.Implementation;
 
 namespace CCMS.BLL.Services.Implementation
 {
@@ -26,7 +25,7 @@ namespace CCMS.BLL.Services.Implementation
             return mapper.ToListResponseDto(employees);
         }
 
-        public async Task<EmployeeDTO?> GetEmployeeById(int id)
+        public async Task<EmployeeDTO?> GetEmployeeById(string id)
         {
             var employee = await _employeeRepo.GetEmployeeById(id);
             return employee == null ? null : mapper.ToResponseDto(employee);
@@ -41,7 +40,7 @@ namespace CCMS.BLL.Services.Implementation
 
         public async Task<bool> UpdateEmployee(EmployeeDTO dto)
         {
-            var existingEmployee = await _employeeRepo.GetEmployeeById(dto.UID);
+            var existingEmployee = await _employeeRepo.GetEmployeeById(dto.Id);
             //if (existingEmployee == null) return false;
 
 
@@ -66,7 +65,7 @@ namespace CCMS.BLL.Services.Implementation
             return true;
         }
 
-        public async Task DeleteEmployee(int id)
+        public async Task DeleteEmployee(string id)
         {
             var existingEmployee = await _employeeRepo.GetEmployeeById(id);
             existingEmployee.Delete("Admin");
@@ -78,7 +77,7 @@ namespace CCMS.BLL.Services.Implementation
             throw new NotImplementedException();
         }
 
-        public async Task<(List<WorkingSlotDTO>?, string?)> GetEmployeeWorkingSlots(int id)
+        public async Task<(List<WorkingSlotDTO>?, string?)> GetEmployeeWorkingSlots(string id)
         {
             try
             {

@@ -60,7 +60,7 @@ namespace CCMS.BLL.Services.Implementation
             try
             {
                 Employee admin = new Employee(adm.FName, adm.MidName, adm.LName, adm.Ssn,
-                            adm.Gender, adm.BirthDate, PersonType.Employee, adm.Salary, EmployeeType.Admin,
+                            adm.Gender, adm.BirthDate, adm.Salary,
                             adm.YearsOfExperience, adm.HiringDate, adm.MgrId,
                             adm.AdmId, adm.DeptId, createdBy
                             );
@@ -78,9 +78,8 @@ namespace CCMS.BLL.Services.Implementation
             try
             {
                 Employee manager = new Employee(mgr.FName, mgr.MidName, mgr.LName, mgr.Ssn,
-                            mgr.Gender, mgr.BirthDate, PersonType.Employee, mgr.Salary,
-                            EmployeeType.Manager, mgr.YearsOfExperience, mgr.HiringDate,
-                            mgr.MgrId, mgr.AdmId, mgr.DeptId, createdBy
+                            mgr.Gender, mgr.BirthDate, mgr.Salary, mgr.YearsOfExperience,
+                            mgr.HiringDate, mgr.MgrId, mgr.AdmId, mgr.DeptId, createdBy
                             );
 
                 await _employeeRepo.Add(manager);
@@ -95,10 +94,10 @@ namespace CCMS.BLL.Services.Implementation
         {
             try
             {
-                Doctor doctor = new Doctor(doc.FName, doc.MidName, doc.LName, doc.Ssn,
-                            doc.Gender, doc.BirthDate, PersonType.Employee, doc.Salary,
-                            EmployeeType.Doctor, doc.YearsOfExperience, doc.HiringDate,
-                            doc.MgrId, doc.AdmId, doc.DeptId, doc.major, doc.rating, createdBy
+                Doctor doctor = new Doctor(doc.FName, doc.MidName, doc.LName,
+                    doc.Ssn, doc.Gender, doc.BirthDate, doc.Salary,
+                            doc.YearsOfExperience, doc.HiringDate, doc.MgrId,
+                            doc.AdmId, doc.DeptId, doc.major, createdBy
                             );
 
                 await _doctorRepo.Add(doctor);
@@ -114,9 +113,9 @@ namespace CCMS.BLL.Services.Implementation
             try
             {
                 LabDoctor labDoctor = new LabDoctor(lDoc.FName, lDoc.MidName, lDoc.LName, lDoc.Ssn,
-                            lDoc.Gender, lDoc.BirthDate, PersonType.Employee, lDoc.Salary,
-                            EmployeeType.LabDoctor, lDoc.YearsOfExperience, lDoc.HiringDate,
-                            lDoc.MgrId, lDoc.AdmId, lDoc.DeptId, createdBy
+                            lDoc.Gender, lDoc.BirthDate, lDoc.Salary, 
+                            lDoc.YearsOfExperience, lDoc.HiringDate, lDoc.MgrId,
+                            lDoc.AdmId, lDoc.DeptId, createdBy
                             );
 
                 await _labDoctorRepo.Add(labDoctor);
@@ -133,9 +132,8 @@ namespace CCMS.BLL.Services.Implementation
             {
                 BiomedicalEngineer biomedicalEngineer = new BiomedicalEngineer(bioEng.FName, bioEng.MidName,
                     bioEng.LName, bioEng.Ssn, bioEng.Gender, bioEng.BirthDate,
-                    PersonType.Employee, bioEng.Salary, EmployeeType.BiomedicalEngineer,
-                    bioEng.YearsOfExperience, bioEng.HiringDate, bioEng.MgrId,
-                    bioEng.AdmId, bioEng.DeptId, createdBy
+                    bioEng.Salary, bioEng.YearsOfExperience, bioEng.HiringDate,
+                    bioEng.MgrId, bioEng.AdmId, bioEng.DeptId, createdBy
                     );
 
                 await _biomedicalEngineerRepo.Add(biomedicalEngineer);
@@ -178,7 +176,7 @@ namespace CCMS.BLL.Services.Implementation
             catch (Exception ex) { return (null, ex.Message); }
         }
 
-        public async Task<(EmployeeDTO?, string?)> GetAdminByID(int id)
+        public async Task<(EmployeeDTO?, string?)> GetAdminByID(string id)
         {
             try
             {
@@ -191,7 +189,7 @@ namespace CCMS.BLL.Services.Implementation
             catch (Exception ex) { return (null, ex.Message); }
         }
 
-        public async Task<(List<EmployeeDTO>?, string?)> GetAllEmployeesCrearedBy(int id)
+        public async Task<(List<EmployeeDTO>?, string?)> GetAllEmployeesCrearedBy(string id)
         {
             try
             {
@@ -211,7 +209,7 @@ namespace CCMS.BLL.Services.Implementation
         {
             try
             {
-                Employee employee = await _employeeRepo.GetEmployeeById(emp.UID);
+                Employee employee = await _employeeRepo.GetEmployeeById(emp.Id);
 
                 employee.Edit(emp.FName, emp.MidName, emp.LName, emp.Ssn, emp.Gender, emp.BirthDate,
                     emp.Salary, emp.YearsOfExperience, emp.HiringDate, emp.MgrId, emp.DeptId, modifiedBy);
@@ -222,7 +220,7 @@ namespace CCMS.BLL.Services.Implementation
             catch (Exception ex) { return (ex.Message); }
         }
 
-        public async Task<string?> Delete(int id, string modifiedBy)
+        public async Task<string?> Delete(string id, string modifiedBy)
         {
             try
             {
@@ -348,7 +346,7 @@ namespace CCMS.BLL.Services.Implementation
             catch (Exception ex) { return (null, ex.Message); }
         }
 
-        public async Task<string?> DeletePatient(int patientId, string modifiedBy)
+        public async Task<string?> DeletePatient(string patientId, string modifiedBy)
         {
             try
             {
@@ -362,7 +360,7 @@ namespace CCMS.BLL.Services.Implementation
             catch (Exception ex) { return ex.Message; }
         }
 
-        public async Task<string?> DeleteDoctor(int doctorId, string modifiedBy)
+        public async Task<string?> DeleteDoctor(string doctorId, string modifiedBy)
         {
             try
             {
@@ -376,7 +374,7 @@ namespace CCMS.BLL.Services.Implementation
             catch (Exception ex) { return ex.Message; }
         }
 
-        public async Task<string?> DeleteLabDoctor(int labDoctorId, string modifiedBy)
+        public async Task<string?> DeleteLabDoctor(string labDoctorId, string modifiedBy)
         {
             try
             {

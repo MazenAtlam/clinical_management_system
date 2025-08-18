@@ -16,21 +16,21 @@ namespace CCMS.DAL.Entities
         public virtual Patient Patient { get; set; }
         [Required]
         [ForeignKey("Patient")]
-        public int PatientId { get; set; }
+        public string PatientId { get; set; }
 
         //public MedicalHistory() : base() { }
-        public MedicalHistory(bool isAcceptable, string diseaseName, int patientId, string createdBy)
+        public MedicalHistory(bool isAcceptable, string diseaseName, string patientId, string createdBy)
             : base(createdBy)
             => Set(isAcceptable, diseaseName, patientId);
 
-        private void Set(bool isAcceptable, string diseaseName, int patientId)
+        private void Set(bool isAcceptable, string diseaseName, string patientId)
         {
             IsAcceptable = isAcceptable;
             DiseaseName = diseaseName;
             PatientId = patientId;
         }
 
-        public void Edit(bool isAcceptable, string diseaseName, int patientId, string modifiedBy)
+        public void Edit(bool isAcceptable, string diseaseName, string patientId, string modifiedBy)
         {
             Set(isAcceptable, diseaseName, patientId);
             SaveModification(modifiedBy);

@@ -21,7 +21,7 @@ namespace CCMS.BLL.Services.Implementation
             //this.notificationService = notificationService;
         }
 
-        public async Task<bool> Create(PatientDTO patient)
+        public async Task<bool> Create(PatientDTO patient, string createdBy)
         {
             try
             {
@@ -32,9 +32,8 @@ namespace CCMS.BLL.Services.Implementation
                     patient.Ssn,
                     patient.Gender,
                     patient.BirthDate,
-                    PersonType.Patient,
                     patient.BloodType,
-                    "admin"
+                    createdBy
                 );
 
                 //return await patientRepo.Add(newPatient);
@@ -50,7 +49,7 @@ namespace CCMS.BLL.Services.Implementation
         {
             try
             {
-                var existingPatient = await patientRepo.GetById(patient.UID);
+                var existingPatient = await patientRepo.GetById(patient.Id);
                 if (existingPatient == null)
                     return false;
 
@@ -74,13 +73,13 @@ namespace CCMS.BLL.Services.Implementation
             }
         }
 
-        public bool Delete(int id)
+        public bool Delete(string id)
         {
             //return patientRepo.DeleteAsync(id).Result;
             return false ;
         }
 
-        public async Task<Patient> GetById(int id)
+        public async Task<Patient> GetById(string id)
         {
             return await patientRepo.GetById(id);
         }
@@ -90,19 +89,19 @@ namespace CCMS.BLL.Services.Implementation
             return await patientRepo.GetAll();
         }
 
-        public List<Patient> GetPatientsByDoctor(int doctorId)
+        public List<Patient> GetPatientsByDoctor(string doctorId)
         {
             //return bookRepo.GetPatientsWithBooksByDoctorAsync(doctorId).Result;
             return new List<Patient>();
         }
 
-        public List<Book> GetPatientAppointments(int patientId)
+        public List<Book> GetPatientAppointments(string patientId)
         {
             //return patientRepo.GetAllBooksOfPatient(patientId).Result;
             return new List<Book>();
         }
 
-        public async Task<bool> RateDoctor(int patientId, int doctorId, int rating)
+        public async Task<bool> RateDoctor(string patientId, string doctorId, int rating)
         {
             try
             {
@@ -122,12 +121,12 @@ namespace CCMS.BLL.Services.Implementation
         }
 
         // New methods implementation
-        //public Patient GetPatientInfoById(int id)
+        //public Patient GetPatientInfoById(string id)
         //{
         //    return patientRepo.GetPatientInfoByIdAsync(id).Result;
         //}
 
-        //public bool EditPatientById(int id, PatientDTO patient)
+        //public bool EditPatientById(string id, PatientDTO patient)
         //{
         //    try
         //    {

@@ -18,10 +18,10 @@ namespace CCMS.BLL.Services.Abstraction
         public Task<string?> CreateEmployee(CreateBiomedicalEngineer bioEng, string createdBy); // BiomedicalEngineer
         public Task<(List<EmployeeDTO>?, string?)> GetAllAdmins();
         public Task<(List<EmployeeDTO>?, string?)> GetAllManagers();
-        public Task<(EmployeeDTO?, string?)> GetAdminByID(int id);
-        public Task<(List<EmployeeDTO>?, string?)> GetAllEmployeesCrearedBy(int id);
+        public Task<(EmployeeDTO?, string?)> GetAdminByID(string id);
+        public Task<(List<EmployeeDTO>?, string?)> GetAllEmployeesCrearedBy(string id);
         public Task<string?> Update(EmployeeDTO emp, string modifiedBy);
-        public Task<string?> Delete(int id, string modifiedBy);
+        public Task<string?> Delete(string id, string modifiedBy);
         public Task<(List<PatientDTO>?, string?)> GetAllPatients();
         public Task<(List<DoctorDTO>?, string?)> GetAllDoctors();
         public Task<(List<LabDoctorDTO>?, string?)> GetAllLabDoctors();
@@ -29,8 +29,8 @@ namespace CCMS.BLL.Services.Abstraction
         public Task<(List<BookDTO>?, string?)> GetAllAppointments();
         public Task<(List<ScanDTO>?, string?)> GetAllScans();
         public Task<(List<MedicalHistoryDTO>?, string?)> GetAllMedicalHistories();
-        public Task<string?> DeletePatient(int patientId, string modifiedBy);
-        public Task<string?> DeleteDoctor(int doctorId, string modifiedBy);
-        public Task<string?> DeleteLabDoctor(int labDoctorId, string modifiedBy);
+        public Task<string?> DeletePatient(string patientId, string modifiedBy);
+        public Task<string?> DeleteDoctor(string doctorId, string modifiedBy);
+        public Task<string?> DeleteLabDoctor(string labDoctorId, string modifiedBy);
     }
 }

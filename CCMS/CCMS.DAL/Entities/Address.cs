@@ -10,24 +10,24 @@ namespace CCMS.DAL.Entities
     {
         [Required]
         [ForeignKey("Person")]
-        public int PersonId { get; private set; }
+        public string PersonId { get; private set; }
         public virtual Person Person { get; private set; }
         [Required]
         [MaxLength(200)]
         public string address { get; private set; }
 
         //public Address() : base() { }
-        public Address(int personId, string address, string createdBy)
+        public Address(string personId, string address, string createdBy)
             : base(createdBy)
             => Set(personId, address);
 
-        private void Set(int personId, string address)
+        private void Set(string personId, string address)
         {
             PersonId = personId;
             this.address = address;
         }
 
-        public void Edit(int personId, string address, string modifiedBy)
+        public void Edit(string personId, string address, string modifiedBy)
         {
             Set(personId, address);
             SaveModification(modifiedBy);

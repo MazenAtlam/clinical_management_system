@@ -9,8 +9,8 @@ namespace CCMS.DAL.Repository.Abstraction
         public Task<List<Employee>> GetAllEmployees();
         public Task<List<Employee>> GetAllAdmins();
         public Task<List<Employee>> GetAllManagers();
-        public Task<Employee> GetEmployeeById(int id);
-        public Task<List<Employee>> GetAllEmployeesCrearedByAdmin(int admId);
+        public Task<Employee> GetEmployeeById(string id);
+        public Task<List<Employee>> GetAllEmployeesCrearedByAdmin(string admId);
         public Task Save();
     }
 }

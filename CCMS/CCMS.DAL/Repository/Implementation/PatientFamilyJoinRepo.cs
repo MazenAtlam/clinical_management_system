@@ -30,14 +30,14 @@ namespace CCMS.DAL.Repository.Implementation
         //    }
         //}
 
-        public async Task<PatientFamily> GetByIds(int patientId, int familyMemberId)
+        public async Task<PatientFamily> GetByIds(string patientId, int familyMemberId)
         {
             PatientFamily? patientFamily = db.pateintFamilyJoins
             .Where(a => a.PatientId == patientId && a.FamilyMemberId == familyMemberId && !a.IsDeleted)
             .FirstOrDefault();
 
             return patientFamily == null
-                ? throw new ArgumentException($"The patient with ID = {patientId} has no relation with the family member with ID = {familyMemberId} Or one of them does not exist.")
+                ? throw new ArgumentException($"The patient with this ID has no relation with the family member with ID = {familyMemberId} Or one of them does not exist.")
                 : patientFamily;
         }
 

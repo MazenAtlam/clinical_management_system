@@ -24,19 +24,19 @@ namespace CCMS.DAL.Entities
         public virtual LabDoctor LabDoctor { get; private set; }
         [Required]
         [ForeignKey("LabDoctor")]
-        public int LDID { get; private set; }
+        public string LDID { get; private set; }
         [DeleteBehavior(DeleteBehavior.Restrict)]
         public virtual Patient Patient { get; private set; }
         [Required]
         [ForeignKey("Patient")]
-        public int PatientId { get; private set; }
+        public string PatientId { get; private set; }
 
         //public Scan() : base() { }
-        public Scan(SType scanType, STech scanTech, string results, DateTime sDate, int lDID, int patientId, string createdBy)
+        public Scan(SType scanType, STech scanTech, string results, DateTime sDate, string lDID, string patientId, string createdBy)
             : base(createdBy)
             => Set(scanType, scanTech, results, sDate, lDID, patientId);
 
-        private void Set(SType scanType, STech scanTech, string results, DateTime sDate, int lDID, int patientId)
+        private void Set(SType scanType, STech scanTech, string results, DateTime sDate, string lDID, string patientId)
         {
             ScanType = scanType;
             ScanTech = scanTech;
@@ -46,7 +46,7 @@ namespace CCMS.DAL.Entities
             PatientId = patientId;
         }
 
-        public void Edit(SType scanType, STech scanTech, string results, DateTime sDate, int lDID, int patientId, string modifiedBy)
+        public void Edit(SType scanType, STech scanTech, string results, DateTime sDate, string lDID, string patientId, string modifiedBy)
         {
             Set(scanType, scanTech, results, sDate, lDID, patientId);
             SaveModification(modifiedBy);

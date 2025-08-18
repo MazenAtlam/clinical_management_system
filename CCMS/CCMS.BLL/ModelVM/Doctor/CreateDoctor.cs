@@ -6,6 +6,5 @@ namespace CCMS.BLL.ModelVM.Doctor
     public class CreateDoctor : CreateEmployee
     {
         public Specialization major { get; set; }
-        public Rating rating { get; set; }
     }
 }

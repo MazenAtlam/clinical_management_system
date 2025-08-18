@@ -9,9 +9,9 @@ namespace CCMS.DAL.Entities
         public virtual List<MedicalDevice> MedicalDevices { get; private set; } = new List<MedicalDevice>();
 
         //public BiomedicalEngineer() : base() { }
-        public BiomedicalEngineer(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate, PersonType pType,
-            decimal salary, EmployeeType eType, int yearsOfExperience, DateTime hiringDate, int? mgrId, int? admId, int? deptId, string createdBy)
-            : base(fName, midName, lName, ssn, gender, birthDate, pType, salary, eType, yearsOfExperience, hiringDate, mgrId, admId, deptId, createdBy)
+        public BiomedicalEngineer(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate,
+            decimal salary, int? yearsOfExperience, DateTime hiringDate, string? mgrId, string? admId, int? deptId, string createdBy)
+            : base(fName, midName, lName, ssn, gender, birthDate, salary, yearsOfExperience, hiringDate, mgrId, admId, deptId, createdBy)
         { }
     }
 }

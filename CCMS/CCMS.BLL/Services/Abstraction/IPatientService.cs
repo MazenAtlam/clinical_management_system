@@ -1,23 +1,22 @@
 using CCMS.BLL.ModelVM.Patient;
 using CCMS.DAL.Entities;
-using System.Collections.Generic;
 
 namespace CCMS.BLL.Services.Abstraction
 {
     public interface IPatientService
     {
-        Task<bool> Create(PatientDTO patient);
+        Task<bool> Create(PatientDTO patient, string createdBy);
         Task<bool> Update(PatientDTO patient);
-        //Task<bool> Delete(int id);
-        Task<Patient> GetById(int id);
+        //Task<bool> Delete(string id);
+        Task<Patient> GetById(string id);
         Task<List<Patient>> GetAll();
-        List<Patient> GetPatientsByDoctor(int doctorId);
-        List<Book> GetPatientAppointments(int patientId);
-        Task<bool> RateDoctor(int patientId, int doctorId, int rating);
+        List<Patient> GetPatientsByDoctor(string doctorId);
+        List<Book> GetPatientAppointments(string patientId);
+        Task<bool> RateDoctor(string patientId, string doctorId, int rating);
         
         // New methods
-        //Patient GetPatientInfoById(int id);
-        //bool EditPatientById(int id, PatientDTO patient);
+        //Patient GetPatientInfoById(string id);
+        //bool EditPatientById(string id, PatientDTO patient);
         //List<FamilyMember> GetFamilyMembersOfPatient(int patientId);
         //bool AddFamilyMemberToPatient(int patientId, FamilyMember familyMember);
         //List<MedicalHistory> GetMedicalHistoryOfPatient(int patientId);

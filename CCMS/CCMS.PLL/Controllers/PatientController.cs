@@ -25,7 +25,7 @@ namespace CCMS.PLL.Controllers
             return View();
         }
         //show photo and details and give permission to edit
-        public ActionResult PatientProfile(int id)
+        public ActionResult PatientProfile(string id)
         {
             //HENA EL MAFROOD TERAGA3 PATIENT MEN EL SERVICE BAS FE ERROR BESABAB EL MULTITHREADING (EL HETA DEH)
             //Patient patient = _patientService.GetById(id);
@@ -39,7 +39,7 @@ namespace CCMS.PLL.Controllers
         public ActionResult EditPatientProfile(PatientDTO patientDTO)
         {
             _patientService.Update(patientDTO);
-            return RedirectToAction("PatientProfile",patientDTO.UID);
+            return RedirectToAction("PatientProfile",patientDTO.Id);
         }
         //show doctors based on majors and ratings
         public ActionResult PGet_Doctors()

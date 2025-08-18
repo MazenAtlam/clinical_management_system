@@ -11,12 +11,8 @@ namespace CCMS.DAL.Entities
        
         public decimal Salary { get; private set; }
 
-        [Required]
-        public EmployeeType EType { get; private set; }
-
-        [Required]
-        [Range(0, 50)] 
-        public int YearsOfExperience { get; private set; }
+        [Range(0, 50)]
+        public int? YearsOfExperience { get; private set; }
 
         [Required]
         [DataType(DataType.Date)]
@@ -24,13 +20,13 @@ namespace CCMS.DAL.Entities
 
    
         [ForeignKey("Manager")]
-        public int? MgrId { get; private set; }
-        public virtual Employee Manager { get; private set; }
+        public string? MgrId { get; private set; }
+        public virtual Employee? Manager { get; private set; }
 
 
         [ForeignKey("Admin")]
-        public int? AdmId { get; private set; }
-        public virtual Employee Admin { get; private set; }
+        public string? AdmId { get; private set; }
+        public virtual Employee? Admin { get; private set; }
 
     
         [ForeignKey("Department")]
@@ -39,16 +35,15 @@ namespace CCMS.DAL.Entities
         public virtual List<WorkingSlot> WorkingSlots { get; private set; } = new List<WorkingSlot>();
 
         //public Employee() : base() { }
-        public Employee(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate, PersonType pType,
-            decimal salary, EmployeeType eType, int yearsOfExperience, DateTime hiringDate, int? mgrId, int? admId, int? deptId, string createdBy)
-            : base(fName, midName, lName, ssn, gender, birthDate, pType, createdBy)
+        public Employee(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate,
+            decimal salary, int? yearsOfExperience, DateTime hiringDate, string? mgrId, string? admId, int? deptId, string createdBy)
+            : base(fName, midName, lName, ssn, gender, birthDate, createdBy)
         {
             Set(salary, yearsOfExperience, hiringDate, mgrId, deptId);
-            EType = eType;
             AdmId = admId;
         }
 
-        private void Set(decimal salary, int yearsOfExperience, DateTime hiringDate, int? mgrId, int? deptId)
+        private void Set(decimal salary, int? yearsOfExperience, DateTime hiringDate, string? mgrId, int? deptId)
         {
             Salary = salary;
             YearsOfExperience = yearsOfExperience;
@@ -57,7 +52,7 @@ namespace CCMS.DAL.Entities
         }
 
         public void Edit(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate,
-            decimal salary, int yearsOfExperience, DateTime hiringDate, int? mgrId, int? deptId, string modifiedBy)
+            decimal salary, int? yearsOfExperience, DateTime hiringDate, string? mgrId, int? deptId, string modifiedBy)
         {
             base.Edit(fName, midName, lName, ssn, gender, birthDate, modifiedBy);
 

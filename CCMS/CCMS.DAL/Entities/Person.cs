@@ -1,15 +1,13 @@
 ﻿using CCMS.DAL.Enums;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CCMS.DAL.Entities
 {
     [Table("Person", Schema="ccms")]
-    public abstract class Person : Base
+    public abstract class Person : ApplicationUser
     {
-        [Key]
-        public int UID { get; private set; }
-
         [Required]
         [MaxLength(50)]
         public string FName { get; private set; }
@@ -32,21 +30,17 @@ namespace CCMS.DAL.Entities
         [Required]
         [DataType(DataType.Date)]
         public DateOnly BirthDate { get; private set; }
-
-        [Required]
-        public PersonType PType { get; private set; }
         public virtual List<PhoneNumber> PhoneNumbers { get; private set; } = new List<PhoneNumber>();
         public virtual List<Address> Addresses { get; private set; } = new List<Address>();
 
         //protected Person() : base() { }
-        protected Person(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate, PersonType pType, string createdBy)
+        protected Person(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate, string createdBy)
             : base(createdBy)
         {
             Set(fName, midName, lName, ssn, gender, birthDate);
-            PType = pType;
         }
 
-        public string GetFullName() => $"{FName} {MidName} {LName}";
+        public string GetFullName() => FName + (MidName == null ? " " : $" {MidName} ") + LName;
 
         private void Set(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate)
         {

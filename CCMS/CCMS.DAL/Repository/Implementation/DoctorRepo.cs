@@ -43,12 +43,12 @@ namespace CCMS.DAL.Repository.Implementation
             return doctors;
         }
 
-        public async Task<Doctor> GetById(int id)
+        public async Task<Doctor> GetById(string id)
         {
-            Doctor? doctor = db.doctors.Where(a => a.UID == id && !a.IsDeleted).FirstOrDefault();
+            Doctor? doctor = db.doctors.Where(a => a.Id == id && !a.IsDeleted).FirstOrDefault();
             
             return doctor == null
-                ? throw new ArgumentException($"There is no doctors with the ID = {id}", "id")
+                ? throw new ArgumentException($"There is no doctors with this ID", "id")
                 : doctor;
         }
 

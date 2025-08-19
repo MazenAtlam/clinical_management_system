@@ -3,7 +3,6 @@ using CCMS.BLL.ModelVM.BiomedicalEngineer;
 using CCMS.BLL.ModelVM.MedicalDevice;
 using CCMS.BLL.Services.Abstraction;
 using CCMS.DAL.Entities;
-using CCMS.DAL.Enums;
 using CCMS.DAL.Repository.Abstraction;
 
 namespace CCMS.BLL.Services.Implementation
@@ -17,25 +16,6 @@ namespace CCMS.BLL.Services.Implementation
 
         public BiomedicalEngineerService(IBiomedicalEngineerRepo biomedicalEngineerRepo)
             => _biomedicalEngineerRepo = biomedicalEngineerRepo;
-
-        public async Task<string?> Create(CreateBiomedicalEngineer emp, string createdBy)
-        {
-            try
-            {
-                BiomedicalEngineer biomedicalEngineer = new BiomedicalEngineer(
-                    emp.FName, emp.MidName, emp.LName, emp.Ssn, emp.Gender,
-                    emp.BirthDate, PersonType.Employee, emp.Salary,
-                    EmployeeType.BiomedicalEngineer, emp.YearsOfExperience, emp.HiringDate,
-                    emp.MgrId, emp.AdmId, emp.DeptId, createdBy
-                    );
-
-                await _biomedicalEngineerRepo.Add(biomedicalEngineer);
-                await _biomedicalEngineerRepo.Save();
-
-                return null;
-            }
-            catch (Exception ex) { return ex.Message; }
-        }
 
         public async Task<(List<BiomedicalEngineerDTO>?, string?)> GetAllBiomedicalEngineers()
         {
@@ -53,7 +33,7 @@ namespace CCMS.BLL.Services.Implementation
             catch (Exception ex) { return (null, ex.Message); }
         }
 
-        public async Task<(List<MedicalDeviceDTO>?, string?)> GetAllMedicalDevicesWorksOn(int id)
+        public async Task<(List<MedicalDeviceDTO>?, string?)> GetAllMedicalDevicesWorksOn(string id)
         {
             try
             {
@@ -71,7 +51,7 @@ namespace CCMS.BLL.Services.Implementation
             catch (Exception ex) { return (null, ex.Message); }
         }
 
-        public async Task<(BiomedicalEngineerDTO?, string?)> GetBiomedicalEngineerByID(int id)
+        public async Task<(BiomedicalEngineerDTO?, string?)> GetBiomedicalEngineerByID(string id)
         {
             try
             {
@@ -88,7 +68,7 @@ namespace CCMS.BLL.Services.Implementation
         {
             try
             {
-                BiomedicalEngineer biomedicalEngineer = await _biomedicalEngineerRepo.GetById(emp.UID);
+                BiomedicalEngineer biomedicalEngineer = await _biomedicalEngineerRepo.GetById(emp.Id);
 
                 biomedicalEngineer.Edit(emp.FName, emp.MidName, emp.LName, emp.Ssn,
                     emp.Gender, emp.BirthDate, modifiedBy);
@@ -99,7 +79,7 @@ namespace CCMS.BLL.Services.Implementation
             catch (Exception ex) { return ex.Message; }
         }
 
-        public async Task<string?> Delete(int id, string modifiedBy)
+        public async Task<string?> Delete(string id, string modifiedBy)
         {
             try
             {

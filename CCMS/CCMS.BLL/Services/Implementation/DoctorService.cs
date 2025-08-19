@@ -27,25 +27,7 @@ namespace CCMS.BLL.Services.Implementation
             _bookRepo = bookRepo;
         }
 
-        public async Task<string?> Create(CreateDoctor doc, string createdBy)
-        {
-            try
-            {
-                Doctor doctor = new Doctor(doc.FName, doc.MidName, doc.LName, doc.Ssn,
-                    doc.Gender, doc.BirthDate, PersonType.Employee, doc.Salary,
-                    EmployeeType.Doctor, doc.YearsOfExperience, doc.HiringDate,
-                    doc.MgrId, doc.AdmId, doc.DeptId, doc.major, doc.rating, createdBy
-                );
-
-                await _doctorRepo.Add(doctor);
-                await _doctorRepo.Save();
-
-                return null;
-            }
-            catch (Exception ex) { return ex.Message; }
-        }
-
-        public async Task<string?> Delete(int id, string modifiedBy)
+        public async Task<string?> Delete(string id, string modifiedBy)
         {
             try
             {
@@ -123,7 +105,7 @@ namespace CCMS.BLL.Services.Implementation
             catch (Exception ex) { return (null, ex.Message); }
         }
 
-        public async Task<(DoctorDTO?, string?)> GetById(int id)
+        public async Task<(DoctorDTO?, string?)> GetById(string id)
         {
             try
             {
@@ -140,7 +122,7 @@ namespace CCMS.BLL.Services.Implementation
         {
             try
             {
-                Doctor doctor = await _doctorRepo.GetById(doc.UID);
+                Doctor doctor = await _doctorRepo.GetById(doc.Id);
 
                 doctor.Edit(
                     doctor.FName,
@@ -180,7 +162,7 @@ namespace CCMS.BLL.Services.Implementation
             catch (Exception ex) { return (null, ex.Message); }
         }
 
-        public async Task<(List<WorkingSlotDTO>?, string?)> GetDoctorWorkingSlots(int doctorId)
+        public async Task<(List<WorkingSlotDTO>?, string?)> GetDoctorWorkingSlots(string doctorId)
         {
             try
             {
@@ -198,7 +180,7 @@ namespace CCMS.BLL.Services.Implementation
             catch (Exception ex) { return (null, ex.Message); }
         }
 
-        public async Task<(List<RoomDTO>?, string?)> GetEmptyRoomsInDoctorDepartment(int doctorId)
+        public async Task<(List<RoomDTO>?, string?)> GetEmptyRoomsInDoctorDepartment(string doctorId)
         {
             try
             {
@@ -221,7 +203,7 @@ namespace CCMS.BLL.Services.Implementation
             catch (Exception ex) { return (null, ex.Message); }
         }
 
-        public async Task<(List<PatientDTO>?, string?)> GetPatientsWithBooksByDoctor(int doctorId)
+        public async Task<(List<PatientDTO>?, string?)> GetPatientsWithBooksByDoctor(string doctorId)
         {
             try
             {

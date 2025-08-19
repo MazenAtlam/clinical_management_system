@@ -1,9 +1,12 @@
 using CCMS.BLL.Services.Abstraction;
 using CCMS.BLL.Services.Implementation;
 using CCMS.DAL.Database;
+using CCMS.DAL.Entities;
 using CCMS.DAL.Repository.Abstraction;
 using CCMS.DAL.Repository.Implementation;
 using DotNetEnv;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace CCMS.PLL
@@ -24,7 +27,7 @@ namespace CCMS.PLL
             connectionString += connectionString[connectionString.Length - 1] == ';' ? "" : ";"
                 + $"Server={Environment.GetEnvironmentVariable("SERVER")}"
                 + $";Database={Environment.GetEnvironmentVariable("DATABASE")}";
-            
+
             // Add DbContext
             builder.Services.AddDbContext<CcmsDbContext>(options
                 => options
@@ -32,6 +35,29 @@ namespace CCMS.PLL
                 .UseSqlServer(connectionString)
                 );
             
+            // Identity
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            {
+                // Default Password settings.
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequiredLength = 8;
+            }).AddEntityFrameworkStores<CcmsDbContext>();
+
+            builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true) // Make it false to confirm the email first
+                .AddEntityFrameworkStores<CcmsDbContext>()
+                .AddTokenProvider<DataProtectorTokenProvider<ApplicationUser>>(TokenOptions.DefaultProvider);
+
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,
+                options =>
+                {
+                    options.LoginPath = new PathString("/Account/Login");
+                    options.AccessDeniedPath = new PathString("/Account/Login");
+                });
+
             // Add Scoped for Repos
             builder.Services.AddScoped<IAddressRepo, AddressRepo>();
             builder.Services.AddScoped<IBiomedicalEngineerRepo, BiomedicalEngineerRepo>();
@@ -72,6 +98,7 @@ namespace CCMS.PLL
             app.UseStaticFiles();
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(

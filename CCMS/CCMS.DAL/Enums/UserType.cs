@@ -1,11 +1,12 @@
 ﻿namespace CCMS.DAL.Enums
 {
-    public enum EmployeeType
+    public enum UserType
     {
         Admin,
         Manager,
         Doctor,
         LabDoctor,
-        BiomedicalEngineer
+        BiomedicalEngineer,
+        Patient
     }
 }

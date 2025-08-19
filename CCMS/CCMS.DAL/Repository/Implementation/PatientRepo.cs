@@ -13,7 +13,7 @@ namespace CCMS.DAL.Repository.Implementation
         public async Task Add(Patient patient) => db.patients.Add(patient);
 
         // In PatientService
-        //public async Task<bool> DeleteAsync(int id)
+        //public async Task<bool> DeleteAsync(string id)
         //{
         //    try
         //    {
@@ -32,7 +32,14 @@ namespace CCMS.DAL.Repository.Implementation
 
         public async Task<List<Patient>> GetAll() => db.patients.Where(a => !a.IsDeleted).ToList();
 
-        public async Task<Patient> GetById(int id) => db.patients.Where(a => a.UID == id && !a.IsDeleted).FirstOrDefault();
+        public async Task<Patient> GetById(string id)
+        {
+            Patient? patient = db.patients.Where(a => a.Id == id && !a.IsDeleted).FirstOrDefault();
+            
+            return patient == null
+                ? throw new ArgumentException($"There is no patient with this ID", "id")
+                : patient;
+        }
 
         public async Task Save() => db.SaveChanges();
 
@@ -65,7 +72,7 @@ namespace CCMS.DAL.Repository.Implementation
 
         // New methods implementation
         // In PatientService
-        //public async Task<Patient> GetPatientInfoByIdAsync(int id)
+        //public async Task<Patient> GetPatientInfoByIdAsync(string id)
         //{
         //    return await db.patients
         //        .Include(p => p.PatientFamilyMembers)

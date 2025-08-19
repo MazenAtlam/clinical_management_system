@@ -14,12 +14,12 @@ namespace CCMS.DAL.Repository.Implementation
 
         public async Task<List<BiomedicalEngineer>> GetAll() => db.biomedicalEngineers.Where(a => !a.IsDeleted).ToList();
 
-        public async Task<BiomedicalEngineer> GetById(int id)
+        public async Task<BiomedicalEngineer> GetById(string id)
         {
-            BiomedicalEngineer? biomedicalEngineer = db.biomedicalEngineers.Where(a => a.UID == id && !a.IsDeleted).FirstOrDefault();
+            BiomedicalEngineer? biomedicalEngineer = db.biomedicalEngineers.Where(a => a.Id == id && !a.IsDeleted).FirstOrDefault();
 
             return biomedicalEngineer == null
-                ? throw new ArgumentException($"There is no biomedical engineer with the ID = {id} .", "id")
+                ? throw new ArgumentException($"There is no biomedical engineer with this ID.", "id")
                 : biomedicalEngineer;
         }
 

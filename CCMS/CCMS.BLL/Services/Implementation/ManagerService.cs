@@ -14,12 +14,12 @@ namespace CCMS.BLL.Services.Implementation
             throw new NotImplementedException();
         }
 
-        public async Task</*(EmployeeDTO?, */string?/*)*/> GetManagerByID(int id)
+        public async Task</*(EmployeeDTO?, */string?/*)*/> GetManagerByID(string id)
         {
             throw new NotImplementedException();
         }
 
-        public async Task</*(List<EmployeeDTO>?, */string?/*)*/> GetAllEmployeesManagedBy(int id)
+        public async Task</*(List<EmployeeDTO>?, */string?/*)*/> GetAllEmployeesManagedBy(string id)
         {
             throw new NotImplementedException();
         }
@@ -29,7 +29,7 @@ namespace CCMS.BLL.Services.Implementation
             throw new NotImplementedException();
         }
 
-        public async Task<string?> Delete(int id, string modifiedBy)
+        public async Task<string?> Delete(string id, string modifiedBy)
         {
             throw new NotImplementedException();
         }

@@ -10,7 +10,7 @@ namespace CCMS.DAL.Entities
     {
         [Required]
         [ForeignKey("Person")]
-        public int PersonId { get; private set; }
+        public string PersonId { get; private set; }
         public virtual Person Person { get; private set; }
         [Required]
         [MinLength(11)]
@@ -18,17 +18,17 @@ namespace CCMS.DAL.Entities
         public string Number { get; private set; }
 
         //public PhoneNumber() : base() { }
-        public PhoneNumber(int personId, string number, string createdBy)
+        public PhoneNumber(string personId, string number, string createdBy)
             : base(createdBy)
             => Set(personId, number);
 
-        private void Set(int personId, string number)
+        private void Set(string personId, string number)
         {
             PersonId = personId;
             Number = number;
         }
 
-        public void Edit(int personId, string number, string modifiedBy)
+        public void Edit(string personId, string number, string modifiedBy)
         {
             Set(personId, number);
             SaveModification(modifiedBy);

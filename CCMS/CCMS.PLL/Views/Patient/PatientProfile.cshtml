@@ -85,7 +85,7 @@
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6">
-                                        <input asp-for="UID" type="hidden" class="form-control" id="UID" value="@Model.UID">
+                                        <input asp-for="Id" type="hidden" class="form-control" id="Id" value="@Model.Id">
                                         <label for="inputFirstName" class="form-label">First Name</label>
                                         <input asp-for="FName" type="text" class="form-control" id="inputFirstName" value="@Model.FName">
                                     </div>
@@ -120,19 +120,19 @@
                                         <label for="inputBirthdate" class="form-label">Birthdate</label>
                                         <input asp-for="BirthDate" type="date" class="form-control" id="inputBirthdate" name="birthdate" value="@Model.BirthDate">
                                     </div>
-                                    <div class="col-12 col-md-6">
+                                    @* <div class="col-12 col-md-6">
                                         <label for="inputPhone" class="form-label">Phone</label>
                                         <input asp-for="PhoneNumbers" type="tel" class="form-control" id="inputPhone" value="@Model.PhoneNumbers.FirstOrDefault()">
-                                    </div>
+                                    </div> *@
                                     <div class="col-12 col-md-6">
                                         <!-- NO EMAIL LESA -->
                                         <label for="inputEmail" class="form-label">Email</label>
                                         <input type="email" class="form-control" id="inputEmail" value="leo@example.com">
                                     </div>
-                                    <div class="col-12 col-md-6">
+                                    @* <div class="col-12 col-md-6">
                                         <label for="inputAddress" class="form-label">Address</label>
                                         <input asp-for="Addresses" type="text" class="form-control" id="inputAddress" value="@Model.Addresses.FirstOrDefault()">
-                                    </div>
+                                    </div> *@
                                     
                                     
                                     <div class="col-12">

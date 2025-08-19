@@ -13,7 +13,7 @@ namespace CCMS.DAL.Repository.Implementation
         public async Task Add(LabDoctor labDoctor) => db.labDoctors.Add(labDoctor);
 
         // In LabDoctorService
-        //public bool Delete(int id)
+        //public bool Delete(string id)
         //{
         //    try
         //    {
@@ -33,12 +33,12 @@ namespace CCMS.DAL.Repository.Implementation
 
         public async Task<List<LabDoctor>> GetAll() => db.labDoctors.Where(a => a.IsDeleted).ToList();
 
-        public async Task<LabDoctor> GetById(int id)
+        public async Task<LabDoctor> GetById(string id)
         {
-            LabDoctor? labDoc = db.labDoctors.Where(a => a.UID == id && !a.IsDeleted).FirstOrDefault();
+            LabDoctor? labDoc = db.labDoctors.Where(a => a.Id == id && !a.IsDeleted).FirstOrDefault();
 
             return labDoc == null
-                ? throw new ArgumentException($"There is no Lab Doctor with the ID = {id}", "id")
+                ? throw new ArgumentException($"There is no Lab Doctor with this ID", "id")
                 : labDoc;
         }
 

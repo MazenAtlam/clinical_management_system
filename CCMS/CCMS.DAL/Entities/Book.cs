@@ -20,12 +20,12 @@ namespace CCMS.DAL.Entities
         public virtual Patient Patient { get; private set; }
         [Required]
         [ForeignKey("Patient")]
-        public int PatientId { get; private set; }
+        public string PatientId { get; private set; }
         [DeleteBehavior(DeleteBehavior.Restrict)]
         public virtual Doctor Doctor { get; private set; }
         [Required]
         [ForeignKey("Doctor")]
-        public int DoctorId { get; private set; }
+        public string DoctorId { get; private set; }
         [DeleteBehavior(DeleteBehavior.Restrict)]
         public virtual Room Room { get; private set; }
         [Required]
@@ -35,11 +35,11 @@ namespace CCMS.DAL.Entities
         public string RNumber { get; private set; } // bbfrrr
 
         //public Book() : base() { }
-        public Book(double price, string? prescription, DateTime bookDate, int patientId, int doctorId, string rNumber, string createdBy)
+        public Book(double price, string? prescription, DateTime bookDate, string patientId, string doctorId, string rNumber, string createdBy)
             : base(createdBy)
             => Set(price, prescription, bookDate, patientId, doctorId, rNumber);
 
-        private void Set(double price, string? prescription, DateTime bookDate, int patientId, int doctorId, string rNumber)
+        private void Set(double price, string? prescription, DateTime bookDate, string patientId, string doctorId, string rNumber)
         {
             Price = price;
             Prescription = prescription;
@@ -49,7 +49,7 @@ namespace CCMS.DAL.Entities
             RNumber = rNumber;
         }
 
-        public void Edit(double price, string? perscription, DateTime bookDate, int patientId, int doctorId, string rNumber, string modifiedBy)
+        public void Edit(double price, string? perscription, DateTime bookDate, string patientId, string doctorId, string rNumber, string modifiedBy)
         {
             Set(price, perscription, bookDate, patientId, doctorId, rNumber);
             SaveModification(modifiedBy);

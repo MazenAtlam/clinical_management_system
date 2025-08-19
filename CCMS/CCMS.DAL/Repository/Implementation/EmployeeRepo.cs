@@ -16,20 +16,20 @@ namespace CCMS.DAL.Repository.Implementation
         public async Task<List<Employee>> GetAllEmployees()
             => _context.Employees.Where(a => !a.IsDeleted).ToList();
         public async Task<List<Employee>> GetAllAdmins()
-            => _context.Employees.Where(a => !a.IsDeleted && a.EType == EmployeeType.Admin).ToList();
+            => _context.Employees.Where(a => !a.IsDeleted && a.UType == UserType.Admin).ToList();
         public async Task<List<Employee>> GetAllManagers()
-            => _context.Employees.Where(a => !a.IsDeleted && a.EType == EmployeeType.Manager).ToList();
+            => _context.Employees.Where(a => !a.IsDeleted && a.UType == UserType.Manager).ToList();
 
-        public async Task<Employee> GetEmployeeById(int id)
+        public async Task<Employee> GetEmployeeById(string id)
         {
-            Employee? employee = _context.Employees.Where(a => a.UID == id && !a.IsDeleted).FirstOrDefault();
+            Employee? employee = _context.Employees.Where(a => a.Id == id && !a.IsDeleted).FirstOrDefault();
 
             return employee == null
-                ? throw new ArgumentException($"There is no Employee with the ID = {id}", "id")
+                ? throw new ArgumentException($"There is no Employee with this ID", "id")
                 : employee;
         }
 
-        public async Task<List<Employee>> GetAllEmployeesCrearedByAdmin(int admId)
+        public async Task<List<Employee>> GetAllEmployeesCrearedByAdmin(string admId)
             =>_context.Employees.Where(a => !a.IsDeleted && a.AdmId == admId).ToList();
 
         public async Task Save() => _context.SaveChanges();

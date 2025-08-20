@@ -35,9 +35,9 @@ namespace CCMS.DAL.Entities
         public virtual List<WorkingSlot> WorkingSlots { get; private set; } = new List<WorkingSlot>();
 
         //public Employee() : base() { }
-        public Employee(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate,
+        public Employee(UserType uType, string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate,
             decimal salary, int? yearsOfExperience, DateTime hiringDate, string? mgrId, string? admId, int? deptId, string createdBy)
-            : base(fName, midName, lName, ssn, gender, birthDate, createdBy)
+            : base(uType, fName, midName, lName, ssn, gender, birthDate, createdBy)
         {
             Set(salary, yearsOfExperience, hiringDate, mgrId, deptId);
             AdmId = admId;

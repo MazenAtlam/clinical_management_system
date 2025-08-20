@@ -10,17 +10,18 @@ namespace CCMS.PLL.Controllers
     {
         private readonly IApplicationUserService _userService;
         private readonly IPatientService _patientService;
+        private readonly IAdministratorService _adminService;
 
-        public AccountController(IApplicationUserService userService, IPatientService patientService)
+        public AccountController(IApplicationUserService userService, IPatientService patientService, IAdministratorService adminService)
         {
             _userService = userService;
             _patientService = patientService;
+            _adminService = adminService;
         }
 
         [HttpGet]
         public async Task<IActionResult> SignUp()
         {
-            
             return View();
         }
 
@@ -95,6 +96,40 @@ namespace CCMS.PLL.Controllers
             // Display the error message using ViewBag
             ViewBag.Error = result;
             return View(register);
+        }
+    
+
+        [HttpGet]
+        public async Task<IActionResult> Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginVM login)
+        {
+            var result = await _userService.Login(login);
+
+            if (result.Item2 == null)
+            {
+                // Exception Happened while creating the account
+
+                // Display the error message using ViewBag
+                ViewBag.Error = result.Item1;
+                return View(login);
+            }
+
+            if (!result.Item2.Succeeded)
+            {
+                // Login Error
+
+                // Display the error
+                ViewBag.Error = result.Item2.IsNotAllowed ? "Your email is not confirmed. The confirm message is in your inbox." : result.Item1;
+
+                return View(login);
+            }
+            
+            return RedirectToAction("Index", result.Item1);
         }
     }
 }

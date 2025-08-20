@@ -6,6 +6,8 @@ using CCMS.BLL.ModelVM.LabDoctor;
 using CCMS.BLL.ModelVM.MedicalHistory;
 using CCMS.BLL.ModelVM.Patient;
 using CCMS.BLL.ModelVM.Scan;
+using CCMS.BLL.ModelVM.User;
+using Microsoft.AspNetCore.Identity;
 
 namespace CCMS.BLL.Services.Abstraction
 {
@@ -32,5 +34,6 @@ namespace CCMS.BLL.Services.Abstraction
         public Task<string?> DeletePatient(string patientId, string modifiedBy);
         public Task<string?> DeleteDoctor(string doctorId, string modifiedBy);
         public Task<string?> DeleteLabDoctor(string labDoctorId, string modifiedBy);
+        public Task<(string?, IdentityResult?)> CreateRole(CreateRoleVM roleVM);
     }
 }

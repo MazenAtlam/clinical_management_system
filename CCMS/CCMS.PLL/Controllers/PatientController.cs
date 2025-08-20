@@ -2,10 +2,12 @@
 using CCMS.BLL.ModelVM.Patient;
 using CCMS.BLL.Services.Abstraction;
 using CCMS.DAL.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CCMS.PLL.Controllers
 {
+    [Authorize("Patient")]
     public class PatientController: Controller
     {
         //ADD MAPPERS

@@ -1,4 +1,10 @@
-﻿<div class="docmed-signup">
+﻿@section AccountsButtons {
+    <div class="book_btn d-none d-lg-block">
+        <a class="button font-weight-bold a-btn" asp-controller="Account" asp-action="Login">Login</a>
+    </div>
+}
+
+<div class="docmed-signup">
     <div class="docmed-logo">DocMed</div>
 
     <!-- Error Display Section -->
@@ -119,4 +125,9 @@
             </div>
         </div>
     </form>
+
+    <div class="login-link">
+        <p class="form-link">Already have an account?</p>
+        <a class="button form-link" asp-controller="Account" asp-action="Login">Login</a>
+    </div>
 </div>

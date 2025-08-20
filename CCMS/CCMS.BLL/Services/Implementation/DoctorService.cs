@@ -1,4 +1,5 @@
-﻿using CCMS.BLL.Mapping;
+﻿using CCMS.BLL.Helper;
+using CCMS.BLL.Mapping;
 using CCMS.BLL.ModelVM.Doctor;
 using CCMS.BLL.ModelVM.Patient;
 using CCMS.BLL.ModelVM.Room;
@@ -123,7 +124,11 @@ namespace CCMS.BLL.Services.Implementation
             try
             {
                 Doctor doctor = await _doctorRepo.GetById(doc.Id);
-
+                if(doc.File != null)
+                {
+                    doc.path = Upload.UploadFile("Files", doc.File);
+                    doc.File = null;
+                }
                 doctor.Edit(
                     doctor.FName,
                     doctor.MidName,
@@ -131,6 +136,7 @@ namespace CCMS.BLL.Services.Implementation
                     doctor.Ssn,
                     doctor.Gender,
                     doctor.BirthDate,
+                    doctor.Path,
                     doctor.Salary,
                     doctor.YearsOfExperience,
                     doctor.HiringDate,

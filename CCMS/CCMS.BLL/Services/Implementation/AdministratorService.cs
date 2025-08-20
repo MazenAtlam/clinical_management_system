@@ -1,4 +1,5 @@
-﻿using CCMS.BLL.Mapping;
+﻿using CCMS.BLL.Helper;
+using CCMS.BLL.Mapping;
 using CCMS.BLL.ModelVM.BiomedicalEngineer;
 using CCMS.BLL.ModelVM.Book;
 using CCMS.BLL.ModelVM.Doctor;
@@ -64,8 +65,9 @@ namespace CCMS.BLL.Services.Implementation
         {
             try
             {
+                string path = Upload.UploadFile("Files", adm.File);
                 Employee admin = new Employee(UserType.Admin, adm.FName, adm.MidName, adm.LName, adm.Ssn,
-                            adm.Gender, adm.BirthDate, adm.Salary,
+                            adm.Gender, adm.BirthDate, path, adm.Salary,
                             adm.YearsOfExperience, adm.HiringDate, adm.MgrId,
                             adm.AdmId, adm.DeptId, createdBy
                             );
@@ -82,8 +84,9 @@ namespace CCMS.BLL.Services.Implementation
         {
             try
             {
+                string path = Upload.UploadFile("Files", mgr.File);
                 Employee manager = new Employee(UserType.Manager, mgr.FName, mgr.MidName, mgr.LName, mgr.Ssn,
-                            mgr.Gender, mgr.BirthDate, mgr.Salary, mgr.YearsOfExperience,
+                            mgr.Gender, mgr.BirthDate, path, mgr.Salary, mgr.YearsOfExperience,
                             mgr.HiringDate, mgr.MgrId, mgr.AdmId, mgr.DeptId, createdBy
                             );
 
@@ -99,8 +102,9 @@ namespace CCMS.BLL.Services.Implementation
         {
             try
             {
+                string path = Upload.UploadFile("Files", doc.File);
                 Doctor doctor = new Doctor(UserType.Doctor, doc.FName, doc.MidName, doc.LName,
-                    doc.Ssn, doc.Gender, doc.BirthDate, doc.Salary,
+                    doc.Ssn, doc.Gender, doc.BirthDate, path, doc.Salary,
                             doc.YearsOfExperience, doc.HiringDate, doc.MgrId,
                             doc.AdmId, doc.DeptId, doc.major, createdBy
                             );
@@ -117,8 +121,9 @@ namespace CCMS.BLL.Services.Implementation
         {
             try
             {
+                string path = Upload.UploadFile("Files", lDoc.File);
                 LabDoctor labDoctor = new LabDoctor(UserType.LabDoctor, lDoc.FName, lDoc.MidName, lDoc.LName, lDoc.Ssn,
-                            lDoc.Gender, lDoc.BirthDate, lDoc.Salary, 
+                            lDoc.Gender, lDoc.BirthDate, path, lDoc.Salary,
                             lDoc.YearsOfExperience, lDoc.HiringDate, lDoc.MgrId,
                             lDoc.AdmId, lDoc.DeptId, createdBy
                             );
@@ -135,8 +140,9 @@ namespace CCMS.BLL.Services.Implementation
         {
             try
             {
+                string path = Upload.UploadFile("Files", bioEng.File);
                 BiomedicalEngineer biomedicalEngineer = new BiomedicalEngineer(UserType.BiomedicalEngineer, bioEng.FName, bioEng.MidName,
-                    bioEng.LName, bioEng.Ssn, bioEng.Gender, bioEng.BirthDate,
+                    bioEng.LName, bioEng.Ssn, bioEng.Gender, bioEng.BirthDate, path,
                     bioEng.Salary, bioEng.YearsOfExperience, bioEng.HiringDate,
                     bioEng.MgrId, bioEng.AdmId, bioEng.DeptId, createdBy
                     );
@@ -216,7 +222,7 @@ namespace CCMS.BLL.Services.Implementation
             {
                 Employee employee = await _employeeRepo.GetEmployeeById(emp.Id);
 
-                employee.Edit(emp.FName, emp.MidName, emp.LName, emp.Ssn, emp.Gender, emp.BirthDate,
+                employee.Edit(emp.FName, emp.MidName, emp.LName, emp.Ssn, emp.Gender, emp.BirthDate, emp.path,
                     emp.Salary, emp.YearsOfExperience, emp.HiringDate, emp.MgrId, emp.DeptId, modifiedBy);
                 await _employeeRepo.Save();
 

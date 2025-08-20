@@ -12,10 +12,10 @@ namespace CCMS.DAL.Entities
         public virtual List<Book> Books { get; private set; }
 
         //public Doctor() : base() { }
-        public Doctor(UserType uType, string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate,
+        public Doctor(UserType uType, string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate, string? path,
             decimal salary, int? yearsOfExperience, DateTime hiringDate, string? mgrId, string? admId, int? deptId,
             Specialization major, string createdBy)
-            : base(uType, fName, midName, lName, ssn, gender, birthDate, salary, yearsOfExperience, hiringDate, mgrId, admId, deptId, createdBy)
+            : base(uType, fName, midName, lName, ssn, gender, birthDate, path, salary, yearsOfExperience, hiringDate, mgrId, admId, deptId, createdBy)
             => this.major = major;
 
         public void EditRating(Rating? rating, string modifiedBy)
@@ -24,11 +24,11 @@ namespace CCMS.DAL.Entities
             SaveModification(modifiedBy);
         }
 
-        public void Edit(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate,
+        public void Edit(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate, string? path,
             decimal salary, int? yearsOfExperience, DateTime hiringDate, string? mgrId, int? deptId,
             Specialization major, Rating? rating, string modifiedBy)
         {
-            base.Edit(fName, midName, lName, ssn, gender, birthDate, salary, yearsOfExperience, hiringDate, mgrId, deptId, modifiedBy);
+            base.Edit(fName, midName, lName, ssn, gender, birthDate, path, salary, yearsOfExperience, hiringDate, mgrId, deptId, modifiedBy);
             this.major = major;
             this.rating = rating;
         }

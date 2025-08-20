@@ -35,9 +35,9 @@ namespace CCMS.DAL.Entities
         public virtual List<WorkingSlot> WorkingSlots { get; private set; } = new List<WorkingSlot>();
 
         //public Employee() : base() { }
-        public Employee(UserType uType, string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate,
+        public Employee(UserType uType, string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate, string? path,
             decimal salary, int? yearsOfExperience, DateTime hiringDate, string? mgrId, string? admId, int? deptId, string createdBy)
-            : base(uType, fName, midName, lName, ssn, gender, birthDate, createdBy)
+            : base(uType, fName, midName, lName, ssn, gender, birthDate, createdBy, path)
         {
             Set(salary, yearsOfExperience, hiringDate, mgrId, deptId);
             AdmId = admId;
@@ -51,10 +51,10 @@ namespace CCMS.DAL.Entities
             DeptId = deptId;
         }
 
-        public void Edit(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate,
+        public void Edit(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate, string? path,
             decimal salary, int? yearsOfExperience, DateTime hiringDate, string? mgrId, int? deptId, string modifiedBy)
         {
-            base.Edit(fName, midName, lName, ssn, gender, birthDate, modifiedBy);
+            base.Edit(fName, midName, lName, ssn, gender, birthDate, path,modifiedBy);
 
             Set(salary, yearsOfExperience, hiringDate, mgrId, deptId);
         }

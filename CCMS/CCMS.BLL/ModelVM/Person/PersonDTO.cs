@@ -1,5 +1,6 @@
 ﻿using CCMS.BLL.ModelVM.User;
 using CCMS.DAL.Enums;
+using Microsoft.AspNetCore.Http;
 
 namespace CCMS.BLL.ModelVM.Person
 {
@@ -12,6 +13,8 @@ namespace CCMS.BLL.ModelVM.Person
         public Gender Gender { get; set; }
         public DateOnly BirthDate { get; set; }
         public string CreatedBy { get; set; }
+        public string? path { get; set; }
+        public IFormFile? File { get; set; }
 
         public string GetFullName() => FName + (MidName == null ? " " : $" {MidName} ") + LName;
     }

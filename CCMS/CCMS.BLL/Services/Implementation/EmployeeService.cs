@@ -1,9 +1,11 @@
-﻿using CCMS.BLL.Mapping;
+﻿using CCMS.BLL.Helper;
+using CCMS.BLL.Mapping;
 using CCMS.BLL.ModelVM.Employee;
 using CCMS.BLL.ModelVM.WorkingSlot;
 using CCMS.BLL.Services.Abstraction;
 using CCMS.DAL.Entities;
 using CCMS.DAL.Repository.Abstraction;
+using System.IO;
 
 namespace CCMS.BLL.Services.Implementation
 {
@@ -42,7 +44,11 @@ namespace CCMS.BLL.Services.Implementation
         {
             var existingEmployee = await _employeeRepo.GetEmployeeById(dto.Id);
             //if (existingEmployee == null) return false;
-
+            if(dto.File != null)
+            {
+                dto.path = Upload.UploadFile("Files", dto.File);
+                dto.File = null;
+            }
 
             existingEmployee.Edit(
        dto.FName,
@@ -51,6 +57,7 @@ namespace CCMS.BLL.Services.Implementation
        dto.Ssn,
        dto.Gender,
        dto.BirthDate,
+       dto.path,
        dto.Salary,
        dto.YearsOfExperience,
        dto.HiringDate,

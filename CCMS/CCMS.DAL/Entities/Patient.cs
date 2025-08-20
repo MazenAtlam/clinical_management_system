@@ -16,13 +16,13 @@ namespace CCMS.DAL.Entities
         public virtual List<Book> Books { get; private set; } = new List<Book>();
 
         //public Patient() : base() { }
-        public Patient(UserType uType, string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate, BloodType bloodType, string createdBy)
-            : base(uType, fName, midName, lName, ssn, gender, birthDate, createdBy)
+        public Patient(UserType uType, string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate, BloodType bloodType, string? path, string createdBy)
+            : base(uType, fName, midName, lName, ssn, gender, birthDate, createdBy, path)
             => BloodType = bloodType;
 
-        public void Edit(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate, BloodType bloodType, string modifiedBy)
+        public void Edit(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate, BloodType bloodType, string? path,string modifiedBy)
         {
-            base.Edit(fName, midName, lName, ssn, gender, birthDate, modifiedBy);
+            base.Edit(fName, midName, lName, ssn, gender, birthDate, path,modifiedBy);
             BloodType = bloodType;
         }
     }

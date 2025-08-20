@@ -23,11 +23,11 @@
                 <div class="row gy-4">
                     <div class="col-12">
                         <div class="card widget-card border-light shadow-sm">
-                            <div class="card-header text-bg-primary">Welcome, Ethan Leo</div>
+                            <div class="card-header text-bg-primary">Welcome, @Model.FName</div>
                             <div class="card-body">
                                 <div class="text-center mb-3">
                                     <!-- PUT PATIENT PICTURE -->
-                                    <img src="./assets/img/profile-img-1.jpg" class="img-fluid rounded-circle" alt="Luna John">
+                                    <img src="~/Files/@Model.path" class="img-fluid rounded-circle" alt="@Model.FName">
                                 </div>
                                 @* change to the name of the patient *@
                                 <h5 class="text-center mb-1">@Model.GetFullName()</h5>
@@ -66,13 +66,14 @@
                         </ul>
                         <div class="tab-content pt-4" id="profileTabContent">
                             <div class="tab-pane fade show active" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-                                <form action="#!" class="row gy-3 gy-xxl-4">
+                                <form action="#!" class="row gy-3 gy-xxl-4" enctype="multipart/form-data">
                                     <div class="col-12">
                                         <div class="row gy-2">
                                             <label class="col-12 form-label m-0">Profile Image</label>
                                             <div class="col-12">
                                                 <!-- ADD PATIENT PICTURE -->
-                                                <img src="./assets/img/profile-img-1.jpg" class="img-fluid" alt="Luna John">
+                                                <img src="~/Files/@Model.path" class="img-fluid" alt="@Model.FName">
+                                                <input asp-for="File" type="file" class="form-control" id="photo">
                                             </div>
                                             <div class="col-12">
                                                 <a href="#!" class="d-inline-block bg-primary link-light lh-1 p-2 rounded">

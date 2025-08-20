@@ -5,6 +5,7 @@ using CCMS.DAL.Entities;
 using CCMS.DAL.Repository.Abstraction;
 using CCMS.DAL.Repository.Implementation;
 using DotNetEnv;
+using Hangfire;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -90,6 +91,10 @@ namespace CCMS.PLL
             builder.Services.AddScoped<IPatientService, PatientService>();
             builder.Services.AddScoped<IAdministratorService, AdministratorService>();
 
+            //background job
+            builder.Services.AddHangfire(x => x.UseSqlServerStorage(connectionString));
+            builder.Services.AddHangfireServer();
+
 
             var app = builder.Build();
 
@@ -112,6 +117,7 @@ namespace CCMS.PLL
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
+            app.UseHangfireDashboard("/CCMS");
             app.Run();
         }
     }

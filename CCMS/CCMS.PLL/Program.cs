@@ -36,11 +36,11 @@ namespace CCMS.PLL
                 );
             
             // Identity
-            builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true) // Make it false to confirm the email first
+            builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false) // Make it true to confirm the email first
                 .AddEntityFrameworkStores<CcmsDbContext>()
                 .AddTokenProvider<DataProtectorTokenProvider<ApplicationUser>>(TokenOptions.DefaultProvider);
 
-            builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
                 // Default Password settings.
                 options.Password.RequireDigit = true;
@@ -52,7 +52,8 @@ namespace CCMS.PLL
                 options.User.RequireUniqueEmail = true;
 
                 options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
-            }).AddEntityFrameworkStores<CcmsDbContext>();
+            }).AddEntityFrameworkStores<CcmsDbContext>()
+            .AddDefaultTokenProviders();
 
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,
@@ -82,11 +83,12 @@ namespace CCMS.PLL
             builder.Services.AddScoped<IRoomRepo, RoomRepo>();
             builder.Services.AddScoped<IScanRepo, ScanRepo>();
             builder.Services.AddScoped<IWorkingSlotRepo, WorkingSlotRepo>();
-            
+
             // Add Scoped for Services
+            builder.Services.AddScoped<IApplicationUserService, ApplicationUserService>();
             builder.Services.AddScoped<IEmployeeService, EmployeeService>();
             builder.Services.AddScoped<IPatientService, PatientService>();
-            builder.Services.AddScoped<IApplicationUserService, ApplicationUserService>();
+            builder.Services.AddScoped<IAdministratorService, AdministratorService>();
 
 
             var app = builder.Build();

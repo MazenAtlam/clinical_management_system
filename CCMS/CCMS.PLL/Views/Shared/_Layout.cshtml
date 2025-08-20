@@ -32,11 +32,27 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
     <style>
+        .form-link, .reset-password-link {
+            margin-bottom: 0;
+            font-size: small;
+        }
+
+        .form-link {
+            display: inline-block;
+            margin-right: 10px;
+            margin-top: 10px;
+            margin-bottom: 0;
+        }
+
+        .reset-password-link {
+            margin-bottom: 20px;
+        }
+
         .a-btn {
             text-decoration: none;
         }
 
-        .docmed-signup {
+        .docmed-signup, .docmed-login {
             max-width: 500px;
             margin-top: 0;
             margin-bottom: 34px;
@@ -64,7 +80,11 @@
             text-align: center;
         }
 
-        .form-input, #error-display, #show-error {
+        .form-check-field {
+            padding-inline: 3rem;
+        }
+
+        .form-input, #error-display, #show-error, .signup-link, .login-link, .reset-password-link {
             padding-inline: 2rem;
         }
 
@@ -168,9 +188,7 @@
                         </div>
                         <div class="col-xl-3 col-lg-3 d-none d-lg-block">
                             <div class="Appointment">
-                                <div class="book_btn d-none d-lg-block">
-                                    <a class="button font-weight-bold a-btn" asp-controller="Account" asp-action="Login">Open Portal</a>
-                                </div>
+                                @RenderSection("AccountsButtons", required: false)
                             </div>
                         </div>
                         <div class="col-12">

@@ -22,7 +22,11 @@ namespace CCMS.DAL.Entities
         public DateTime? DeletedOn { get; private set; } = null;
 
         //public ApplicationUser() { }
-        public ApplicationUser(string createdBy) => CreatedBy = createdBy;
+        public ApplicationUser(UserType uType, string createdBy)
+        {
+            UType = uType;
+            CreatedBy = createdBy;
+        }
 
         public void Delete(string modifiedBy)
         {

@@ -81,6 +81,7 @@ namespace CCMS.PLL.Controllers
                 Gender = register.Gender,
                 BirthDate = register.BirthDate,
                 BloodType = register.BloodType,
+                File = register.File,
             };
 
             string? result = await _patientService.Create(patient, user.UserName);
@@ -129,7 +130,7 @@ namespace CCMS.PLL.Controllers
                 return View(login);
             }
             
-            return RedirectToAction("Index", result.Item1);
+            return RedirectToAction("Profile", result.Item1);
         }
     }
 }

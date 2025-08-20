@@ -37,10 +37,9 @@ namespace CCMS.BLL.Services.Implementation
                 if (!result.Succeeded)
                     return (null, result);
                 
-                //IdentityResult roleResult = await _userManager.AddToRoleAsync(user, usr.UType.ToString());
+                IdentityResult roleResult = await _userManager.AddToRoleAsync(user, usr.UType.ToString());
 
-                //return roleResult.Succeeded ? (user.Id, roleResult) : (null, roleResult);
-                return result.Succeeded ? (user.Id, result) : (null, result);
+                return roleResult.Succeeded ? (user.Id, roleResult) : (null, roleResult);
             }
             catch (Exception ex) { return (ex.Message, null); }
         }
@@ -59,7 +58,7 @@ namespace CCMS.BLL.Services.Implementation
 
                 SignInResult result = await _signInManager.PasswordSignInAsync(user, login.Password, login.RememberMe, false);
 
-                return result.Succeeded ? (user.UType.ToString(), result) : ("Invalid Password. Try again.", result);
+                return result.Succeeded ? (user.Id, result) : ("Invalid Password. Try again.", result);
             }
             catch (Exception ex) { return (ex.Message, null); }
         }

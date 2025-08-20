@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CCMS.PLL.Controllers
 {
-    [Authorize("Patient")]
+    //[Authorize("Patient")]
     public class PatientController: Controller
     {
         //ADD MAPPERS
@@ -18,16 +18,8 @@ namespace CCMS.PLL.Controllers
             _patientService = patientService;
         }
 
-        public ActionResult PatientLogin()
-        { 
-           return View();
-        }
-        public ActionResult PatientSignUp()
-        {
-            return View();
-        }
         //show photo and details and give permission to edit
-        public ActionResult PatientProfile(string id)
+        public ActionResult Profile(string id)
         {
             //HENA EL MAFROOD TERAGA3 PATIENT MEN EL SERVICE BAS FE ERROR BESABAB EL MULTITHREADING (EL HETA DEH)
             //Patient patient = _patientService.GetById(id);

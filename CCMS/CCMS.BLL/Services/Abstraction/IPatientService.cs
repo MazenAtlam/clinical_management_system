@@ -8,7 +8,7 @@ namespace CCMS.BLL.Services.Abstraction
         Task<string?> Create(CreatePatient pat, string createdBy);
         Task<bool> Update(PatientDTO patient);
         //Task<bool> Delete(string id);
-        Task<Patient> GetById(string id);
+        Task<(string?, PatientDTO?)> GetById(string id);
         Task<List<Patient>> GetAll();
         List<Patient> GetPatientsByDoctor(string doctorId);
         List<Book> GetPatientAppointments(string patientId);

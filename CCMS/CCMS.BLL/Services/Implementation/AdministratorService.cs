@@ -14,6 +14,7 @@ using CCMS.DAL.Entities;
 using CCMS.DAL.Enums;
 using CCMS.DAL.Repository.Abstraction;
 using Microsoft.AspNetCore.Identity;
+using System.IO;
 
 namespace CCMS.BLL.Services.Implementation
 {
@@ -65,7 +66,9 @@ namespace CCMS.BLL.Services.Implementation
         {
             try
             {
-                string path = Upload.UploadFile("Files", adm.File);
+                string? path = null;
+                if (adm.File != null)
+                    path = Upload.UploadFile("Files", adm.File);
                 Employee admin = new Employee(UserType.Admin, adm.FName, adm.MidName, adm.LName, adm.Ssn,
                             adm.Gender, adm.BirthDate, path, adm.Salary,
                             adm.YearsOfExperience, adm.HiringDate, adm.MgrId,
@@ -84,7 +87,9 @@ namespace CCMS.BLL.Services.Implementation
         {
             try
             {
-                string path = Upload.UploadFile("Files", mgr.File);
+                string? path = null;
+                if (mgr.File != null)
+                    path = Upload.UploadFile("Files", mgr.File);
                 Employee manager = new Employee(UserType.Manager, mgr.FName, mgr.MidName, mgr.LName, mgr.Ssn,
                             mgr.Gender, mgr.BirthDate, path, mgr.Salary, mgr.YearsOfExperience,
                             mgr.HiringDate, mgr.MgrId, mgr.AdmId, mgr.DeptId, createdBy
@@ -102,7 +107,9 @@ namespace CCMS.BLL.Services.Implementation
         {
             try
             {
-                string path = Upload.UploadFile("Files", doc.File);
+                string? path = null;
+                if (doc.File != null)
+                    path = Upload.UploadFile("Files", doc.File);
                 Doctor doctor = new Doctor(UserType.Doctor, doc.FName, doc.MidName, doc.LName,
                     doc.Ssn, doc.Gender, doc.BirthDate, path, doc.Salary,
                             doc.YearsOfExperience, doc.HiringDate, doc.MgrId,
@@ -121,7 +128,9 @@ namespace CCMS.BLL.Services.Implementation
         {
             try
             {
-                string path = Upload.UploadFile("Files", lDoc.File);
+                string? path = null;
+                if (lDoc.File != null)
+                    path = Upload.UploadFile("Files", lDoc.File);
                 LabDoctor labDoctor = new LabDoctor(UserType.LabDoctor, lDoc.FName, lDoc.MidName, lDoc.LName, lDoc.Ssn,
                             lDoc.Gender, lDoc.BirthDate, path, lDoc.Salary,
                             lDoc.YearsOfExperience, lDoc.HiringDate, lDoc.MgrId,
@@ -140,7 +149,9 @@ namespace CCMS.BLL.Services.Implementation
         {
             try
             {
-                string path = Upload.UploadFile("Files", bioEng.File);
+                string? path = null;
+                if (bioEng.File != null)
+                    path = Upload.UploadFile("Files", bioEng.File);
                 BiomedicalEngineer biomedicalEngineer = new BiomedicalEngineer(UserType.BiomedicalEngineer, bioEng.FName, bioEng.MidName,
                     bioEng.LName, bioEng.Ssn, bioEng.Gender, bioEng.BirthDate, path,
                     bioEng.Salary, bioEng.YearsOfExperience, bioEng.HiringDate,

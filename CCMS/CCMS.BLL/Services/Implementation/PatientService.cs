@@ -29,7 +29,10 @@ namespace CCMS.BLL.Services.Implementation
         {
             try
             {
-                string path = Upload.UploadFile("Files", pat.File);
+                string? path = null;
+                if (pat.File != null)
+                    path = Upload.UploadFile("Files", pat.File);
+                
                 Patient patient = new Patient(UserType.Patient, pat.FName, pat.MidName, pat.LName,
                     pat.Ssn, pat.Gender, pat.BirthDate, pat.BloodType, path, createdBy);
 
@@ -80,9 +83,17 @@ namespace CCMS.BLL.Services.Implementation
             return false ;
         }
 
-        public async Task<Patient> GetById(string id)
+        public async Task<(string?, PatientDTO?)> GetById(string id)
         {
-            return await patientRepo.GetById(id);
+            try
+            {
+                Patient patient = await patientRepo.GetById(id);
+                
+                PatientDTO pat = _patientMapper.ToDTO(patient);
+
+                return (null, pat);
+            }
+            catch (Exception ex) { return (ex.Message, null); }
         }
 
         public async Task<List<Patient>> GetAll()

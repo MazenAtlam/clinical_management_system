@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CCMS.PLL.Controllers
 {
-    [Authorize("Doctor")]
+    //[Authorize("Doctor")]
     public class DoctorController : Controller
     {
-        public ActionResult DoctorProfile()
+        public ActionResult Profile()
         {
             return View();
         }

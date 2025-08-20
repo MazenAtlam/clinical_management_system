@@ -37,12 +37,14 @@ namespace CCMS.PLL
                 );
             
             // Identity
-            builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false) // Make it true to confirm the email first
-                .AddEntityFrameworkStores<CcmsDbContext>()
-                .AddTokenProvider<DataProtectorTokenProvider<ApplicationUser>>(TokenOptions.DefaultProvider);
+            //builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false) // Make it true to confirm the email first
+            //    .AddEntityFrameworkStores<CcmsDbContext>()
+            //    .AddTokenProvider<DataProtectorTokenProvider<ApplicationUser>>(TokenOptions.DefaultProvider);
 
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
+                options.SignIn.RequireConfirmedAccount = false; // Make it true to confirm the email first
+
                 // Default Password settings.
                 options.Password.RequireDigit = true;
                 options.Password.RequireLowercase = true;
@@ -54,7 +56,7 @@ namespace CCMS.PLL
 
                 options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
             }).AddEntityFrameworkStores<CcmsDbContext>()
-            .AddDefaultTokenProviders();
+            .AddTokenProvider<DataProtectorTokenProvider<ApplicationUser>>(TokenOptions.DefaultProvider);
 
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,

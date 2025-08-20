@@ -931,7 +931,7 @@ h3 {
 @media (min-width: 1200px) and (max-width: 1500px) {
   /* line 77, C:/Users/SPN Graphics/Desktop/CL September/210 Medical/HTML/scss/_header.scss */
   .header-area .main-header-area .Appointment .book_btn {
-    margin-left: 0;
+    margin-left: 3px;
   }
 }
 

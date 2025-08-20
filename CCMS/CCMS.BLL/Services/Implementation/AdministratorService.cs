@@ -8,6 +8,7 @@ using CCMS.BLL.ModelVM.LabDoctor;
 using CCMS.BLL.ModelVM.MedicalHistory;
 using CCMS.BLL.ModelVM.Patient;
 using CCMS.BLL.ModelVM.Scan;
+using CCMS.BLL.ModelVM.User;
 using CCMS.BLL.Services.Abstraction;
 using CCMS.DAL.Entities;
 using CCMS.DAL.Enums;
@@ -26,7 +27,7 @@ namespace CCMS.BLL.Services.Implementation
         private readonly IBookRepo _bookRepo;
         private readonly IScanRepo _scanRepo;
         private readonly IMedicalHistoryRepo _medicalHistoryRepo;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
         private readonly EmployeeMapper employeeMapper = new EmployeeMapper();
         private readonly PatientMapper patientMapper = new PatientMapper();
@@ -45,7 +46,7 @@ namespace CCMS.BLL.Services.Implementation
             IBookRepo bookRepo,
             IScanRepo scanRepo,
             IMedicalHistoryRepo medicalHistoryRepo,
-            UserManager<ApplicationUser> userManager)
+            RoleManager<IdentityRole> roleManager)
         {
             _patientRepo = patientRepo;
             _doctorRepo = doctorRepo;
@@ -55,7 +56,7 @@ namespace CCMS.BLL.Services.Implementation
             _bookRepo = bookRepo;
             _scanRepo = scanRepo;
             _medicalHistoryRepo = medicalHistoryRepo;
-            _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         // The IAdministratorService interface in this project uses async Task<string?> signatures.
@@ -65,7 +66,7 @@ namespace CCMS.BLL.Services.Implementation
             try
             {
                 string path = Upload.UploadFile("Files", adm.File);
-                Employee admin = new Employee(adm.FName, adm.MidName, adm.LName, adm.Ssn,
+                Employee admin = new Employee(UserType.Admin, adm.FName, adm.MidName, adm.LName, adm.Ssn,
                             adm.Gender, adm.BirthDate, path, adm.Salary,
                             adm.YearsOfExperience, adm.HiringDate, adm.MgrId,
                             adm.AdmId, adm.DeptId, createdBy
@@ -84,7 +85,7 @@ namespace CCMS.BLL.Services.Implementation
             try
             {
                 string path = Upload.UploadFile("Files", mgr.File);
-                Employee manager = new Employee(mgr.FName, mgr.MidName, mgr.LName, mgr.Ssn,
+                Employee manager = new Employee(UserType.Manager, mgr.FName, mgr.MidName, mgr.LName, mgr.Ssn,
                             mgr.Gender, mgr.BirthDate, path, mgr.Salary, mgr.YearsOfExperience,
                             mgr.HiringDate, mgr.MgrId, mgr.AdmId, mgr.DeptId, createdBy
                             );
@@ -102,8 +103,8 @@ namespace CCMS.BLL.Services.Implementation
             try
             {
                 string path = Upload.UploadFile("Files", doc.File);
-                Doctor doctor = new Doctor(doc.FName, doc.MidName, doc.LName,
-                    doc.Ssn, doc.Gender, doc.BirthDate, path,doc.Salary,
+                Doctor doctor = new Doctor(UserType.Doctor, doc.FName, doc.MidName, doc.LName,
+                    doc.Ssn, doc.Gender, doc.BirthDate, path, doc.Salary,
                             doc.YearsOfExperience, doc.HiringDate, doc.MgrId,
                             doc.AdmId, doc.DeptId, doc.major, createdBy
                             );
@@ -121,8 +122,8 @@ namespace CCMS.BLL.Services.Implementation
             try
             {
                 string path = Upload.UploadFile("Files", lDoc.File);
-                LabDoctor labDoctor = new LabDoctor(lDoc.FName, lDoc.MidName, lDoc.LName, lDoc.Ssn,
-                            lDoc.Gender, lDoc.BirthDate, path, lDoc.Salary, 
+                LabDoctor labDoctor = new LabDoctor(UserType.LabDoctor, lDoc.FName, lDoc.MidName, lDoc.LName, lDoc.Ssn,
+                            lDoc.Gender, lDoc.BirthDate, path, lDoc.Salary,
                             lDoc.YearsOfExperience, lDoc.HiringDate, lDoc.MgrId,
                             lDoc.AdmId, lDoc.DeptId, createdBy
                             );
@@ -140,7 +141,7 @@ namespace CCMS.BLL.Services.Implementation
             try
             {
                 string path = Upload.UploadFile("Files", bioEng.File);
-                BiomedicalEngineer biomedicalEngineer = new BiomedicalEngineer(bioEng.FName, bioEng.MidName,
+                BiomedicalEngineer biomedicalEngineer = new BiomedicalEngineer(UserType.BiomedicalEngineer, bioEng.FName, bioEng.MidName,
                     bioEng.LName, bioEng.Ssn, bioEng.Gender, bioEng.BirthDate, path,
                     bioEng.Salary, bioEng.YearsOfExperience, bioEng.HiringDate,
                     bioEng.MgrId, bioEng.AdmId, bioEng.DeptId, createdBy
@@ -396,6 +397,27 @@ namespace CCMS.BLL.Services.Implementation
                 return null;
             }
             catch (Exception ex) { return ex.Message; }
+        }
+
+        public async Task<(string?, IdentityResult?)> CreateRole(CreateRoleVM roleVM)
+        {
+            try
+            {
+                IdentityRole? getRoleByName = await _roleManager.FindByNameAsync(roleVM.Name);
+
+                if (getRoleByName != null)
+                    return ($"Role with name {roleVM.Name} already exists", null);
+
+                IdentityRole role = new IdentityRole()
+                {
+                    Name = roleVM.Name
+                };
+
+                IdentityResult result = await _roleManager.CreateAsync(role);
+
+                return result.Succeeded ? (role.Name, result) : (null, result);
+            }
+            catch (Exception ex) { return (ex.Message, null); }
         }
     }
 }

@@ -30,7 +30,7 @@ namespace CCMS.BLL.Services.Implementation
             try
             {
                 string path = Upload.UploadFile("Files", pat.File);
-                Patient patient = new Patient(pat.FName, pat.MidName, pat.LName,
+                Patient patient = new Patient(UserType.Patient, pat.FName, pat.MidName, pat.LName,
                     pat.Ssn, pat.Gender, pat.BirthDate, pat.BloodType, path, createdBy);
 
                 await patientRepo.Add(patient);

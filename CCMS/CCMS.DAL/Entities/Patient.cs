@@ -17,7 +17,7 @@ namespace CCMS.DAL.Entities
 
         //public Patient() : base() { }
         public Patient(UserType uType, string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate, BloodType bloodType, string? path, string createdBy)
-            : base(uType, fName, midName, lName, ssn, gender, birthDate, createdBy)
+            : base(uType, fName, midName, lName, ssn, gender, birthDate, createdBy, path)
             => BloodType = bloodType;
 
         public void Edit(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate, BloodType bloodType, string? path,string modifiedBy)

@@ -1,5 +1,4 @@
 ﻿using CCMS.DAL.Enums;
-using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -36,9 +35,7 @@ namespace CCMS.DAL.Entities
         //protected Person() : base() { }
         protected Person(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate, string createdBy)
             : base(createdBy)
-        {
-            Set(fName, midName, lName, ssn, gender, birthDate);
-        }
+            => Set(fName, midName, lName, ssn, gender, birthDate);
 
         public string GetFullName() => FName + (MidName == null ? " " : $" {MidName} ") + LName;
 

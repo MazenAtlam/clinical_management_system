@@ -31,7 +31,7 @@ namespace CCMS.DAL.Entities
             SaveModification(modifiedBy);
         }
 
-        public void SaveModification(string modifiedBy)
+        protected void SaveModification(string modifiedBy)
         {
             ModifiedBy = modifiedBy;
             ModifiedOn = DateTime.Now;

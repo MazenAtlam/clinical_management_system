@@ -22,31 +22,15 @@ namespace CCMS.BLL.Services.Implementation
 
             try
             {
-                // Each person should be created independently
+                ApplicationUser user = new ApplicationUser(createdBy)
+                {
+                    UserName = usr.UserName,
+                    Email = usr.Email,
+                };
 
-                throw new NotImplementedException();
+                IdentityResult result = await _userManager.CreateAsync(user, usr.Password);
 
-                //ApplicationUser user = new ApplicationUser(createdBy)
-                //{
-                //    UserName = usr.UserName,
-                //    Email = usr.Email,
-                //};
-                
-                //IdentityResult result = await _userManager.CreateAsync(user, usr.Password);
-
-                //return result.Succeeded ? (user.Id, result) : (null, result);
-                // In Controller
-                //if (result.Succeeded)
-                //{
-                //    return RedirectToAction("Login");
-                //}
-                //else
-                //{
-                //    foreach (var item in result.Errors)
-                //    {
-                //        ModelState.AddModelError("Password", item.Description);
-                //    }
-                //}
+                return result.Succeeded ? (user.Id, result) : (null, result);
             }
             catch (Exception ex) { return (ex.Message, null); }
         }

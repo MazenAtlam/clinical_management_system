@@ -36,6 +36,10 @@ namespace CCMS.PLL
                 );
             
             // Identity
+            builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true) // Make it false to confirm the email first
+                .AddEntityFrameworkStores<CcmsDbContext>()
+                .AddTokenProvider<DataProtectorTokenProvider<ApplicationUser>>(TokenOptions.DefaultProvider);
+
             builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
             {
                 // Default Password settings.
@@ -44,11 +48,11 @@ namespace CCMS.PLL
                 options.Password.RequireUppercase = true;
                 options.Password.RequireNonAlphanumeric = true;
                 options.Password.RequiredLength = 8;
-            }).AddEntityFrameworkStores<CcmsDbContext>();
 
-            builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true) // Make it false to confirm the email first
-                .AddEntityFrameworkStores<CcmsDbContext>()
-                .AddTokenProvider<DataProtectorTokenProvider<ApplicationUser>>(TokenOptions.DefaultProvider);
+                options.User.RequireUniqueEmail = true;
+
+                options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+            }).AddEntityFrameworkStores<CcmsDbContext>();
 
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,
@@ -82,6 +86,7 @@ namespace CCMS.PLL
             // Add Scoped for Services
             builder.Services.AddScoped<IEmployeeService, EmployeeService>();
             builder.Services.AddScoped<IPatientService, PatientService>();
+            builder.Services.AddScoped<IApplicationUserService, ApplicationUserService>();
 
 
             var app = builder.Build();

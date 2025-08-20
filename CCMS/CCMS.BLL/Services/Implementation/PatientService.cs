@@ -1,3 +1,4 @@
+using CCMS.BLL.Mapping;
 using CCMS.BLL.ModelVM.Patient;
 using CCMS.BLL.Services.Abstraction;
 using CCMS.DAL.Entities;
@@ -13,6 +14,8 @@ namespace CCMS.BLL.Services.Implementation
         private readonly IDoctorRepo doctorRepo;
         //private readonly INotificationService notificationService;
 
+        private readonly PatientMapper _patientMapper = new PatientMapper();
+
         public PatientService(IPatientRepo patientRepo, IBookRepo bookRepo, IDoctorRepo doctorRepo/*, INotificationService notificationService*/)
         {
             this.patientRepo = patientRepo;
@@ -21,28 +24,19 @@ namespace CCMS.BLL.Services.Implementation
             //this.notificationService = notificationService;
         }
 
-        public async Task<bool> Create(PatientDTO patient, string createdBy)
+        public async Task<string?> Create(CreatePatient pat, string createdBy)
         {
             try
             {
-                var newPatient = new Patient(
-                    patient.FName,
-                    patient.MidName,
-                    patient.LName,
-                    patient.Ssn,
-                    patient.Gender,
-                    patient.BirthDate,
-                    patient.BloodType,
-                    createdBy
-                );
+                Patient patient = new Patient(pat.FName, pat.MidName, pat.LName,
+                    pat.Ssn, pat.Gender, pat.BirthDate, pat.BloodType, createdBy);
 
-                //return await patientRepo.Add(newPatient);
-                return false;
+                await patientRepo.Add(patient);
+                await patientRepo.Save();
+
+                return null;
             }
-            catch
-            {
-                return false;
-            }
+            catch (Exception ex) { return ex.Message; }
         }
 
         public async Task<bool> Update(PatientDTO patient)

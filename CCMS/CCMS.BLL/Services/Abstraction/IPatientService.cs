@@ -5,7 +5,7 @@ namespace CCMS.BLL.Services.Abstraction
 {
     public interface IPatientService
     {
-        Task<bool> Create(PatientDTO patient, string createdBy);
+        Task<string?> Create(CreatePatient pat, string createdBy);
         Task<bool> Update(PatientDTO patient);
         //Task<bool> Delete(string id);
         Task<Patient> GetById(string id);

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CCMS.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class InitWithIdentity : Migration
+    public partial class InitDbWithIdentity : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

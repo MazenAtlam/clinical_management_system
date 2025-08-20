@@ -1,0 +1,122 @@
+﻿<div class="docmed-signup">
+    <div class="docmed-logo">DocMed</div>
+
+    <!-- Error Display Section -->
+    <div id="error-display" class="mb-3">
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @ViewBag.Error
+            </div>
+        }
+
+        @if (ViewBag.ValidationErrors != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @foreach (var error in ViewBag.ValidationErrors)
+                {
+                    <p>@error.Description</p>
+                }
+            </div>
+        }
+    </div>
+    <div div id="show-error" class="mb-3"></div>
+
+    <form id="signupForm" method="post" asp-controller="Account" asp-action="SignUp">
+        @Html.AntiForgeryToken()
+
+        <!-- Account Info Section (Visible by default) -->
+        <div id="account-info" class="form-section section-visible">
+            <h3 class="mb-4 form-header">Create Your Account</h3>
+
+            <div class="form-input mb-3">
+                <label for="UserName" class="form-label">Username</label>
+                <input type="text" class="form-control" id="UserName" name="UserName" required>
+            </div>
+
+            <div class="form-input mb-3">
+                <label for="Email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="Email" name="Email" required>
+            </div>
+
+            <div class="form-input mb-3 position-relative">
+                <label for="Password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="Password" name="Password" required>
+                <span class="password-toggle" onclick="togglePassword('Password')">
+                    <i class="bi bi-eye"></i>
+                </span>
+            </div>
+
+            <div class="form-input mb-4 position-relative">
+                <label for="ConfirmPassword" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="ConfirmPassword" name="ConfirmPassword" required>
+                <span class="password-toggle" onclick="togglePassword('ConfirmPassword')">
+                    <i class="bi bi-eye"></i>
+                </span>
+            </div>
+
+            <div class="form-input d-grid">
+                <button type="button" id="nextBtn" class="btn btn-primary btn-docmed-primary">Next</button>
+            </div>
+        </div>
+
+        <!-- User Info Section (Hidden by default) -->
+        <div id="user-info" class="form-section section-hidden">
+            <h3 class="mb-4 form-header">Personal Information</h3>
+
+            <div class="form-input mb-3">
+                <label for="FName" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="FName" name="FName" required>
+            </div>
+
+            <div class="form-input mb-3">
+                <label for="MidName" class="form-label">Middle Name</label>
+                <input type="text" class="form-control" id="MidName" name="MidName">
+            </div>
+
+            <div class="form-input mb-3">
+                <label for="LName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="LName" name="LName" required>
+            </div>
+
+            <div class="form-input mb-3">
+                <label for="Ssn" class="form-label">SSN</label>
+                <input type="text" class="form-control" id="Ssn" name="Ssn" required>
+            </div>
+
+            <div class="form-input mb-3">
+                <label for="BirthDate" class="form-label">Birth Date</label>
+                <input type="date" class="form-control" id="BirthDate" name="BirthDate" max="" required>
+            </div>
+
+            <div class="form-input mb-4">
+                <label for="Gender" class="form-label">Gender</label>
+                <select class="form-select" id="Gender" name="Gender" required>
+                    <option value="" selected>Choose...</option>
+                    <option value="0">Male</option>
+                    <option value="1">Female</option>
+                </select>
+            </div>
+
+            <div class="form-input mb-4">
+                <label for="BloodType" class="form-label">Blood Type</label>
+                <select class="form-select" id="BloodType" name="BloodType" required>
+                    <option value="" selected>Choose...</option>
+                    <option value="0">A+</option>
+                    <option value="1">A-</option>
+                    <option value="2">B+</option>
+                    <option value="3">B-</option>
+                    <option value="4">AB+</option>
+                    <option value="5">AB-</option>
+                    <option value="6">O+</option>
+                    <option value="7">O-</option>
+                </select>
+            </div>
+
+            <div class="form-input d-flex justify-content-between">
+                <button type="button" id="backBtn" class="btn btn-secondary btn-docmed-secondary">Back</button>
+                <button type="submit" class="btn btn-primary btn-docmed-primary">Register</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -11,6 +11,7 @@ using CCMS.BLL.Services.Abstraction;
 using CCMS.DAL.Entities;
 using CCMS.DAL.Enums;
 using CCMS.DAL.Repository.Abstraction;
+using Microsoft.AspNetCore.Identity;
 
 namespace CCMS.BLL.Services.Implementation
 {
@@ -24,6 +25,7 @@ namespace CCMS.BLL.Services.Implementation
         private readonly IBookRepo _bookRepo;
         private readonly IScanRepo _scanRepo;
         private readonly IMedicalHistoryRepo _medicalHistoryRepo;
+        private readonly UserManager<ApplicationUser> _userManager;
 
         private readonly EmployeeMapper employeeMapper = new EmployeeMapper();
         private readonly PatientMapper patientMapper = new PatientMapper();
@@ -41,7 +43,8 @@ namespace CCMS.BLL.Services.Implementation
             IBiomedicalEngineerRepo biomedicalEngineerRepo,
             IBookRepo bookRepo,
             IScanRepo scanRepo,
-            IMedicalHistoryRepo medicalHistoryRepo)
+            IMedicalHistoryRepo medicalHistoryRepo,
+            UserManager<ApplicationUser> userManager)
         {
             _patientRepo = patientRepo;
             _doctorRepo = doctorRepo;
@@ -51,6 +54,7 @@ namespace CCMS.BLL.Services.Implementation
             _bookRepo = bookRepo;
             _scanRepo = scanRepo;
             _medicalHistoryRepo = medicalHistoryRepo;
+            _userManager = userManager;
         }
 
         // The IAdministratorService interface in this project uses async Task<string?> signatures.

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CCMS.DAL.Migrations
 {
     [DbContext(typeof(CcmsDbContext))]
-    [Migration("20250818234403_InitWithIdentity")]
-    partial class InitWithIdentity
+    [Migration("20250820083708_InitDbWithIdentity")]
+    partial class InitDbWithIdentity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -29,17 +29,20 @@ namespace CCMS.DAL.Entities
         [Required]
         [DataType(DataType.Date)]
         public DateOnly BirthDate { get; private set; }
+        public string? Path { get; private set; }
         public virtual List<PhoneNumber> PhoneNumbers { get; private set; } = new List<PhoneNumber>();
         public virtual List<Address> Addresses { get; private set; } = new List<Address>();
 
         //protected Person() : base() { }
-        protected Person(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate, string createdBy)
+        protected Person(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate, string createdBy, string? path)
             : base(createdBy)
-            => Set(fName, midName, lName, ssn, gender, birthDate);
+        {
+            Set(fName, midName, lName, ssn, gender, birthDate, path);
+        }
 
         public string GetFullName() => FName + (MidName == null ? " " : $" {MidName} ") + LName;
 
-        private void Set(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate)
+        private void Set(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate, string path)
         {
             FName = fName;
             MidName = midName;
@@ -47,11 +50,12 @@ namespace CCMS.DAL.Entities
             Ssn = ssn;
             Gender = gender;
             BirthDate = birthDate;
+            Path = path;
         }
 
-        public void Edit(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate, string modifiedBy)
+        public void Edit(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate, string? path,string modifiedBy)
         {
-            Set(fName, midName, lName, ssn, gender, birthDate);
+            Set(fName, midName, lName, ssn, gender, birthDate, path);
 
             base.SaveModification(modifiedBy);
         }

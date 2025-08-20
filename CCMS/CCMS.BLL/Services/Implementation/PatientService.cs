@@ -1,3 +1,4 @@
+using CCMS.BLL.Helper;
 using CCMS.BLL.Mapping;
 using CCMS.BLL.ModelVM.Patient;
 using CCMS.BLL.Services.Abstraction;
@@ -28,8 +29,9 @@ namespace CCMS.BLL.Services.Implementation
         {
             try
             {
+                string path = Upload.UploadFile("Files", pat.File);
                 Patient patient = new Patient(pat.FName, pat.MidName, pat.LName,
-                    pat.Ssn, pat.Gender, pat.BirthDate, pat.BloodType, createdBy);
+                    pat.Ssn, pat.Gender, pat.BirthDate, pat.BloodType, path, createdBy);
 
                 await patientRepo.Add(patient);
                 await patientRepo.Save();
@@ -46,7 +48,11 @@ namespace CCMS.BLL.Services.Implementation
                 var existingPatient = await patientRepo.GetById(patient.Id);
                 if (existingPatient == null)
                     return false;
-
+                if(patient.File != null)
+                {
+                    patient.path = Upload.UploadFile("Files", patient.File);
+                    patient.File = null;
+                }
                 existingPatient.Edit(
                     patient.FName,
                     patient.MidName,
@@ -55,6 +61,7 @@ namespace CCMS.BLL.Services.Implementation
                     patient.Gender,
                     patient.BirthDate,
                     patient.BloodType,
+                    patient.path,
                     "admin"
                 );
 

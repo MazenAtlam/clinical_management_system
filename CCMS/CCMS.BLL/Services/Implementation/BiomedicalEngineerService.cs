@@ -1,4 +1,5 @@
-﻿using CCMS.BLL.Mapping;
+﻿using CCMS.BLL.Helper;
+using CCMS.BLL.Mapping;
 using CCMS.BLL.ModelVM.BiomedicalEngineer;
 using CCMS.BLL.ModelVM.MedicalDevice;
 using CCMS.BLL.Services.Abstraction;
@@ -69,9 +70,13 @@ namespace CCMS.BLL.Services.Implementation
             try
             {
                 BiomedicalEngineer biomedicalEngineer = await _biomedicalEngineerRepo.GetById(emp.Id);
-
+                if (emp.File != null)
+                {
+                    emp.path = Upload.UploadFile("Files", emp.File);
+                    emp.File = null;
+                }
                 biomedicalEngineer.Edit(emp.FName, emp.MidName, emp.LName, emp.Ssn,
-                    emp.Gender, emp.BirthDate, modifiedBy);
+                    emp.Gender, emp.BirthDate, emp.path, modifiedBy);
                 await _biomedicalEngineerRepo.Save();
 
                 return null;

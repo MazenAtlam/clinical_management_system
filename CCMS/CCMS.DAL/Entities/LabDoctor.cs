@@ -9,9 +9,9 @@ namespace CCMS.DAL.Entities
         public virtual List<Scan> Scans { get; private set; } = new List<Scan>();
 
         //public LabDoctor() : base() { }
-        public LabDoctor(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate,
+        public LabDoctor(string fName, string? midName, string lName, string ssn, Gender gender, DateOnly birthDate, string? path,
             decimal salary, int? yearsOfExperience, DateTime hiringDate, string? mgrId, string? admId, int? deptId, string createdBy)
-            : base(fName, midName, lName, ssn, gender, birthDate, salary, yearsOfExperience, hiringDate, mgrId, admId, deptId, createdBy)
+            : base(fName, midName, lName, ssn, gender, birthDate, path, salary, yearsOfExperience, hiringDate, mgrId, admId, deptId, createdBy)
         { }
     }
 }

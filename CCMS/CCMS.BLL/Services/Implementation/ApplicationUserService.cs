@@ -37,9 +37,10 @@ namespace CCMS.BLL.Services.Implementation
                 if (!result.Succeeded)
                     return (null, result);
                 
-                IdentityResult roleResult = await _userManager.AddToRoleAsync(user, usr.UType.ToString());
+                //IdentityResult roleResult = await _userManager.AddToRoleAsync(user, usr.UType.ToString());
 
-                return roleResult.Succeeded ? (user.Id, roleResult) : (null, roleResult);
+                //return roleResult.Succeeded ? (user.Id, roleResult) : (null, roleResult);
+                return result.Succeeded ? (user.Id, result) : (null, result);
             }
             catch (Exception ex) { return (ex.Message, null); }
         }
